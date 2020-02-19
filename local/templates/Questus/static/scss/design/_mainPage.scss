@@ -1,0 +1,308 @@
+.head-block {
+    min-height: 720px;
+    background: url('../../static/media/bg_head2.jpg') no-repeat top center;
+    display: flex;
+    align-items: center;
+    padding: 40px 0;
+
+    @include mq(md) {
+        min-height: 620px;
+    }
+
+    @include mq(sm) {
+        min-height: 520px;
+    }
+
+    &_text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        h3 {
+            text-transform: uppercase;
+            font-size: 24px;
+            font-family: $font2;
+            font-weight: 300;
+            letter-spacing: 3.6px;
+            color: $darkFont;
+            margin: 15px 0;
+            text-align: center;
+
+            @include mq(md) {
+                font-size: 20px;
+                margin: 7px 0;
+            }
+        }
+
+        h1 {
+            font-size: 60px;
+            font-weight: 300;
+            text-transform: uppercase;
+            font-family: $font3;
+            letter-spacing: 9px;
+            margin: 15px 0;
+            text-align: center;
+
+            @include mq(md) {
+                font-size: 50px;
+                margin: 10px 0;
+            }
+
+            @include mq(sm) {
+                font-size: 40px;
+                margin: 8px 0;
+            }
+        }
+
+        .title-text {
+            font-size: 15px;
+            font-family: $font2;
+            line-height: 30px;
+            text-align: center;
+            font-weight: 300;
+            margin-top: 15px 0;
+
+            @include mq(sm) {
+                font-size: 14px;
+                margin: 7px 0;
+            }
+        }
+
+        .action-block {
+            text-transform: uppercase;
+            font-size: 32px;
+            letter-spacing: 1.9px;
+            color: #62708d;
+            font-family: $font3;
+            margin: 15px 0;
+
+            @include mq(sm) {
+                margin: 8px 0;
+                font-size: 26px;
+            }
+        }
+    }
+}
+
+.content {
+    .sliders-block {
+        padding-top: 120px;
+        text-align: center;
+
+        @include mq(md) {
+            padding-top: 80px;
+        }
+
+        @include mq(sm) {
+            padding-top: 60px;
+        }
+
+        .block_on_main {
+            display: none;
+            &-active {
+                display: block;
+            }
+        }
+
+        .slider-wrap {
+            @include mq(sm) {
+                padding-bottom: 20px;
+                margin-bottom: 40px;
+            }
+
+            .prevArrowBg {
+                @include mq(md) {
+                    left: -185px;
+                }
+
+                @include mq(sm) {
+                    left: -225px;
+                }
+
+                @include mq(xs) {
+                    left: -245px
+                }
+            }
+
+            .nextArrowBg {
+                @include mq(md) {
+                    right: -185px;
+                }
+
+                @include mq(sm) {
+                    right: -225px;
+                }
+
+                @include mq(xs) {
+                    right: -245px
+                }
+            }
+
+            .slide-block,
+            .slide-block_wide  {
+                @include mq(md) {
+                    width: 320px;
+                    margin: 0 10px;
+                }
+
+                @include mq(sm) {
+                    width: 280px;
+                    margin: 0 8px;
+
+                    h4 {
+                        font-size: 16px;
+                    }
+
+                    .infoDate {
+                        font-size: 11px;
+                    }
+
+                    .shortDesc {
+                        font-size: 12px;
+                    }
+                }
+
+
+
+                .slick-prev {
+                    @include mq(md) {
+                        left: 17px;
+                    }
+                }
+
+                .slick-next {
+                    @include mq(md) {
+                        right: 17px;
+                    }
+                }
+
+                .slick-arrow {
+                    @include mq(md) {
+
+                        z-index: 103;
+                        height: 45px;
+                        width: 45px;
+
+                        i {
+                            font-size: 25px;
+                        }
+                    }
+                }
+            }
+
+            .slide-block_wide {
+                @include mq(md) {
+                    width: 500px;
+                }
+                @include mq(sm) {
+                    width: 440px;
+                }
+                @include mq(xs) {
+                    width: 300px;
+                }
+            }
+
+            .slick-dots {
+                bottom: -45px;
+
+                li {
+                    button {
+                        &::before {
+                            font-size: 15px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .button-block {
+            button {
+                min-width: 126px;
+                height: 55px;
+                letter-spacing: 1.3px;
+                text-transform: uppercase;
+                font-size: 25px;
+                font-family: $font3;
+                border: 3px solid #242424;
+                margin: 15px;
+                &.btn-active {
+                    color: #fff;
+                    background: #242424;
+                }
+            }
+        }
+    }
+
+    .team {
+        padding-top: 120px;
+
+        @include mq(md) {
+            padding-top: 80px;
+
+        }
+
+        &-cards {
+            display: flex;
+            flex-grow: grow;
+            justify-content: center;
+
+            .specialty-card {
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 50px;
+
+                @include mq(sm) {
+                    text-align: center;
+                    margin-bottom: 30px;
+                    img {
+                        margin-bottom: 10px;
+                    }
+                    .specialtyName {
+                        font-size: 15px;
+                    }
+                    .specialty {
+                        font-size: 12px;
+                        letter-spacing: 1.8px;
+                    }
+                }
+
+                img {
+                    width: 100%;
+                    margin-bottom: 20px;
+                    filter: grayscale(100%);
+                }
+
+                .specialtyName {
+                    font-size: 20px;
+                    text-transform: uppercase;
+                    font-weight: 500;
+                }
+
+                .specialty {
+                    font-size: 14px;
+                    text-transform: uppercase;
+                    letter-spacing: 2.1px;
+                }
+
+                &:hover {
+                    img {
+                        filter: grayscale(0%);
+                    }
+
+                    .specialtyName {
+                        color: #536283;
+                    }
+                }
+            }
+        }
+    }
+
+    .bisiness-cases {
+        margin: 30px auto;
+    }
+
+    .ask-professionals {
+        margin: 30px auto;
+    }
+}
