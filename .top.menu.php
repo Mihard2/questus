@@ -8,36 +8,8 @@ $aMenuLinks = Array(
 		"" 
 	),
 	Array(
-		"blog", 
-		"/materials/?cat=BLOG", 
-		Array(), 
-		Array(), 
-		"" 
-	),
-	Array(
-		"podcast", 
-		"/materials/?cat=PODCAST", 
-		Array(), 
-		Array(), 
-		"" 
-	),
-	Array(
 		"mater", 
 		"/materials/", 
-		Array(), 
-		Array(), 
-		"" 
-	),
-	Array(
-		"video", 
-		"/materials/?cat=VIDEO", 
-		Array(), 
-		Array(), 
-		"" 
-	),
-	Array(
-		"LEADERSHIP CASES", 
-		"/materials/?cat=CASES", 
 		Array(), 
 		Array(), 
 		"" 

@@ -3,7 +3,7 @@
 
   <footer class="mainFooter">
       <div class="container team-cards_popUp-block white-popup mfp-hide" id="team-cards_popUp">
-
+            
      </div>
      
     <section class="container">

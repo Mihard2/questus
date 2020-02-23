@@ -9,9 +9,13 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("404 Not Found");
 
 
-?> <h1> I'm sorry ! This page not found (( </h1> <?
-var_dump($_SERVER);
-var_dump($_REQUEST);
+?>
+    <div class="container">
+        <h1> I'm sorry ! This page not found </h1> 
+     </div>
+<?
+// var_dump($_SERVER);
+// var_dump($_REQUEST);
 // $APPLICATION->IncludeComponent("bitrix:main.map", ".default", Array(
 // 	"LEVEL"	=>	"3",
 // 	"COL_NUM"	=>	"2",
