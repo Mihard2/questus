@@ -70,16 +70,12 @@
         }
 
         .action-block {
-            text-transform: uppercase;
-            font-size: 32px;
-            letter-spacing: 1.9px;
-            color: #62708d;
-            font-family: $font3;
-            margin: 15px 0;
+
+            margin: 25px 0;
+            padding: 10px 25px;
 
             @include mq(sm) {
-                margin: 8px 0;
-                font-size: 26px;
+                margin: 15px 0;
             }
         }
     }
@@ -100,6 +96,8 @@
 
         .block_on_main {
             display: none;
+            margin-bottom: 30px;
+
             &-active {
                 display: block;
             }
@@ -140,7 +138,22 @@
             }
 
             .slide-block,
-            .slide-block_wide  {
+            .slide-block_wide {
+
+                img {
+                    height: 201px;
+                }
+
+                h4 {
+                    height: 54px;
+                    overflow: hidden;
+                }
+
+                .shortDesc {
+                    height: 72px;
+                    overflow: hidden;
+                }
+
                 @include mq(md) {
                     width: 320px;
                     margin: 0 10px;
@@ -152,6 +165,8 @@
 
                     h4 {
                         font-size: 16px;
+                        height: 54px;
+                        overflow: hidden;
                     }
 
                     .infoDate {
@@ -160,6 +175,8 @@
 
                     .shortDesc {
                         font-size: 12px;
+                        height: 72px;
+                        overflow: hidden;
                     }
                 }
 
@@ -195,9 +212,11 @@
                 @include mq(md) {
                     width: 500px;
                 }
+
                 @include mq(sm) {
                     width: 440px;
                 }
+
                 @include mq(xs) {
                     width: 300px;
                 }
@@ -226,6 +245,7 @@
                 font-family: $font3;
                 border: 3px solid #242424;
                 margin: 15px;
+
                 &.btn-active {
                     color: #fff;
                     background: #242424;
@@ -255,12 +275,15 @@
                 @include mq(sm) {
                     text-align: center;
                     margin-bottom: 30px;
+
                     img {
                         margin-bottom: 10px;
                     }
+
                     .specialtyName {
                         font-size: 15px;
                     }
+
                     .specialty {
                         font-size: 12px;
                         letter-spacing: 1.8px;

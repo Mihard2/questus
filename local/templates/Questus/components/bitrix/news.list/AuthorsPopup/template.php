@@ -13,6 +13,11 @@
 $this->setFrameMode(true);
 ?>
 
+	<!-- <pre>
+		<?print_r($arResult['ITEMS']);?>
+    </pre> -->
+
+
 <?foreach ($arResult['ITEMS'] as $key => $arItem) {?>
 <div class="row">
  <div class="col-md-4 desc-info">

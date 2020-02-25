@@ -11,6 +11,7 @@ IncludeTemplateLangFile(__FILE__);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="cache-control" content="no-cache"> 
     <?$APPLICATION->ShowHead()?>
     <title><?$APPLICATION->ShowTitle()?></title>
     <?$APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH.'/static/css/style.css');?>
@@ -25,7 +26,7 @@ IncludeTemplateLangFile(__FILE__);
                <?else:?>
                   <a href="/" class="col-xl-3 col-md-6 col-6 2 logo"></a>
                <?endif;?>
-                <div class="col-xl-7 col-md-12 col-6 menu">
+                <div class="col-xl-6 col-md-12 col-6 menu">
 
                 <?$APPLICATION->IncludeComponent("bitrix:menu", "menu_multi", Array(
                 	"ALLOW_MULTI_SELECT" => "N",	// Разрешить несколько активных пунктов одновременно
@@ -60,10 +61,22 @@ IncludeTemplateLangFile(__FILE__);
                       	false
                       );?> -->
                 </div>
-                <div class="col-xl-2 col-md-6 contacts">
-                    <a href="javascript:void(0)" class="contacts-mail">
+                <div class="col-xl-3 col-md-6 contacts">
+                    <a href="javascript:void(0)" class="contacts-mail col-12">
                         <i class="icon-mail-1"></i>
                         info@hatfactory.com
+                    </a>                    
+                    <a class="col-3">
+                        <i class="icon-linkedin"></i>
+                    </a>
+                    <a class="col-3">
+                        <i class="icon-facebook"></i>
+                    </a>
+                    <a class="col-3">
+                        <i class="icon-instagram"></i>
+                    </a>
+                    <a class="col-3">
+                        <i class="icon-search"></i>
                     </a>
                 </div>
             </div>

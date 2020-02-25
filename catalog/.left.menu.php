@@ -2,21 +2,21 @@
 $aMenuLinks = Array(
 	Array(
 		"blog", 
-		"/materials/?cat=BLOG", 
+		"/catalog/?cat=BLOG", 
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
 		"podcast", 
-		"/materials/?cat=PODCAST", 
+		"/catalog/?cat=PODCAST", 
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
 		"video", 
-		"/materials/?cat=VIDEO", 
+		"/catalog/?cat=VIDEO", 
 		Array(), 
 		Array(), 
 		"" 

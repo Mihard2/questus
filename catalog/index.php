@@ -13,7 +13,7 @@ $GLOBALS['arrfliter'] = array("PROPERTY_MATR_VALUE"=>$Category,
 
 $APPLICATION->IncludeComponent(
 	"bitrix:news",
-	"mater",
+	"catalog",
 	array(
 		"ADD_ELEMENT_CHAIN" => "N",
 		"ADD_SECTIONS_CHAIN" => "Y",
