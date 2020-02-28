@@ -1,0 +1,302 @@
+.mainHeader {
+    border-bottom: solid 1px #c3c9d9;
+    display: flex;
+    align-items: flex-end;
+    min-height: 70px;
+
+    @include mq(lg) {
+        padding: 20px 0 0;
+    }
+
+    @include mq(sm) {
+        padding: 0;
+    }
+
+    &-block {
+        display: flex;
+        align-items: center;
+
+        .logo {
+            display: block;
+            height: 70px;
+            background: url('../../static/media/logoH.png') no-repeat center center;
+            background-size: contain;
+
+            @include mq(lg) {
+                height: 50px;
+                background-position-x: 15px;
+            }
+
+            @include mq(sm) {
+                height: 70px;
+            }
+
+            @include mq(xs) {
+                background: url('../../static/media/logoV.png') no-repeat center center;
+                background-size: contain;
+                background-position-x: 30px;
+                height: 70px;
+                margin: 10px 0;
+            }
+        }
+
+        .menu {
+            height: 70px;
+            display: flex;
+            align-items: flex-end;
+
+            @include mq(lg) {
+                order: 2;
+                margin-bottom: 0;
+            }
+
+            @include mq(sm) {
+                align-items: center;
+                justify-content: flex-end;
+                height: 90px;
+            }
+
+            &-link {
+                z-index: 1001;
+                display: none;
+                height: 40px;
+                width: 40px;
+                align-items: center;
+                justify-content: center;
+                margin-right: 10px;
+
+                @include mq(sm) {
+                    display: flex;
+                }
+
+                span {
+                    display: flex;
+                    width: 30px;
+                    height: 3px;
+                    background: #000;
+                    position: relative;
+
+                    &:after,
+                    &:before {
+                        content: '';
+                        display: block;
+                        width: 30px;
+                        height: 3px;
+                        background: #000;
+                        position: absolute;
+                    }
+
+                    &:after {
+                        top: 7px;
+                    }
+
+                    &:before {
+                        bottom: 7px;
+                    }
+                }
+            }
+
+            &-link_active {
+                position: fixed;
+                top: 15px;
+                right: 15px;
+                height: 80px;
+                padding-bottom: 40px;
+                width: 80px;
+                padding-left: 40px;
+
+                span {
+                    background-color: transparent;
+
+                    &:after {
+                        transform: rotate(45deg);
+                        top: 0;
+                        background: #fff;
+                    }
+
+                    &:before {
+                        transform: rotate(135deg);
+                        bottom: 0;
+                        background: #fff;
+                    }
+                }
+            }
+
+            &-main {
+                display: flex;
+                justify-content: flex-end;
+                align-items: flex-end;
+                height: 100%;
+                width: 100%;
+
+                li {
+                    height: 100%;
+                    position: relative;
+
+                    a {
+                        text-transform: uppercase;
+                        font-family: $font2;
+                        font-size: 14px;
+                        padding: 20px;
+                        display: flex;
+                        align-items: flex-end;
+                        height: 100%;
+                        transition: all .4s;
+                        position: relative;
+
+                        &.dropdown_link {
+                            &:after {
+                                content: "";
+                                display: block;
+                                border: 5px solid transparent;
+                                border-left: 8px solid #000;
+                                // position: absolute;
+                                // right: 4px;
+                                // top: 37px;
+                                transform: rotate(90deg);
+                                margin-bottom: 3px;
+                                margin-left: 2px;
+                            }
+
+                            &:hover {
+                                &:after {
+                                    border-left: 8px solid #fff;
+                                }
+                            }
+                        }
+
+                        &.active {
+                            color: #fff;
+                            background: $fontColor;
+
+                            &:after {
+                                border-left: 8px solid #fff;
+                            }
+                        }
+
+                        @include mq(lg) {
+                            align-items: center;
+                        }
+
+                        &:hover {
+                            color: #fff;
+                            background: $fontColor;
+
+                            &+ul {
+                                display: flex;
+                            }
+                        }
+                    }
+
+                    .dropdown_menu {
+                        display: none;
+                        position: absolute;
+                        flex-direction: column;
+                        background: #fff;
+                        width: 100%;
+                        box-shadow: 6px 5px 12px #000;
+                        z-index: 10;
+                        
+                        li {
+                            border-bottom: 1px solid #000;
+
+                            a {
+                                padding: 10px;
+                                margin: 0;
+                                padding-left: 30px;
+                            }
+                        }
+
+                        &:hover {
+                            display: flex;
+                        }
+                    }
+                }
+
+                @include mq(lg) {
+                    justify-content: space-around;
+                }
+
+                &_mobile {
+                    @include mq(sm) {
+                        position: fixed;
+                        background: #000;
+                        left: 0;
+                        top: -100%;
+                        right: 0;
+                        bottom: 0;
+                        z-index: 1000;
+                        display: flex;
+                        flex-direction: column;
+                        max-height: 100vh;
+                        padding-top: 50px;
+                        transition: all 1s;
+
+                        li {
+                            width: 100%;
+                            border-bottom: 1px solid rgba(255, 255, 255, .7);
+
+                            a {
+                                color: #fff;
+                                font-weight: 700;
+                                display: flex;
+                                justify-content: center;
+                            }
+                        }
+                    }
+
+                    &-active {
+                        top: 0;
+                    }
+                }
+
+            }
+        }
+
+        .contacts {
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            min-height: 70px;
+            flex-wrap: wrap;
+
+
+            @include mq(lg) {
+                margin-bottom: 0;
+            }
+
+            @include mq(sm) {
+                display: none;
+            }
+
+            a {
+                font-family: $font2;
+                font-size: 13px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 5px 6px;
+                transition: all .4s;
+
+                i {
+                    font-size: 19px;
+                    margin-right: 6px;
+                    margin-bottom: 2px;
+                }
+
+                &.contacts-mail {
+                    i {
+                        font-size: 11px;
+                    }
+                }
+
+                &:hover {
+                    background: $fontColor;
+                    color: #fff;
+                }
+            }
+
+        }
+    }
+
+}

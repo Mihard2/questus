@@ -1,0 +1,25 @@
+<?
+$aMenuLinks = Array(
+	Array(
+		"blog", 
+		"/catalog/?cat=BLOG", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"podcast", 
+		"/catalog/?cat=PODCAST", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"video", 
+		"/catalog/?cat=VIDEO", 
+		Array(), 
+		Array(), 
+		"" 
+	)
+);
+?>
