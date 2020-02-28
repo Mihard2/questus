@@ -12,9 +12,9 @@ $GLOBALS['tagFilter'] = array("TAGS"=>$tag);
 			<div class="title-text">
 				 Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 			</div>
-			<div class="action-block">
-				 take a tour
-			</div>
+			<a class="action-block btn" href="https://questusleadership.com/about-us/">
+				 learn more
+			</a>
 		</div>
 	</div>
 </div>
@@ -82,7 +82,8 @@ $GLOBALS['tagFilter'] = array("TAGS"=>$tag);
 		"SORT_ORDER2" => "ASC",
 		"STRICT_SECTION_CHECK" => "N"
 	)
-);?><br>
+);?>
+<br>
 </div>
 </article> 
 
@@ -90,7 +91,7 @@ $GLOBALS['tagFilter'] = array("TAGS"=>$tag);
 
 <article class="sliders-block">
 
-<h3>content</h3>
+<h3 class="title">content</h3>
 
 <div class="block_on_main block_on_main-active" id="block-1">
 	<!-- <h4 class="title">blog</h4> -->
@@ -219,7 +220,7 @@ $GLOBALS['tagFilter'] = array("TAGS"=>$tag);
 		"PARENT_SECTION" => "",
 		"PARENT_SECTION_CODE" => "",
 		"PREVIEW_TRUNCATE_LEN" => "150",
-		"PROPERTY_CODE" => array("",""),
+		"PROPERTY_CODE" => array("AUTHOR",""),
 		"SET_BROWSER_TITLE" => "Y",
 		"SET_LAST_MODIFIED" => "N",
 		"SET_META_DESCRIPTION" => "Y",
@@ -292,7 +293,7 @@ $GLOBALS['tagFilter'] = array("TAGS"=>$tag);
 		"PARENT_SECTION" => "",
 		"PARENT_SECTION_CODE" => "",
 		"PREVIEW_TRUNCATE_LEN" => "150",
-		"PROPERTY_CODE" => array("SIDE_RES","YOUTUBE_VIDEO",""),
+		"PROPERTY_CODE" => array("SIDE_RES","YOUTUBE_VIDEO","AUTHOR"),
 		"SET_BROWSER_TITLE" => "Y",
 		"SET_LAST_MODIFIED" => "N",
 		"SET_META_DESCRIPTION" => "Y",

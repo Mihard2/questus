@@ -22,29 +22,18 @@ $(document).ready(function () {
     //*     ASIDE OPEN
 
     $('.openBlock').on('click', function () {
+
         $(this).next('div, form').toggle(200);
     });
 
     //*     END ASIDE OPEN
 
 
-    //*     TAGS FILTER
-
-    // $('#tagsFilter').on('change', function(e) {
-    //     e.preventDefault();
-    //     tags = $(this).serializeArray();
-
-    //     console.log(tags);
-    // });
-
-    //*     END TAGS FILTER
-
-
     //*     SLICK SLIDER
 
     $('.slider').slick({
         infinite: true,
-        speed: 300,
+        speed: 600,
         slidesToShow: 1,
         centerMode: true,
         variableWidth: true,
@@ -57,16 +46,6 @@ $(document).ready(function () {
             }
         }]
     });
-
-    // $('.slider-blog_btn').click(function () {
-    //     $('.slider-podcast').slideUp('100');
-    //     $('.slider-blog').slideDown('100');
-    // });
-
-    // $('.slider-podcast_btn').click(function () {
-    //     $('.slider-blog').slideUp('100');
-    //     $('.slider-podcast').slideDown('100');
-    // });
 
     $("#forBlock-1").on('click', function () {
         $(".button-block_slider button").removeClass('btn-active');
@@ -101,6 +80,20 @@ $(document).ready(function () {
         midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
     });
 
+
+    $('.open-popup-link').click(function () {
+        var id = $(this).data('info');
+        $.post('ajax/index.php', {
+            user: id
+        }).done(function (data) {
+            var block = $(data);
+            $("#team-cards_popUp").empty().append(block);
+            console.log(block)
+        });
+    });
+
+
     //*     END MAGNIFIC POPUP
+
 
 });

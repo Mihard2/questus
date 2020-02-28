@@ -3,12 +3,39 @@
 
   <footer class="mainFooter">
       <div class="container team-cards_popUp-block white-popup mfp-hide" id="team-cards_popUp">
-            
+
+
      </div>
      
     <section class="container">
         <div class="row footer">
-            <div class="socialNetworks col-xl-1 col-md-2 col-sm-3">
+
+            <div class="col-md-4 footer_menu">
+                <div class="footer-title">site map</div>
+                 <?$APPLICATION->IncludeComponent("bitrix:menu", "menu_multi", Array(
+                	"ALLOW_MULTI_SELECT" => "N",	// Разрешить несколько активных пунктов одновременно
+                		"CHILD_MENU_TYPE" => "left",	// Тип меню для остальных уровней
+                		"DELAY" => "N",	// Откладывать выполнение шаблона меню
+                		"MAX_LEVEL" => "2",	// Уровень вложенности меню
+                		"MENU_CACHE_GET_VARS" => array(	// Значимые переменные запроса
+                			0 => "",
+                		),
+                		"MENU_CACHE_TIME" => "3600",	// Время кеширования (сек.)
+                		"MENU_CACHE_TYPE" => "N",	// Тип кеширования
+                		"MENU_CACHE_USE_GROUPS" => "Y",	// Учитывать права доступа
+                		"ROOT_MENU_TYPE" => "top",	// Тип меню для первого уровня
+                		"USE_EXT" => "N",	// Подключать файлы с именами вида .тип_меню.menu_ext.php
+                	),
+                	false
+                );?>
+            </div>
+            <div class="col-md-4 footer_contacts">
+                <div class="footer-title">contacts</div>
+            </div>
+            <div class="col-md-4 footer_searche">
+            </div>
+
+            <!-- <div class="socialNetworks col-xl-1 col-md-2 col-sm-3">
                 <a href="https://www.facebook.com/">
                     <i class="icon-facebook"></i>
                 </a>
@@ -28,14 +55,14 @@
                     <button type="submit"><i class='icon-search'></i></button>
                 </form>
 
-            </div>
+            </div> -->
         </div>
     </section>
 </footer>
 <script src="<?=SITE_TEMPLATE_PATH?>/static/js/jQuery3.4.1.min.js"></script>
 <script src="<?=SITE_TEMPLATE_PATH?>/static/js/jquery.magnific-popup.min.js"></script>
 <script src="<?=SITE_TEMPLATE_PATH?>/static/js/slick.min.js"></script>
-<script src="<?=SITE_TEMPLATE_PATH?>/static/js/main.js"></script>
+<script src="<?=SITE_TEMPLATE_PATH?>/static/js/main.js?version={version10}"></script>
 </body>
 
 </html>

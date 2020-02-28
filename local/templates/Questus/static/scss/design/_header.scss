@@ -2,10 +2,12 @@
     border-bottom: solid 1px #c3c9d9;
     display: flex;
     align-items: flex-end;
+    min-height: 70px;
 
     @include mq(lg) {
         padding: 20px 0 0;
     }
+
     @include mq(sm) {
         padding: 0;
     }
@@ -19,13 +21,16 @@
             height: 70px;
             background: url('../../static/media/logoH.png') no-repeat center center;
             background-size: contain;
+
             @include mq(lg) {
                 height: 50px;
                 background-position-x: 15px;
             }
+
             @include mq(sm) {
                 height: 70px;
             }
+
             @include mq(xs) {
                 background: url('../../static/media/logoV.png') no-repeat center center;
                 background-size: contain;
@@ -39,7 +44,6 @@
             height: 70px;
             display: flex;
             align-items: flex-end;
-            margin-bottom: 20px;
 
             @include mq(lg) {
                 order: 2;
@@ -127,23 +131,48 @@
 
                 li {
                     height: 100%;
-                    &.active {
-                        a{
-                            color: #fff;
-                            background: $fontColor;
-                        }
-                    }
+                    position: relative;
 
                     a {
                         text-transform: uppercase;
                         font-family: $font2;
                         font-size: 14px;
-                        padding: 0 10px;
-                        margin: 0 10px;
+                        padding: 20px;
                         display: flex;
                         align-items: flex-end;
                         height: 100%;
                         transition: all .4s;
+                        position: relative;
+
+                        &.dropdown_link {
+                            &:after {
+                                content: "";
+                                display: block;
+                                border: 5px solid transparent;
+                                border-left: 8px solid #000;
+                                // position: absolute;
+                                // right: 4px;
+                                // top: 37px;
+                                transform: rotate(90deg);
+                                margin-bottom: 3px;
+                                margin-left: 2px;
+                            }
+
+                            &:hover {
+                                &:after {
+                                    border-left: 8px solid #fff;
+                                }
+                            }
+                        }
+
+                        &.active {
+                            color: #fff;
+                            background: $fontColor;
+
+                            &:after {
+                                border-left: 8px solid #fff;
+                            }
+                        }
 
                         @include mq(lg) {
                             align-items: center;
@@ -152,6 +181,34 @@
                         &:hover {
                             color: #fff;
                             background: $fontColor;
+
+                            &+ul {
+                                display: flex;
+                            }
+                        }
+                    }
+
+                    .dropdown_menu {
+                        display: none;
+                        position: absolute;
+                        flex-direction: column;
+                        background: #fff;
+                        width: 100%;
+                        box-shadow: 6px 5px 12px #000;
+                        z-index: 10;
+                        
+                        li {
+                            border-bottom: 1px solid #000;
+
+                            a {
+                                padding: 10px;
+                                margin: 0;
+                                padding-left: 30px;
+                            }
+                        }
+
+                        &:hover {
+                            display: flex;
                         }
                     }
                 }
@@ -187,6 +244,7 @@
                             }
                         }
                     }
+
                     &-active {
                         top: 0;
                     }
@@ -199,8 +257,9 @@
             display: flex;
             align-items: flex-end;
             justify-content: flex-end;
-            height: 70px;
-            margin-bottom: 20px;
+            min-height: 70px;
+            flex-wrap: wrap;
+
 
             @include mq(lg) {
                 margin-bottom: 0;
@@ -210,19 +269,25 @@
                 display: none;
             }
 
-            &-mail {
+            a {
                 font-family: $font2;
                 font-size: 13px;
                 display: flex;
-                align-items: flex-end;
-                height: 100%;
-                padding: 0 6px;
+                align-items: center;
+                justify-content: center;
+                padding: 5px 6px;
                 transition: all .4s;
 
                 i {
-                    font-size: 11px;
+                    font-size: 19px;
                     margin-right: 6px;
                     margin-bottom: 2px;
+                }
+
+                &.contacts-mail {
+                    i {
+                        font-size: 11px;
+                    }
                 }
 
                 &:hover {
@@ -230,6 +295,7 @@
                     color: #fff;
                 }
             }
+
         }
     }
 

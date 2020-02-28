@@ -13,9 +13,6 @@
 $this->setFrameMode(true);
 ?>
 
-<!-- <pre>
-	<?print_r($arResult["ITEMS"]);?>
-</pre> -->
 
 <div class="row team-cards">
 
