@@ -8,8 +8,22 @@ $aMenuLinks = Array(
 		"" 
 	),
 	Array(
-		"mater", 
-		"/materials/", 
+		"catalog", 
+		"/catalog/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"About us", 
+		"/about-us/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Contacts", 
+		"/contacts/", 
 		Array(), 
 		Array(), 
 		"" 

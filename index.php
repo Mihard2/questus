@@ -104,9 +104,9 @@ $GLOBALS['tagFilter'] = array("TAGS"=>$tag);
 			 <?
 			 $GLOBALS['arrfliter'] = array("PROPERTY_MATR_VALUE"=>"BLOG");
 			 $APPLICATION->IncludeComponent(
-	"bitrix:news.list",
-	"blog_on_main",
-	Array(
+	"bitrix:news.list", 
+	"blog_on_main", 
+	array(
 		"ACTIVE_DATE_FORMAT" => "d.m.Y",
 		"ADD_SECTIONS_CHAIN" => "Y",
 		"AJAX_MODE" => "N",
@@ -127,8 +127,15 @@ $GLOBALS['tagFilter'] = array("TAGS"=>$tag);
 		"DISPLAY_PICTURE" => "Y",
 		"DISPLAY_PREVIEW_TEXT" => "Y",
 		"DISPLAY_TOP_PAGER" => "N",
-		"FIELD_CODE" => array(0=>"NAME",1=>"TAGS",2=>"PREVIEW_TEXT",3=>"PREVIEW_PICTURE",4=>"DATE_CREATE",5=>"",),
-		"FILE_404" => "",
+		"FIELD_CODE" => array(
+			0 => "NAME",
+			1 => "TAGS",
+			2 => "PREVIEW_TEXT",
+			3 => "PREVIEW_PICTURE",
+			4 => "DATE_CREATE",
+			5 => "",
+		),
+		"FILE_404" => "404.php",
 		"FILTER_NAME" => "arrfliter",
 		"HIDE_LINK_WHEN_NO_DETAIL" => "N",
 		"IBLOCK_ID" => "6",
@@ -147,12 +154,16 @@ $GLOBALS['tagFilter'] = array("TAGS"=>$tag);
 		"PARENT_SECTION" => "",
 		"PARENT_SECTION_CODE" => "",
 		"PREVIEW_TRUNCATE_LEN" => "150",
-		"PROPERTY_CODE" => array(0=>"",1=>"AUTHOR",2=>"",),
+		"PROPERTY_CODE" => array(
+			0 => "",
+			1 => "AUTHOR",
+			2 => "",
+		),
 		"SET_BROWSER_TITLE" => "Y",
 		"SET_LAST_MODIFIED" => "N",
 		"SET_META_DESCRIPTION" => "Y",
 		"SET_META_KEYWORDS" => "Y",
-		"SET_STATUS_404" => "N",
+		"SET_STATUS_404" => "Y",
 		"SET_TITLE" => "Y",
 		"SHOW_404" => "Y",
 		"SORT_BY1" => "ACTIVE_FROM",
@@ -160,7 +171,8 @@ $GLOBALS['tagFilter'] = array("TAGS"=>$tag);
 		"SORT_ORDER1" => "DESC",
 		"SORT_ORDER2" => "ASC",
 		"STRICT_SECTION_CHECK" => "N"
-	)
+	),
+	false
 );?>
 		</div>
 	</div>
