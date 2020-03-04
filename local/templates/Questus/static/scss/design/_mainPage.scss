@@ -237,6 +237,10 @@
         }
 
         .button-block {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            a,
             button {
                 min-width: 126px;
                 height: 55px;
@@ -246,8 +250,12 @@
                 font-family: $font3;
                 border: 3px solid #242424;
                 margin: 15px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
 
-                &.btn-active {
+                &.btn-active,
+                &:hover {
                     color: #fff;
                     background: #242424;
                 }

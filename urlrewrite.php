@@ -2,10 +2,10 @@
 $arUrlRewrite=array (
   2 => 
   array (
-    'CONDITION' => '#^/materials/([a-zA-Z0-9\\-]+)/(.*)#',
+    'CONDITION' => '#^/catalog/([a-zA-Z0-9\\-]+)/(.*)#',
     'RULE' => 'ELEMENT_CODE=$1',
     'ID' => 'bitrix:news',
-    'PATH' => '/materials/index.php',
+    'PATH' => '/catalog/index.php',
     'SORT' => 100,
   ),
   1 => 

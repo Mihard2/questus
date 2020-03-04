@@ -1,0 +1,219 @@
+.detailPost {
+    border-bottom: 1px solid #9aa3bc;
+    padding-bottom: 50px;
+    margin-bottom: 50px;
+
+    header {
+        h1 {
+            font-family: $font3;
+            font-size: 52px;
+            font-weight: 300;
+            line-height: 60px;
+            margin-bottom: 23px;
+        }
+
+        img {
+            width: 100%;
+            margin-bottom: 23px;
+        }
+
+        .shortDesc {
+            font-family: $font2;
+            font-size: 21px;
+            line-height: 32px;
+            margin-bottom: 50px;
+        }
+    }
+
+    article {
+        text-align: center;
+        margin-bottom: 60px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+}
+
+.infoPost {
+    .share {
+        .switch {
+
+            &-prev,
+            &-next {
+                font-size: 16px;
+                line-height: 24px;
+
+                .switch {
+                    display: flex;
+                    justify-content: space-between;
+                    text-transform: uppercase;
+                    align-items: baseline;
+                    font-size: 18px;
+                    letter-spacing: 0.9px;
+                    font-weight: 600;
+                    margin-bottom: 15px;
+
+                    i {
+                        font-size: 22px;
+                    }
+                }
+            }
+
+            &-prev {
+                text-align: right;
+            }
+        }
+
+        &-block {
+            text-align: center;
+        }
+
+        &-title {
+            text-transform: uppercase;
+            font-size: 24px;
+            letter-spacing: 1.2px;
+            margin-bottom: 25px;
+        }
+
+        &-links {
+            padding-bottom: 200px;
+
+            a {
+                margin: 0 12px;
+
+                i {
+                    font-size: 30px;
+
+                    &.icon-email {
+                        display: inline-block;
+                        transform: rotate(-45deg);
+                    }
+                }
+            }
+        }
+    }
+
+    .comments-block {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .live-reply {
+            margin-bottom: 60px;
+
+            form {
+                legend {
+                    text-transform: uppercase;
+                    font-size: 24px;
+                    letter-spacing: 1.2px;
+                }
+
+                label {
+                    font-family: $font2;
+                    font-weight: 300;
+                    font-size: 13px;
+                    letter-spacing: 0.65px;
+                    margin-bottom: 20px;
+                }
+
+                .input-wrap {
+                    display: flex;
+                    justify-content: space-between;
+
+                    input {
+                        width: 48%;
+                    }
+                }
+
+                textarea {
+                    width: 100%;
+                }
+
+                input,
+                textarea {
+                    font-family: $font2;
+                    font-size: 18px;
+                    font-weight: 600;
+                    border: none;
+                    border-bottom: 1px solid #555;
+                    margin-bottom: 20px;
+
+                    &::placeholder {
+                        text-transform: uppercase;
+                        font-size: 15px;
+                        font-family: $font2;
+                        color: #555;
+                        font-weight: 600;
+                    }
+                }
+
+                .btn {
+                    font-size: 24px;
+                }
+
+                footer {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+            }
+        }
+
+        .old-comments {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            &_title {
+                text-transform: uppercase;
+                font-size: 24px;
+                letter-spacing: 1.2px;
+                margin-bottom: 20px;
+                padding-left: 0;
+            }
+
+            .row {
+                padding-bottom: 47px;
+                margin-bottom: 47px;
+                border-bottom: 1px solid #9aa3bc;
+
+                &:last-child {
+                    border: none;
+                }
+
+                .name-comment {
+                    font-size: 18px;
+                    text-transform: uppercase;
+                    font-weight: 600;
+                    text-align: right;
+                    line-height: 32px;
+
+                    span {
+                        display: block;
+                        font-size: 14px;
+                        font-weight: 400;
+                        letter-spacing: 2.1px;
+                    }
+
+                    // display: flex;
+                    // flex-direction: column;
+                    // align-items: flex-end;
+                }
+
+                .text-comment {
+                    font-size: 17px;
+                    font-family: $font2;
+                    font-weight: 300;
+                    line-height: 32px;
+                }
+
+                .date-comment {
+                    font-family: $font2;
+                    font-size: 12px;
+                    font-weight: 600;
+                    line-height: 32px;
+
+                }
+            }
+        }
+    }
+}

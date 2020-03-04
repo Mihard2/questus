@@ -23,7 +23,7 @@ $this->setFrameMode(true);
 	?>
 
 	<div class="col-md-4 col-sm-6 col-10">
-		<a class="specialty-card open-popup-link" href="#team-cards_popUp" data-info="<?=$arItem["ID"]?>">
+		<a class="specialty-card open-popup-link" href="#team-cards_popUp" data-info="<?=$arItem["ID"]?>" data-effect="mfp-zoom-in">
 			<img 	src="<?=$arItem["PREVIEW_PICTURE"]["SRC"]?>"
 				alt="<?=$arItem["PREVIEW_PICTURE"]["ALT"]?>"
 				title="<?=$arItem["PREVIEW_PICTURE"]["TITLE"]?>">

@@ -28,7 +28,7 @@ foreach($arResult as $arItem):?>
 			<?if ($arItem["DEPTH_LEVEL"] == 1):?>
 				<li><a href="<?=$arItem["LINK"]?>" class="<?if ($arItem["SELECTED"]):?>active<?else:?>root-item<?endif?>"><?=$arItem["TEXT"]?></a></li>
 			<?else:?>
-				<li<?if ($arItem["SELECTED"]):?> class="item-selected"<?endif?>><a href="<?=$arItem["LINK"]?>"><?=$arItem["TEXT"]?></a></li>
+				<li<?if ($arItem["SELECTED"]):?> class="item-selected active"<?endif?>><a href="<?=$arItem["LINK"]?>"><?=$arItem["TEXT"]?></a></li>
 			<?endif?>
 
 		<?else:?>

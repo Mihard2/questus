@@ -88,7 +88,6 @@ $GLOBALS['tagFilter'] = array("TAGS"=>$tag);
 </article> 
 
 
-
 <article class="sliders-block">
 
 <h3 class="title">content</h3>

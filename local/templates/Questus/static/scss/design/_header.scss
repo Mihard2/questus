@@ -196,7 +196,7 @@
                         width: 100%;
                         box-shadow: 6px 5px 12px #000;
                         z-index: 10;
-                        
+
                         li {
                             border-bottom: 1px solid #000;
 
@@ -204,6 +204,15 @@
                                 padding: 10px;
                                 margin: 0;
                                 padding-left: 30px;
+                            }
+
+                            &.active {
+                                background: $fontColor;
+                                border-top: 1px solid #fff;
+
+                                a {
+                                    color: #fff;
+                                }
                             }
                         }
 

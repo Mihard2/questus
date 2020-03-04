@@ -3847,6 +3847,40 @@ body {
   font-size: 60px;
 }
 
+.mfp-zoom-in.mfp-bg {
+  -webkit-transition: all 0.6s ease-out;
+  transition: all 0.6s ease-out;
+  opacity: 0;
+}
+
+.mfp-zoom-in.mfp-ready.mfp-bg {
+  opacity: 0.8;
+}
+
+.mfp-zoom-in .mfp-with-anim {
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  opacity: 0;
+  -webkit-transform: scale(0.8);
+          transform: scale(0.8);
+}
+
+.mfp-zoom-in.mfp-ready .mfp-with-anim {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  opacity: 1;
+}
+
+.mfp-zoom-in.mfp-removing.mfp-bg {
+  opacity: 0;
+}
+
+.mfp-zoom-in.mfp-removing .mfp-with-anim {
+  -webkit-transform: scale(0.8);
+          transform: scale(0.8);
+  opacity: 0;
+}
+
 .slider-wrap {
   max-width: 1900px;
   margin: auto;
@@ -4312,6 +4346,15 @@ body {
   padding-left: 30px;
 }
 
+.mainHeader-block .menu-main li .dropdown_menu li.active {
+  background: #242424;
+  border-top: 1px solid #fff;
+}
+
+.mainHeader-block .menu-main li .dropdown_menu li.active a {
+  color: #fff;
+}
+
 .mainHeader-block .menu-main li .dropdown_menu:hover {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -4746,7 +4789,22 @@ body {
   font-size: 15px;
 }
 
+.catalog .sliders-block .button-block,
+.content .sliders-block .button-block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.catalog .sliders-block .button-block a,
 .catalog .sliders-block .button-block button,
+.content .sliders-block .button-block a,
 .content .sliders-block .button-block button {
   min-width: 126px;
   height: 55px;
@@ -4756,10 +4814,24 @@ body {
   font-family: "Oswald-ExtraLight", sans-serif;
   border: 3px solid #242424;
   margin: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
+.catalog .sliders-block .button-block a.btn-active, .catalog .sliders-block .button-block a:hover,
 .catalog .sliders-block .button-block button.btn-active,
-.content .sliders-block .button-block button.btn-active {
+.catalog .sliders-block .button-block button:hover,
+.content .sliders-block .button-block a.btn-active,
+.content .sliders-block .button-block a:hover,
+.content .sliders-block .button-block button.btn-active,
+.content .sliders-block .button-block button:hover {
   color: #fff;
   background: #242424;
 }

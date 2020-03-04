@@ -2,7 +2,7 @@
 
 
   <footer class="mainFooter">
-      <div class="container team-cards_popUp-block white-popup mfp-hide" id="team-cards_popUp">
+      <div class="container team-cards_popUp-block white-popup mfp-hide mfp-with-anim" id="team-cards_popUp">
 
 
      </div>
@@ -62,7 +62,7 @@
 <script src="<?=SITE_TEMPLATE_PATH?>/static/js/jQuery3.4.1.min.js"></script>
 <script src="<?=SITE_TEMPLATE_PATH?>/static/js/jquery.magnific-popup.min.js"></script>
 <script src="<?=SITE_TEMPLATE_PATH?>/static/js/slick.min.js"></script>
-<script src="<?=SITE_TEMPLATE_PATH?>/static/js/main.js?version={version10}"></script>
+<script src="<?=SITE_TEMPLATE_PATH?>/static/js/main.js?version={version11}"></script>
 </body>
 
 </html>

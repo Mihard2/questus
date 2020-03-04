@@ -294,3 +294,32 @@ body {
     font-family: $font3;
     font-size: 60px;
 }
+
+.mfp-zoom-in.mfp-bg {
+    transition: all 0.6s ease-out;
+    opacity: 0;
+  }
+  
+  .mfp-zoom-in.mfp-ready.mfp-bg {
+    opacity: 0.8;
+  }
+  
+  .mfp-zoom-in .mfp-with-anim {
+    transition: all 0.5s ease-in-out;
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  
+  .mfp-zoom-in.mfp-ready .mfp-with-anim {
+    transform: scale(1);
+    opacity: 1;
+  }
+  
+  .mfp-zoom-in.mfp-removing.mfp-bg {
+    opacity: 0;
+  }
+  
+  .mfp-zoom-in.mfp-removing .mfp-with-anim {
+    transform: scale(0.8);
+    opacity: 0;
+  }

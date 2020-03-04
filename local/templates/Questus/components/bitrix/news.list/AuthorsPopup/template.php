@@ -13,6 +13,10 @@
 $this->setFrameMode(true);
 ?>
 
+<pre>
+	<?print_r($arResult)?>
+</pre>
+
 <?foreach ($arResult['ITEMS'] as $key => $arItem) {?>
 <div class="row">
  <div class="col-md-4 desc-info">
@@ -20,8 +24,7 @@ $this->setFrameMode(true);
 		alt="<?=$arItem["PREVIEW_PICTURE"]["ALT"]?>"
 		title="<?=$arItem["PREVIEW_PICTURE"]["TITLE"]?>">
 		<div class="links">
-				<a href="" class="btn">cases</a>
-				<a href="" class="btn">blog</a>
+			<a href="catalog/?<?=$_SERVER["QUERY_STRING"]?>&author=<?=$arItem['ID']?>" id="<?=$this->GetEditAreaId($arItem['ID']);?>" class="btn">materials</a>
 		</div>
 		<div class="education">
 				<span>Education</span>
