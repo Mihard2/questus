@@ -5485,6 +5485,7 @@ li {
 
 .detailPost header img {
   width: 100%;
+  height: auto;
   margin-bottom: 23px;
 }
 
