@@ -13,6 +13,36 @@
 $this->setFrameMode(true);
 
 ?>
+
+<!-- <pre>
+	<? print_r($arResult)?>
+</pre> -->
+
+<div class="detailPost">
+	<div class="container">
+        <section class="row">
+			<header class="col-12">
+				<h1><?=$arResult["NAME"]?></h1>
+				<?if($arParams["DISPLAY_PICTURE"]!="N" && is_array($arResult["DETAIL_PICTURE"])):?>
+					<img
+					class="detail_picture"
+					border="0"
+					src="<?=$arResult["DETAIL_PICTURE"]["SRC"]?>"
+					width="<?=$arResult["DETAIL_PICTURE"]["WIDTH"]?>"
+					height="<?=$arResult["DETAIL_PICTURE"]["HEIGHT"]?>"
+					alt="<?=$arResult["DETAIL_PICTURE"]["ALT"]?>"
+					title="<?=$arResult["DETAIL_PICTURE"]["TITLE"]?>"
+					/>
+				<?endif?>
+				<?if($arParams["DISPLAY_PREVIEW_TEXT"]!="N" && $arResult["PREVIEW_TEXT"]):?>
+					<div class="shortDesc"><?=$arResult["PREVIEW_TEXT"];unset($arResult["PREVIEW_TEXT"]);?></div>
+				<?endif;?>
+			</header>
+		</section>
+	</div>
+</div>
+
+
 <div class="news-detail">
 	<?if($arParams["DISPLAY_PICTURE"]!="N" && is_array($arResult["DETAIL_PICTURE"])):?>
 		<img
@@ -94,6 +124,7 @@ $this->setFrameMode(true);
 	}
 	?>
 </div>
+
 <?
 $APPLICATION->IncludeComponent("linetime:comments", "",
  array(

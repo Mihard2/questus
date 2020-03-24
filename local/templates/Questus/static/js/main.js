@@ -1,5 +1,19 @@
 $(document).ready(function () {
 
+    //*     BG HEADER BLOCK
+    
+    $('.header-link_active').hover( function(){
+        $('.head-block').toggleClass('head-block-active');
+    });
+    
+    // $('.dropdown_menu-wrapper ul li a').hover( function() {
+    //     $('.dropdown_menu-wrapper a.dropdown_link').css('background: #fff; color: #242424');
+    // });
+
+
+    
+    //*     END BG HEADER BLOCK
+
     //*     MOBILE MENU
 
     $('.menu-link').on('click', function () {
@@ -89,7 +103,7 @@ $(document).ready(function () {
 
     $('.open-popup-link').click(function () {
         var id = $(this).data('info');
-        $.post('ajax/index.php', {
+        $.post('/ajax/index.php', {
             user: id
         }).done(function (data) {
             var block = $(data);

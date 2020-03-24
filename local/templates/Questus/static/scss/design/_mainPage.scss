@@ -1,9 +1,21 @@
 .head-block {
     min-height: 720px;
-    background: url('../../static/media/bg_head2.jpg') no-repeat top center;
+    background: url('../../static/media/background2.jpg') no-repeat center center;
     display: flex;
     align-items: center;
     padding: 40px 0;
+    background-size: cover;
+    position: relative;
+    filter: grayscale(100%); 
+
+    &_filter {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: rgba(0,0,0, .5);
+    }
 
     @include mq(md) {
         min-height: 620px;
@@ -25,7 +37,7 @@
             font-family: $font2;
             font-weight: 300;
             letter-spacing: 3.6px;
-            color: $darkFont;
+            color: #fff;
             margin: 15px 0;
             text-align: center;
 
@@ -43,6 +55,7 @@
             letter-spacing: 9px;
             margin: 15px 0;
             text-align: center;
+            color: #fff;
 
             @include mq(md) {
                 font-size: 50px;
@@ -62,6 +75,7 @@
             text-align: center;
             font-weight: 300;
             margin-top: 15px 0;
+            color: #fff;
 
             @include mq(sm) {
                 font-size: 14px;
@@ -73,10 +87,24 @@
 
             margin: 25px 0;
             padding: 10px 25px;
+            background: #fff;
+            color: $fontColor;
+
+            &:hover {
+                background: $fontColor;
+                color: #fff;
+            }
 
             @include mq(sm) {
                 margin: 15px 0;
             }
+        }
+    }
+    &-active {
+        filter: grayscale(0%); 
+
+        &_filter {
+            background: rgba(0,0,0, .3);
         }
     }
 }
@@ -275,58 +303,62 @@
             display: flex;
             flex-grow: grow;
             justify-content: center;
-
-            .specialty-card {
+            &_wrapper {
                 display: flex;
-                flex-direction: column;
-                margin-bottom: 50px;
-
-                @include mq(sm) {
-                    text-align: center;
-                    margin-bottom: 30px;
-
+                justify-content: space-around;
+                .specialty-card {
+                    display: flex;
+                    flex-direction: column;
+                    margin-bottom: 50px;
+    
+                    @include mq(sm) {
+                        text-align: center;
+                        margin-bottom: 30px;
+    
+                        img {
+                            margin-bottom: 10px;
+                        }
+    
+                        .specialtyName {
+                            font-size: 15px;
+                        }
+    
+                        .specialty {
+                            font-size: 12px;
+                            letter-spacing: 1.8px;
+                        }
+                    }
+    
                     img {
-                        margin-bottom: 10px;
+                        width: 100%;
+                        margin-bottom: 20px;
+                        filter: grayscale(100%);
                     }
-
+    
                     .specialtyName {
-                        font-size: 15px;
+                        font-size: 20px;
+                        text-transform: uppercase;
+                        font-weight: 500;
                     }
-
+    
                     .specialty {
-                        font-size: 12px;
-                        letter-spacing: 1.8px;
+                        font-size: 14px;
+                        text-transform: uppercase;
+                        letter-spacing: 2.1px;
                     }
-                }
-
-                img {
-                    width: 100%;
-                    margin-bottom: 20px;
-                    filter: grayscale(100%);
-                }
-
-                .specialtyName {
-                    font-size: 20px;
-                    text-transform: uppercase;
-                    font-weight: 500;
-                }
-
-                .specialty {
-                    font-size: 14px;
-                    text-transform: uppercase;
-                    letter-spacing: 2.1px;
-                }
-
-                &:hover {
-                    img {
-                        filter: grayscale(0%);
-                    }
-
-                    .specialtyName {
-                        color: #536283;
+    
+                    &:hover {
+                        img {
+                            filter: grayscale(0%);
+                        }
+    
+                        .specialtyName {
+                            color: #536283;
+                        }
                     }
                 }
             }
+
         }
     }
 
@@ -342,7 +374,7 @@
 .catalog {
     border-bottom: 1px solid #000;
     margin-bottom: 30px;
-    padding-bottom: 20px;
+    padding-bottom: 40px;
     .sliders-block {
         padding-top: 40px;
     }

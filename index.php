@@ -3,23 +3,30 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Questus");
 $tag = $_GET["tags"];
 $GLOBALS['tagFilter'] = array("TAGS"=>$tag);
-?><section class="content"> <article class="head-block">
-<div class="container">
-	<div class="row">
-		<div class="col-md-10 offset-md-1 head-block_text">
-			<h3>consulting for business</h3>
-			<h1>Lorem ipsum dolor sit amet</h1>
-			<div class="title-text">
-				 Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+?><section class="content"> 
+	
+
+
+<article class="head-block">
+<div class="head-block_filter"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-10 offset-md-1 head-block_text">
+				<?$APPLICATION->IncludeComponent(
+					"bitrix:main.include",
+					"",
+					Array(
+						"AREA_FILE_SHOW" => "file",
+						"AREA_FILE_SUFFIX" => "inc",
+						"EDIT_TEMPLATE" => "",
+						"PATH" => "include/header_block.php"
+					)
+				);?> 
 			</div>
-			<a class="action-block btn" href="https://questusleadership.com/about-us/">
-				 learn more
-			</a>
 		</div>
 	</div>
-</div>
  </article> 
- 
+
 
 
  <article class="team">

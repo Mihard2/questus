@@ -20,6 +20,31 @@ button
     font-family: $font1;
     color: $fontColor;
 }
+//  STYLE FOR RESPONSIVE FOOTER 
+body {
+    height: 100%;
+}
+
+.mainWrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.mainContent {
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: auto;
+}
+.footer {
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: auto;
+}
+
+
+//  END STYLE FOR RESPONSIVE FOOTER 
+
 a {
     text-decoration: none !important;
     cursor: pointer;

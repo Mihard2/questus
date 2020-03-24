@@ -3,6 +3,7 @@
     display: flex;
     align-items: flex-end;
     min-height: 70px;
+    background-color: #000;
 
     @include mq(lg) {
         padding: 20px 0 0;
@@ -19,8 +20,8 @@
         .logo {
             display: block;
             height: 70px;
-            background: url('../../static/media/logoH.png') no-repeat center center;
-            background-size: contain;
+            background: url('../../static/media/logo(H).png') no-repeat center center;
+            background-size: auto 80%;
 
             @include mq(lg) {
                 height: 50px;
@@ -32,7 +33,7 @@
             }
 
             @include mq(xs) {
-                background: url('../../static/media/logoV.png') no-repeat center center;
+                background: url('../../static/media/logo(V).png') no-repeat center center;
                 background-size: contain;
                 background-position-x: 30px;
                 height: 70px;
@@ -143,16 +144,15 @@
                         height: 100%;
                         transition: all .4s;
                         position: relative;
+                        color: #fff;
+                        font-weight: 700;
 
                         &.dropdown_link {
                             &:after {
                                 content: "";
                                 display: block;
                                 border: 5px solid transparent;
-                                border-left: 8px solid #000;
-                                // position: absolute;
-                                // right: 4px;
-                                // top: 37px;
+                                border-left: 8px solid #fff;
                                 transform: rotate(90deg);
                                 margin-bottom: 3px;
                                 margin-left: 2px;
@@ -160,17 +160,17 @@
 
                             &:hover {
                                 &:after {
-                                    border-left: 8px solid #fff;
+                                    border-left: 8px solid #000;
                                 }
                             }
                         }
 
                         &.active {
-                            color: #fff;
-                            background: $fontColor;
+                            color: $fontColor;
+                            background: #fff;
 
                             &:after {
-                                border-left: 8px solid #fff;
+                                border-left: 8px solid #000;
                             }
                         }
 
@@ -179,8 +179,8 @@
                         }
 
                         &:hover {
-                            color: #fff;
-                            background: $fontColor;
+                            color: $fontColor;
+                            background: #fff;
 
                             &+ul {
                                 display: flex;
@@ -196,6 +196,9 @@
                         width: 100%;
                         box-shadow: 6px 5px 12px #000;
                         z-index: 10;
+                        &:hover {
+                            
+                        }
 
                         li {
                             border-bottom: 1px solid #000;
@@ -204,6 +207,12 @@
                                 padding: 10px;
                                 margin: 0;
                                 padding-left: 30px;
+                                color: $fontColor;
+
+                                &:hover {
+                                    background: $fontColor;
+                                    color: #fff;
+                                }
                             }
 
                             &.active {
@@ -214,6 +223,7 @@
                                     color: #fff;
                                 }
                             }
+
                         }
 
                         &:hover {
@@ -286,22 +296,66 @@
                 justify-content: center;
                 padding: 5px 6px;
                 transition: all .4s;
+                color: #fff;
+
+                span {
+                    display: none;
+                }
 
                 i {
                     font-size: 19px;
-                    margin-right: 6px;
-                    margin-bottom: 2px;
                 }
 
                 &.contacts-mail {
                     i {
                         font-size: 11px;
+                        margin-right: 6px;
+                    }
+                }
+
+                &.searchLink {
+                    position: relative;
+
+                    form {
+                        display: none;
+                        position: absolute;
+                        bottom: -40px;
+                        right: 0;
+                        width: 255px;
+                        height: 40px;
+                        z-index: 10;
+                        border: 1px solid #c3c9d9;
+                        border-top: none;
+
+                        input {
+                            width: 100%;
+                            border: none;
+                            background: #fff;
+                            padding-left: 10px;
+                        }
+
+                        button {
+                            border-left: 2px solid #c3c9d9;
+                            width: 50px;
+
+                            &:hover {
+                                background: $fontColor;
+                                color: #fff;
+                                border-left: 2px solid $fontColor;
+                            }
+                        }
+                    }
+
+                    &:hover {
+                        form {
+                            display: flex;
+                        }
                     }
                 }
 
                 &:hover {
-                    background: $fontColor;
-                    color: #fff;
+                    background: #fff;
+                    color: $fontColor;
                 }
             }
 

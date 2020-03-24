@@ -4,6 +4,22 @@ $APPLICATION->SetTitle("Title");
 ?>
 <div class="content">
 
+<div class="aboutUs_text text-block">
+	<div class="container">
+		<?$APPLICATION->IncludeComponent(
+			"bitrix:main.include",
+			"",
+			Array(
+				"AREA_FILE_SHOW" => "page",
+				"AREA_FILE_SUFFIX" => "text",
+				"EDIT_TEMPLATE" => ""
+			)
+		);?>
+	</div>
+</div>
+
+
+
 
 <article class="team">
 <div class="container">

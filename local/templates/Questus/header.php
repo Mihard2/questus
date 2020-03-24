@@ -23,6 +23,9 @@ IncludeTemplateLangFile(__FILE__);
     <?$APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH.'/static/css/style.css');?>
 </head>
 <body>
+    <div class="mainWrapper">
+        <div class="mainContent">
+
   <?$APPLICATION->ShowPanel();?>
     <header class="mainHeader">
         <div class="container">
@@ -52,22 +55,37 @@ IncludeTemplateLangFile(__FILE__);
                 );?>
 
                 </div>
+                
                 <div class="col-xl-3 col-md-6 contacts">
-                    <a href="javascript:void(0)" class="contacts-mail col-12">
-                        <i class="icon-mail-1"></i>
-                        info@hatfactory.com
-                    </a>                    
-                    <a class="col-3">
-                        <i class="icon-linkedin"></i>
-                    </a>
-                    <a class="col-3">
-                        <i class="icon-facebook"></i>
-                    </a>
-                    <a class="col-3">
-                        <i class="icon-instagram"></i>
-                    </a>
-                    <a class="col-3">
-                        <i class="icon-search"></i>
+                    <a href="mailto:questusleadership@gmail.com?body=Hi%20man.%20How%20are%20you%20%3F" class="contacts-mail col-12">
+                         <i class="icon-mail-1"></i>
+                         <?$APPLICATION->IncludeComponent(
+                    	"bitrix:main.include",
+                    	"",
+                    	Array(
+                    		"AREA_FILE_SHOW" => "file",
+                    		"AREA_FILE_SUFFIX" => "inc",
+                    		"EDIT_TEMPLATE" => "",
+                    		"PATH" => "/include/emailLink.php"
+                    	)
+                    );?>
+                    </a>   
+                    <?$APPLICATION->IncludeComponent(
+                    	"bitrix:main.include",
+                    	"",
+                    	Array(
+                    		"AREA_FILE_SHOW" => "file",
+                    		"AREA_FILE_SUFFIX" => "inc",
+                    		"EDIT_TEMPLATE" => "",
+                    		"PATH" => "/include/headSocNet.php"
+                    	)
+                    );?>
+                    <a href="javascript:void(0)" class="col-3 searchLink">
+                       <i class="icon-search"></i>
+				        <form action="/search/" method="GET">
+				        		<input type="search" name="q" id="" placeholder="Enter keyword search...">
+				        		<button type="submit"><i class='icon-search'></i></button>
+				        </form>
                     </a>
                 </div>
             </div>

@@ -13,36 +13,43 @@
 $this->setFrameMode(true);
 ?>
 
-<pre>
+<!-- <pre>
 	<?print_r($arResult)?>
-</pre>
+</pre> -->
 
 <?foreach ($arResult['ITEMS'] as $key => $arItem) {?>
 <div class="row">
- <div class="col-md-4 desc-info">
-	<img 	src="<?=$arItem["PREVIEW_PICTURE"]["SRC"]?>"
-		alt="<?=$arItem["PREVIEW_PICTURE"]["ALT"]?>"
-		title="<?=$arItem["PREVIEW_PICTURE"]["TITLE"]?>">
-		<div class="links">
-			<a href="catalog/?<?=$_SERVER["QUERY_STRING"]?>&author=<?=$arItem['ID']?>" id="<?=$this->GetEditAreaId($arItem['ID']);?>" class="btn">materials</a>
-		</div>
-		<div class="education">
-				<span>Education</span>
-				<?=$arItem['PROPERTIES']['EDU']['VALUE']['TEXT']?>
-		</div>
-		<div class="work-eperience">
-				<span>Work Experience</span>
-				<?=$arItem['PROPERTIES']['WORK']['VALUE']['TEXT']?>
-		</div>
- </div>
+ 	<div class="col-md-4 desc-info">
+		<img 	src="<?=$arItem["PREVIEW_PICTURE"]["SRC"]?>"
+			alt="<?=$arItem["PREVIEW_PICTURE"]["ALT"]?>"
+			title="<?=$arItem["PREVIEW_PICTURE"]["TITLE"]?>">
+			<div class="links">
+				<a href="/catalog/?<?=$_SERVER["QUERY_STRING"]?>&author=<?=$arItem['ID']?>" id="<?=$this->GetEditAreaId($arItem['ID']);?>" class="btn">materials</a>
+			</div>
+			<div class="education">
+					<span>Education</span>
+					<?=$arItem['PROPERTIES']['EDU']['VALUE']['TEXT']?>
+			</div>
+			<div class="work-eperience">
+					<span>Work Experience</span>
+					<?=$arItem['PROPERTIES']['WORK']['VALUE']['TEXT']?>
+			</div>
+ 	</div>
 
- <div class="col-md-8 main-info">
- 		<div class="name"><?=$arItem["NAME"];?></div>
- 		<div class="position"><?=$arItem['PROPERTIES']['SPEC']['VALUE']?></div>
- 		<div class="main-desc">
- 			<p><?=$arItem["PREVIEW_TEXT"];?></p>
- 		</div>
- </div>
+ 	<div class="col-md-8 main-info">
+		 <div class="row">
+		 	<div class="col-md-10">
+			 	<div class="name"><?=$arItem["NAME"];?></div>
+			 	<div class="position"><?=$arItem['PROPERTIES']['SPEC']['VALUE']?></div>
+			</div>
+			<a class="col-md-2" href="<?=$arItem['PROPERTIES']['IN_URL']['VALUE']?>" target="_blank">
+		 	 	<i class="icon-linkedin"></i>
+			 </a>
+ 			<div class="main-desc col-md-12">
+ 				<p><?=$arItem["PREVIEW_TEXT"];?></p>
+			</div>
+		</div>
+ 	</div>
 </div>
 <button title="Close (Esc)" type="button" class="mfp-close">×</button>
 <?}?>
