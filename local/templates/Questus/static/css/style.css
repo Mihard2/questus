@@ -3818,15 +3818,13 @@ li {
   color: #fff;
 }
 
-.team-cards_popUp-block .desc-info .education,
-.team-cards_popUp-block .desc-info .work-eperience {
+.team-cards_popUp-block .desc-info .personalInfo {
   font-size: 17px;
   font-family: "Montserrat", sans-serif;
   margin-bottom: 30px;
 }
 
-.team-cards_popUp-block .desc-info .education span,
-.team-cards_popUp-block .desc-info .work-eperience span {
+.team-cards_popUp-block .desc-info .personalInfo span {
   display: block;
   width: 100%;
   font-size: 20px;
@@ -3841,7 +3839,7 @@ li {
   font-weight: 600;
   letter-spacing: 1.5px;
   margin-bottom: 30px;
-  line-height: 46px;
+  line-height: 76px;
 }
 
 @media (max-width: 767px) {
@@ -4250,7 +4248,7 @@ li {
   display: flex;
   width: 30px;
   height: 3px;
-  background: #000;
+  background: #fff;
   position: relative;
 }
 
@@ -4259,7 +4257,7 @@ li {
   display: block;
   width: 30px;
   height: 3px;
-  background: #000;
+  background: #fff;
   position: absolute;
 }
 
@@ -5471,7 +5469,7 @@ li {
 
 .detailPost {
   border-bottom: 1px solid #9aa3bc;
-  padding-bottom: 50px;
+  padding: 50px 0;
   margin-bottom: 50px;
 }
 

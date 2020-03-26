@@ -55,6 +55,15 @@
 <script src="<?=SITE_TEMPLATE_PATH?>/static/js/jQuery3.4.1.min.js"></script>
 <script src="<?=SITE_TEMPLATE_PATH?>/static/js/jquery.magnific-popup.min.js"></script>
 <script src="<?=SITE_TEMPLATE_PATH?>/static/js/slick.min.js"></script>
+<script src="https://www.google.com/recaptcha/api.js?render=<?php echo SITE_KEY?>"></script>
+<script>
+    grecaptcha.ready(function() {
+        grecaptcha.execute('<?php echo SITE_KEY?>', {action: 'homepage'}).then(function(token) {
+            console.log(token);
+            document.getElementById('g-recaptcha-response').value=token;
+        });
+    });
+</script>
 <script src="<?=SITE_TEMPLATE_PATH?>/static/js/main.js?version={version4}"></script>
     </div>
 </body>

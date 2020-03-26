@@ -14,6 +14,7 @@ $this->setFrameMode(true);
 ?>
 
 
+
 <div class="row team-cards">
 
 	 <div class="col-12 row team-cards_wrapper">
@@ -29,7 +30,7 @@ $this->setFrameMode(true);
 						alt="<?=$arItem["PREVIEW_PICTURE"]["ALT"]?>"
 						title="<?=$arItem["PREVIEW_PICTURE"]["TITLE"]?>">
 					<span class="specialtyName"><?echo $arItem["NAME"]?></span>
-					<span class="specialty">personal branding consultant</span>
+					<span class="specialty"><?echo $arItem["PROPERTIES"]["SPEC"]["VALUE"]?></span>
 				</a>
 			</div>
 

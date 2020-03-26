@@ -23,14 +23,24 @@ $this->setFrameMode(true);
 		<img 	src="<?=$arItem["PREVIEW_PICTURE"]["SRC"]?>"
 			alt="<?=$arItem["PREVIEW_PICTURE"]["ALT"]?>"
 			title="<?=$arItem["PREVIEW_PICTURE"]["TITLE"]?>">
+
+			<div class="telephone personalInfo">
+					<span>Telephone</span>
+					<a href="tel:<?=$arItem['PROPERTIES']['TEL']['VALUE']?>"><?=$arItem['PROPERTIES']['TEL']['VALUE']?></a>
+			</div>
+			<div class="email personalInfo">
+					<span>Email</span>
+					<a href="tel:"><?=$arItem['PROPERTIES']['EMAIL']['VALUE']?></a>
+			</div>
+
 			<div class="links">
 				<a href="/catalog/?<?=$_SERVER["QUERY_STRING"]?>&author=<?=$arItem['ID']?>" id="<?=$this->GetEditAreaId($arItem['ID']);?>" class="btn">materials</a>
 			</div>
-			<div class="education">
+			<div class="education personalInfo">
 					<span>Education</span>
 					<?=$arItem['PROPERTIES']['EDU']['VALUE']['TEXT']?>
 			</div>
-			<div class="work-eperience">
+			<div class="work-eperience personalInfo">
 					<span>Work Experience</span>
 					<?=$arItem['PROPERTIES']['WORK']['VALUE']['TEXT']?>
 			</div>

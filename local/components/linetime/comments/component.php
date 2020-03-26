@@ -38,6 +38,7 @@ $arResult["ITEMS"] = array();
   $arResult["ITEMS"][] = array(
     "ACTIVE"=>$result["ACTIVE"],
     "CREATED"=>$result["CREATED"],
+    "CREATE_DATE"=>$result['CREATE_DATE'],
     "PREVIEW_TEXT"=>$result["PREVIEW_TEXT"],
     "EMAIL"=>$result["PROPERTY_EMAIL_VALUE"],
     "NAME"=>$result["PROPERTY_NAME_VALUE"],

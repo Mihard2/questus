@@ -228,8 +228,7 @@
                 }
             }
 
-            .education,
-            .work-eperience {
+            .personalInfo {
                 span {
                     display: block;
                     width: 100%;
@@ -253,7 +252,7 @@
                 font-weight: 600;
                 letter-spacing: 1.5px;
                 margin-bottom: 30px;
-                line-height: 46px;
+                line-height: 76px;
                 @include mq(sm) {
                     font-size: 50px;
                     line-height: 50px;
