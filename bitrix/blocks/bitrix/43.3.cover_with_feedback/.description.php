@@ -10,7 +10,7 @@ return array(
 	'block' => array(
 		'name' => Loc::getMessage('LANDING_BLOCK_43.3.COVER_WITH_FEEDBACK_NAME'),
 		'section' => array('feedback'),
-		'type' => ['page', 'store'],
+		'type' => ['page', 'store', 'smn'],
 	),
 	'cards' => array(
 		'.landing-block-node-card' => array(
@@ -90,6 +90,10 @@ return array(
 			),
 			'.landing-block-node-card' => array(
 				'name' => Loc::getMessage('LANDING_BLOCK_43.3.COVER_WITH_FEEDBACK_NODES_CARD'),
+				'type' => 'align-self',
+			),
+			'.landing-block-text-container' => array(
+				'name' => Loc::getMessage('LANDING_BLOCK_43.3.COVER_WITH_FEEDBACK_NODES_LANDINGBLOCKNODECARDTEXT'),
 				'type' => 'align-self',
 			),
 		),

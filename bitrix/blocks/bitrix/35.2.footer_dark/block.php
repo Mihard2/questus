@@ -41,7 +41,7 @@
 			</div>
 
 
-			<div class="landing-block-node-card js-animation fadeInRight col-sm-12 col-md-2 col-lg-2 g-mb-25 g-mb-0--lg">
+			<div class="landing-block-node-column js-animation fadeInRight col-sm-12 col-md-2 col-lg-2 g-mb-25 g-mb-0--lg">
 				<h2 class="landing-block-node-title text-uppercase g-color-white g-font-weight-700 g-font-size-16 g-mb-20">
 					Categories</h2>
 				<ul class="landing-block-card-list1 list-unstyled g-mb-30">
@@ -58,7 +58,7 @@
 				</ul>
 			</div>
 
-			<div class="landing-block-node-card js-animation bounceInRight col-sm-12 col-md-2 col-lg-2 g-mb-25 g-mb-0--lg">
+			<div class="landing-block-node-column js-animation bounceInRight col-sm-12 col-md-2 col-lg-2 g-mb-25 g-mb-0--lg">
 				<h2 class="landing-block-node-title text-uppercase g-color-white g-font-weight-700 g-font-size-16 g-mb-20">
 					Customer Support</h2>
 				<ul class="landing-block-card-list2 list-unstyled g-mb-30">
@@ -79,7 +79,7 @@
 				</ul>
 			</div>
 
-			<div class="landing-block-node-card js-animation bounceInRight col-sm-12 col-md-2 col-lg-2">
+			<div class="landing-block-node-column js-animation bounceInRight col-sm-12 col-md-2 col-lg-2">
 				<h2 class="landing-block-node-title text-uppercase g-color-white g-font-weight-700 g-font-size-16 g-mb-20">
 					Top Link</h2>
 				<ul class="landing-block-card-list1 list-unstyled g-mb-30">

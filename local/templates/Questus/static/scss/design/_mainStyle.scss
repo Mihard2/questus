@@ -236,6 +236,11 @@
                     text-transform: uppercase;
                     margin-bottom: 20px;
                 }
+                a {
+                    text-decoration: underline !important;
+                    letter-spacing: 1.4px;
+                    font-family: $font2;
+                }
 
                 font-size: 17px;
                 font-family: $font2;
@@ -311,6 +316,12 @@
     }  
 }
 
+.aboutUs {
+    .action-block2 {
+        margin: 30px auto;
+        width: min-content;
+    }
+}
 
 
 

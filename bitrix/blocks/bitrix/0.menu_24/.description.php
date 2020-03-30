@@ -16,7 +16,7 @@ return array(
 		'subtype_params' => array(
 			'source' => 'catalog',
 		),
-		'version' => '20.0.0',
+		'version' => '20.0.0', // old param for backward compatibility. Can used for old versions of module via repo. Do not delete!
 	),
 	'cards' => array(
 		'.landing-block-node-menu-item' => array(

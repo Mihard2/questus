@@ -1,17 +1,17 @@
 <ul>
     <li>
         <a href="javascript:void(0)">
-            info@hatfactory.com
+            info@growwithexo.com
         </a>
     </li>
     <li>
         <a href="tel:+1(619)9198670">
-            +1(619)9198670
+            +1 (850) 814-5452
         </a>
     </li>
     <li>
         <a href="javascript:void(0)">
-            P.O. Adress line San Diego, CA
+            San Diego, CA
         </a>
     </li>
     <li class="socialNetworks_footer">
@@ -28,7 +28,7 @@
     </li>
     <li>
         <a href="javascript:void(0)">
-            2020@ Questus Leadership Consulting All Rights Reserved
+            2020@ EXO Consulting All Rights Reserved
         </a>
     </li>
 </ul>

@@ -13,9 +13,6 @@
 $this->setFrameMode(true);
 ?>
 
-<!-- <pre>
-	<?print_r($arResult)?>
-</pre> -->
 
 <?foreach ($arResult['ITEMS'] as $key => $arItem) {?>
 <div class="row">
@@ -30,7 +27,7 @@ $this->setFrameMode(true);
 			</div>
 			<div class="email personalInfo">
 					<span>Email</span>
-					<a href="tel:"><?=$arItem['PROPERTIES']['EMAIL']['VALUE']?></a>
+					<a href="mailto:<?=$arItem['PROPERTIES']['EMAIL']['VALUE']?>"><?=$arItem['PROPERTIES']['EMAIL']['VALUE']?></a>
 			</div>
 
 			<div class="links">

@@ -14,6 +14,10 @@ Loc::loadMessages(
 
 return array(
 	'last' => Loc::getMessage('LD_BLOCK_SECTION_LAST'),
+	'recommended' =>[
+		'name' => Loc::getMessage('LD_BLOCK_SECTION_RECOMMENDED'),
+		'type' => ['knowledge']
+	],
 	'cover' => Loc::getMessage('LD_BLOCK_SECTION_COVER'),
 	
 	'text' => Loc::getMessage('LD_BLOCK_SECTION_TEXT_NEW'),
@@ -27,7 +31,7 @@ return array(
 	'tiles' => Loc::getMessage('LD_BLOCK_SECTION_TILES_NEW2'),
 	'countdowns' => [
 		'name' => Loc::getMessage('LD_BLOCK_SECTION_COUNTDOWNS'),
-		'type' => ['page', 'store']
+		'type' => ['page', 'store', 'smn']
 	],
 	
 	'separator' => Loc::getMessage('LD_BLOCK_SECTION_SEPARATOR'),
@@ -38,7 +42,7 @@ return array(
 	
 	'forms' => [
 		'name' => Loc::getMessage('LD_BLOCK_SECTION_FORMS'),
-		'type' => ['page', 'store']
+		'type' => ['page', 'store', 'smn']
 	],
 	'news' => Loc::getMessage('LD_BLOCK_SECTION_NEWS'),
 	'schedule' => Loc::getMessage('LD_BLOCK_SECTION_SCHEDULE'),
@@ -48,20 +52,20 @@ return array(
 	'team' => Loc::getMessage('LD_BLOCK_SECTION_TEAM'),
 	'feedback' => [
 		'name' => Loc::getMessage('LD_BLOCK_SECTION_FEEDBACK'),
-		'type' => ['page', 'store']
+		'type' => ['page', 'store', 'smn']
 	],
 	'steps' => Loc::getMessage('LD_BLOCK_SECTION_STEPS'),
 	'tariffs' => [
 		'name' => Loc::getMessage('LD_BLOCK_SECTION_TARIFFS'),
-		'type' => ['page', 'store']
+		'type' => ['page', 'store', 'smn']
 	],
 	'partners' => [
 		'name' => Loc::getMessage('LD_BLOCK_SECTION_PARTNERS'),
-		'type' => ['page', 'store']
+		'type' => ['page', 'store', 'smn']
 	],
 	'about' => [
 		'name' => Loc::getMessage('LD_BLOCK_SECTION_ABOUT'),
-		'type' => ['page', 'store']
+		'type' => ['page', 'store', 'smn']
 	],
 	'contacts' => Loc::getMessage('LD_BLOCK_SECTION_CONTACTS'),
 	'social' => Loc::getMessage('LD_BLOCK_SECTION_SOCIAL'),

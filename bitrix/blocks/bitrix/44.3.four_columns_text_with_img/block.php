@@ -36,8 +36,7 @@
 			   }]'>
 
 		<div class="landing-block-node-card js-slide g-theme-travel-bg-black-v1 g-bg-primary--hover col-12 col-sm-4 col-lg-3">
-			<article
-					class="w-100 u-shadow-v26 g-parent">
+			<article class="w-100 u-shadow-v26 g-parent">
 				<img class="landing-block-node-card-img img-fluid w-100"
 					 src="https://cdn.bitrix24.site/bitrix/images/landing/business/570x436/img5.jpg" alt="">
 
@@ -58,8 +57,7 @@
 		</div>
 
 		<div class="landing-block-node-card js-slide g-theme-travel-bg-black-v1 g-bg-primary--hover col-12 col-sm-4 col-lg-3">
-			<article
-					class="w-100 u-shadow-v26 g-parent">
+			<article class="w-100 u-shadow-v26 g-parent">
 				<img class="landing-block-node-card-img img-fluid w-100"
 					 src="https://cdn.bitrix24.site/bitrix/images/landing/business/570x436/img6.jpg" alt="">
 
@@ -80,8 +78,7 @@
 		</div>
 
 		<div class="landing-block-node-card js-slide g-theme-travel-bg-black-v1 g-bg-primary--hover col-12 col-sm-4 col-lg-3">
-			<article
-					class="w-100 u-shadow-v26 g-parent">
+			<article class="w-100 u-shadow-v26 g-parent">
 				<img class="landing-block-node-card-img img-fluid w-100"
 					 src="https://cdn.bitrix24.site/bitrix/images/landing/business/570x436/img7.jpg" alt="">
 
@@ -102,8 +99,7 @@
 		</div>
 
 		<div class="landing-block-node-card js-slide g-theme-travel-bg-black-v1 g-bg-primary--hover col-12 col-sm-4 col-lg-3">
-			<article
-					class="w-100 u-shadow-v26 g-parent">
+			<article class="w-100 u-shadow-v26 g-parent">
 				<img class="landing-block-node-card-img img-fluid w-100"
 					 src="https://cdn.bitrix24.site/bitrix/images/landing/business/570x436/img8.jpg" alt="">
 
@@ -124,8 +120,7 @@
 		</div>
 
 		<div class="landing-block-node-card js-slide g-theme-travel-bg-black-v1 g-bg-primary--hover col-12 col-sm-4 col-lg-3">
-			<article
-					class="w-100 u-shadow-v26 g-parent">
+			<article class="w-100 u-shadow-v26 g-parent">
 				<img class="landing-block-node-card-img img-fluid w-100"
 					 src="https://cdn.bitrix24.site/bitrix/images/landing/business/570x436/img5.jpg" alt="">
 
@@ -146,8 +141,7 @@
 		</div>
 
 		<div class="landing-block-node-card js-slide g-theme-travel-bg-black-v1 g-bg-primary--hover col-12 col-sm-4 col-lg-3">
-			<article
-					class="w-100 u-shadow-v26 g-parent">
+			<article class="w-100 u-shadow-v26 g-parent">
 				<img class="landing-block-node-card-img img-fluid w-100"
 					 src="https://cdn.bitrix24.site/bitrix/images/landing/business/570x436/img6.jpg" alt="">
 

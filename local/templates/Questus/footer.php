@@ -31,23 +31,51 @@
             </div>
             <div class="col-md-4 col-sm-12 order-2 order-md-1 footer_contacts">
                 <div class="footer-title">contacts</div>
-                <?$APPLICATION->IncludeComponent(
-                	"bitrix:main.include",
-                	"",
-                	Array(
-                		"AREA_FILE_SHOW" => "file",
-                		"AREA_FILE_SUFFIX" => "inc",
-                		"EDIT_TEMPLATE" => "",
-                		"PATH" => "/include/footerContacts.php"
-                	)
-                );?>
+                <ul>
+                    <li>
+                        <a href="mailto:info@growwithexo.com">
+                            info@growwithexo.com
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tel:+1(619)9198670">
+                            +1 (850) 814-5452
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            San Diego, CA
+                        </a>
+                    </li>
+                    <li class="socialNetworks_footer">
+                        <?$APPLICATION->IncludeComponent(
+                        	"bitrix:main.include",
+                        	"",
+                        	Array(
+                        		"AREA_FILE_SHOW" => "file",
+                        		"AREA_FILE_SUFFIX" => "inc",
+                        		"EDIT_TEMPLATE" => "",
+                        		"PATH" => "/include/headSocNet.php"
+                        	)
+                        );?>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            2020© EXO Consulting All Rights Reserved
+                        </a>
+                    </li>
+                </ul>
             </div>
-            <div class="col-md-4 col-7 order-1 order-md-2 footer_search">
+            <div class="col-md-4 col-7 order-1 order-md-2 footer_forms">
                 <div class="footer-title">help</div>
-                <form action="/search/" method="GET">
+                <form action="/search/" method="GET" class="formSearch">
 						<input type="search" name="q" id="" placeholder="Enter keyword search...">
 						<button type="submit"><i class='icon-search'></i></button>
-                </form>                
+                </form> 
+                <form class="formSabscribe">
+                    <input type="email" placeholder="Email">
+                    <button type="submit">subscribe</button>
+                </form>               
             </div>
         </div>
     </section>
@@ -55,7 +83,9 @@
 <script src="<?=SITE_TEMPLATE_PATH?>/static/js/jQuery3.4.1.min.js"></script>
 <script src="<?=SITE_TEMPLATE_PATH?>/static/js/jquery.magnific-popup.min.js"></script>
 <script src="<?=SITE_TEMPLATE_PATH?>/static/js/slick.min.js"></script>
-<script src="https://www.google.com/recaptcha/api.js?render=<?php echo SITE_KEY?>"></script>
+<script src="<?=SITE_TEMPLATE_PATH?>/static/js/audioplayer.js"></script>
+
+<!-- <script src="https://www.google.com/recaptcha/api.js?render=<?php echo SITE_KEY?>"></script>
 <script>
     grecaptcha.ready(function() {
         grecaptcha.execute('<?php echo SITE_KEY?>', {action: 'homepage'}).then(function(token) {
@@ -63,7 +93,7 @@
             document.getElementById('g-recaptcha-response').value=token;
         });
     });
-</script>
+</script> -->
 <script src="<?=SITE_TEMPLATE_PATH?>/static/js/main.js?version={version4}"></script>
     </div>
 </body>

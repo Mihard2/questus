@@ -9,16 +9,16 @@
 			 data-arrow-left-classes="fa fa-angle-left g-left-0 g-left-40--lg"
 			 data-arrow-right-classes="fa fa-angle-right g-right-0 g-right-40--lg">
 
-			<div class="landing-block-card-person js-slide align-self-center g-pt-30 g-pb-30 g-pl-10 g-pr-10">
+			<div class="landing-block-card-person js-slide align-self-center g-pt-30 g-pb-30 g-pl-40 g-pr-40 g-pr-10--md g-pl-10--lg">
 				<!-- Team -->
 				<div class="landing-block-container row justify-content-center align-items-center no-gutters">
 					<div class="col-sm-6 col-lg-4">
-						<img class="landing-block-node-person-photo img-fluid"
+						<img class="landing-block-node-person-photo img-fluid g-pb-10 g-pb-0--md"
 							 src="https://cdn.bitrix24.site/bitrix/images/landing/business/400x450/img1.jpg" alt="">
 					</div>
 
 					<div class="col-sm-6 col-lg-4">
-						<div class="g-px-30 g-px-50--lg">
+						<div class="g-px-0 g-px-30--md g-px-50--lg">
 							<h3 class="landing-block-node-person-name h4 mb-1">David Case</h3>
 							<div class="landing-block-node-person-post">
 								<span class="d-block mb-4">Web Developer</span>
@@ -33,16 +33,16 @@
 				<!-- End Team -->
 			</div>
 
-			<div class="landing-block-card-person js-slide align-self-center g-pt-30 g-pb-30 g-pl-10 g-pr-10">
+			<div class="landing-block-card-person js-slide align-self-center g-pt-30 g-pb-30 g-pl-40 g-pr-40 g-pr-10--md g-pl-10--lg">
 				<!-- Team -->
 				<div class="landing-block-container row justify-content-center align-items-center no-gutters">
 					<div class="col-sm-6 col-lg-4">
-						<img class="landing-block-node-person-photo img-fluid"
+						<img class="landing-block-node-person-photo img-fluid g-pb-10 g-pb-0--md"
 							 src="https://cdn.bitrix24.site/bitrix/images/landing/business/400x450/img2.jpg" alt="">
 					</div>
 
 					<div class="col-sm-6 col-lg-4">
-						<div class="g-px-30 g-px-50--lg">
+						<div class="g-px-0 g-px-30--md g-px-50--lg">
 							<h3 class="landing-block-node-person-name h4 mb-1">Jessica Lisbon</h3>
 							<div class="landing-block-node-person-post">
 								<span class="d-block mb-4">Support Manager</span>
@@ -57,16 +57,16 @@
 				<!-- End Team -->
 			</div>
 
-			<div class="landing-block-card-person js-slide align-self-center g-pt-30 g-pb-30 g-pl-10 g-pr-10">
+			<div class="landing-block-card-person js-slide align-self-center g-pt-30 g-pb-30 g-pl-40 g-pr-40 g-pr-10--md g-pl-10--lg">
 				<!-- Team -->
 				<div class="landing-block-container row justify-content-center align-items-center no-gutters">
 					<div class="col-sm-6 col-lg-4">
-						<img class="landing-block-node-person-photo img-fluid"
+						<img class="landing-block-node-person-photo img-fluid g-pb-10 g-pb-0--md"
 							 src="https://cdn.bitrix24.site/bitrix/images/landing/business/400x450/img3.jpg" alt="">
 					</div>
 
 					<div class="col-sm-6 col-lg-4">
-						<div class="g-px-30 g-px-50--lg">
+						<div class="g-px-0 g-px-30--md g-px-50--lg">
 							<h3 class="landing-block-node-person-name h4 mb-1">Monica Gaudy</h3>
 							<div class="landing-block-node-person-post">
 								<span class="d-block mb-4">Sales Manager</span>
@@ -81,16 +81,16 @@
 				<!-- End Team -->
 			</div>
 
-			<div class="landing-block-card-person js-slide align-self-center g-pt-30 g-pb-30 g-pl-10 g-pr-10">
+			<div class="landing-block-card-person js-slide align-self-center g-pt-30 g-pb-30 g-pl-40 g-pr-40 g-pr-10--md g-pl-10--lg">
 				<!-- Team -->
 				<div class="landing-block-container row justify-content-center align-items-center no-gutters">
 					<div class="col-sm-6 col-lg-4">
-						<img class="landing-block-node-person-photo img-fluid"
+						<img class="landing-block-node-person-photo img-fluid g-pb-10 g-pb-0--md"
 							 src="https://cdn.bitrix24.site/bitrix/images/landing/business/400x450/img4.jpg" alt="">
 					</div>
 
 					<div class="col-sm-6 col-lg-4">
-						<div class="g-px-30 g-px-50--lg">
+						<div class="g-px-0 g-px-30--md g-px-50--lg">
 							<h3 class="landing-block-node-person-name h4 mb-1">Tina Krueger</h3>
 							<div class="landing-block-node-person-post">
 								<span class="d-block mb-4">Lead Designer</span>
@@ -105,16 +105,16 @@
 				<!-- End Team -->
 			</div>
 
-			<div class="landing-block-card-person js-slide align-self-center g-pt-30 g-pb-30 g-pl-10 g-pr-10">
+			<div class="landing-block-card-person js-slide align-self-center g-pt-30 g-pb-30 g-pl-40 g-pr-40 g-pr-10--md g-pl-10--lg">
 				<!-- Team -->
 				<div class="landing-block-container row justify-content-center align-items-center no-gutters">
 					<div class="col-sm-6 col-lg-4">
-						<img class="landing-block-node-person-photo img-fluid"
+						<img class="landing-block-node-person-photo img-fluid g-pb-10 g-pb-0--md"
 							 src="https://cdn.bitrix24.site/bitrix/images/landing/business/400x450/img5.jpg" alt="">
 					</div>
 
 					<div class="col-sm-6 col-lg-4">
-						<div class="g-px-30 g-px-50--lg">
+						<div class="g-px-0 g-px-30--md g-px-50--lg">
 							<h3 class="landing-block-node-person-name h4 mb-1">John Watson</h3>
 							<div class="landing-block-node-person-post">
 								<span class="d-block mb-4">Marketing Manager</span>
@@ -129,16 +129,16 @@
 				<!-- End Team -->
 			</div>
 
-			<div class="landing-block-card-person js-slide align-self-center g-pt-30 g-pb-30 g-pl-10 g-pr-10">
+			<div class="landing-block-card-person js-slide align-self-center g-pt-30 g-pb-30 g-pl-40 g-pr-40 g-pr-10--md g-pl-10--lg">
 				<!-- Team -->
 				<div class="landing-block-container row justify-content-center align-items-center no-gutters">
 					<div class="col-sm-6 col-lg-4">
-						<img class="landing-block-node-person-photo img-fluid"
+						<img class="landing-block-node-person-photo img-fluid g-pb-10 g-pb-0--md"
 							 src="https://cdn.bitrix24.site/bitrix/images/landing/business/400x450/img6.jpg" alt="">
 					</div>
 
 					<div class="col-sm-6 col-lg-4">
-						<div class="g-px-30 g-px-50--lg">
+						<div class="g-px-0 g-px-30--md g-px-50--lg">
 							<h3 class="landing-block-node-person-name h4 mb-1">Maria Olsson</h3>
 							<div class="landing-block-node-person-post">
 								<span class="d-block mb-4">Technical Director</span>

@@ -1,30 +1,24 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("Title");
-?>
-<div class="content">
-
-<div class="aboutUs_text text-block">
-	<div class="container">
-		<?$APPLICATION->IncludeComponent(
-			"bitrix:main.include",
-			"",
-			Array(
-				"AREA_FILE_SHOW" => "page",
-				"AREA_FILE_SUFFIX" => "text",
-				"EDIT_TEMPLATE" => ""
-			)
-		);?>
+$APPLICATION->SetTitle("About Us");
+?><div class="content aboutUs">
+	<div class="aboutUs_text text-block">
+		<div class="container">
+			 <?$APPLICATION->IncludeComponent(
+	"bitrix:main.include",
+	"",
+	Array(
+		"AREA_FILE_SHOW" => "page",
+		"AREA_FILE_SUFFIX" => "text",
+		"EDIT_TEMPLATE" => ""
+	)
+);?>
+		</div>
 	</div>
-</div>
-
-
-
-
-<article class="team">
-<div class="container">
-	<h3 class="title">founders</h3>
-	 <?$APPLICATION->IncludeComponent(
+ <article class="team">
+	<div class="container">
+		<h3 class="title">founders</h3>
+		 <?$APPLICATION->IncludeComponent(
 	"bitrix:news.list",
 	"AuthorsInMain",
 	Array(
@@ -73,7 +67,7 @@ $APPLICATION->SetTitle("Title");
 		"SET_META_DESCRIPTION" => "Y",
 		"SET_META_KEYWORDS" => "Y",
 		"SET_STATUS_404" => "N",
-		"SET_TITLE" => "Y",
+		"SET_TITLE" => "N",
 		"SHOW_404" => "Y",
 		"SORT_BY1" => "ACTIVE_FROM",
 		"SORT_BY2" => "SORT",
@@ -81,9 +75,9 @@ $APPLICATION->SetTitle("Title");
 		"SORT_ORDER2" => "ASC",
 		"STRICT_SECTION_CHECK" => "N"
 	)
-);?>
+);?> <a class="action-block2 btn" href="/catalog/">
+		content </a>
+	</div>
+ </article>
 </div>
-</article> 
-</div>
-
-<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
+<br><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

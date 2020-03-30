@@ -9,7 +9,6 @@ use \Bitrix\Main\Localization\Loc;
 return array(
 	'block' => array(
 		'name' => Loc::getMessage('LANDING_BLOCK_08_5_NAME'),
-		// 'version' => '19.0.200'
 		 'section' => array('columns', 'news'),
 	),
 	'cards' => array(
@@ -57,10 +56,6 @@ return array(
 			'name' => Loc::getMessage('LANDING_BLOCK_08_5_CARD'),
 			'type' => array('border-color',  'border-top-color', 'border-radius'),
 		),
-		//'.landing-block-dividing-strip' => array(
-		//	'name' => Loc::getMessage('LANDING_BLOCK_08_5_DIVIDING_STRIP'),
-		//	'type' => 'border-color' ,
-		//),
 		'.landing-block-line' => array(
 			'name' => Loc::getMessage('LANDING_BLOCK_08_5_LINE'),
 			'type' => array(

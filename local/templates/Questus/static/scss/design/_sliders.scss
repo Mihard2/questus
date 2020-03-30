@@ -10,7 +10,8 @@
         bottom: 0;
         width: 150px;
         z-index: 102;
-        @include mq(xs){
+
+        @include mq(xs) {
             display: none;
         }
     }
@@ -62,12 +63,18 @@
 
         .slide-block,
         .slide-block_wide {
-            width: 360px;
+            width: 430px;
+            height: 500px;
             margin: 0 15px;
-            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: start;
+
 
             img {
                 width: 100%;
+                height: 241px;
                 filter: grayscale(100%);
             }
 
@@ -76,6 +83,7 @@
                 text-transform: uppercase;
                 line-height: 26px;
                 margin: 7px 0;
+                text-align: left;
             }
 
             .infoDate {
@@ -89,26 +97,32 @@
                     text-transform: uppercase;
                 }
             }
+
             .rating-tags {
                 display: flex;
                 justify-content: space-between;
                 margin: 7px 0 13px;
+
                 div {
                     padding: 0;
                 }
+
                 .rating {
                     display: flex;
                     font-family: $font2;
                     font-size: 12px;
                     line-height: 18px;
+
                     &-value {
                         color: #555;
                         font-weight: 700;
                         margin-left: 3px;
                     }
                 }
+
                 .tags {
                     justify-content: flex-end;
+
                     @include mq(sm) {
                         margin-top: 10px;
                     }
@@ -119,6 +133,8 @@
                 font-size: 13px;
                 font-family: $font2;
                 line-height: 24px;
+                text-align: left;
+                height: 170px;
             }
 
             &:hover {
@@ -131,9 +147,37 @@
                     color: #415378;
                 }
             }
-        }
-        .slide-block_wide {
-            width: 560px;
+
+            @include mq(lg) {
+                width: 357px;
+
+                img {
+                    height: 200px;
+                }
+            }
+            @include mq(md) {
+                width: 320px;
+                margin: 0 8px;
+                img  {
+                    height: 180px;
+                }
+
+                h4 {
+                    font-size: 16px;
+                    height: 54px;
+                    overflow: hidden;
+                }
+
+                .infoDate {
+                    font-size: 11px;
+                }
+
+                .shortDesc {
+                    font-size: 12px;
+                    height: 72px;
+                    overflow: hidden;
+                }
+            }
         }
     }
 }

@@ -89,9 +89,10 @@
             }
         }
 
-        &_search {
+        &_forms {
             form {
                 display: flex;
+                margin: 10px 0;
                 input {
                     width: 100%;
                     border: none;

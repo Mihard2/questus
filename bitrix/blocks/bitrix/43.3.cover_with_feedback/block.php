@@ -27,7 +27,7 @@
 								 src="https://cdn.bitrix24.site/bitrix/images/landing/business/120x120/img11.jpg" alt="">
 						</div>
 
-						<div class="media-body text-sm-left text-center g-color-white">
+						<div class="landing-block-text-container align-self-center media-body text-center text-sm-left g-color-white g-px-5">
 							<div class="landing-block-node-card-text g-mb-25">The customisation options you implemented are countless, and I
 								feel sorry I can't use them all. Good job, and keep going! are countless, and I feel
 							</div>
@@ -45,7 +45,7 @@
 								 src="https://cdn.bitrix24.site/bitrix/images/landing/business/120x120/img12.jpg" alt="">
 						</div>
 
-						<div class="media-body text-center text-sm-left g-color-white">
+						<div class="landing-block-text-container align-self-center media-body text-center text-sm-left g-color-white g-px-5">
 							<div class="landing-block-node-card-text g-mb-25">The customisation options you implemented are countless, and I
 								feel sorry I can't use them all. Good job, and keep going! are countless, and I feel
 							</div>
@@ -63,7 +63,7 @@
 								 src="https://cdn.bitrix24.site/bitrix/images/landing/business/120x120/img13.jpg" alt="">
 						</div>
 
-						<div class="media-body text-center text-sm-left g-color-white">
+						<div class="landing-block-text-container align-self-center media-body text-center text-sm-left g-color-white g-px-5">
 							<div class="landing-block-node-card-text g-mb-25">The customisation options you implemented are countless, and I
 								feel sorry I can't use them all. Good job, and keep going! are countless, and I feel
 							</div>

@@ -8,7 +8,7 @@ $aMenuLinks = Array(
 		"" 
 	),
 	Array(
-		"catalog", 
+		"content", 
 		"/catalog/", 
 		Array(), 
 		Array(), 

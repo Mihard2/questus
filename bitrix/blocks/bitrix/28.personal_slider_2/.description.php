@@ -66,7 +66,7 @@ return array(
 				'type' => array('align-self', 'padding-top', 'padding-bottom'),
 			),
 			'.landing-block-container' => array(
-				'name' => Loc::getMessage('LANDING_BLOCK_28.PERSONAL_SLIDER_STYLE_LANDINGBLOCK_CONTENT_CARD'),
+				'name' => Loc::getMessage('LANDING_BLOCK_28.PERSONAL_SLIDER_CARDS_LANDINGBLOCKCARDPERSON'),
 				'type' => 'align-items',
 			),
 		),

@@ -16,7 +16,7 @@ return array(
 		'subtype_params' => array(
 			'source' => 'catalog',
 		),
-		'version' => '20.0.0',
+		'version' => '20.0.0', // old param for backward compatibility. Can used for old versions of module via repo. Do not delete!
 	),
 	'menu' => [
 		'.landing-block-node-menu' => [
@@ -45,10 +45,6 @@ return array(
 			'type' => ['block-default', 'block-border']
 		),
 		'nodes' => array(
-			// '.landing-block-node-menu-link' => array(
-			// 	'name' => Loc::getMessage('LANDING_BLOCK_MENU_23-LINK'),
-			// 	'type' => ['typo-simple']
-			// ),
 			'.landing-block-node-navbar' => array(
 				'name' => Loc::getMessage('LANDING_BLOCK_MENU_23-NAVBAR'),
 				'type' => ['navbar-bg', 'border-color'],

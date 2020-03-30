@@ -24,7 +24,7 @@
                    "slidesToScroll": 1
                  }
                }]'>
-			<div class="landing-block-node-card js-animation slideInUp text-center g-px-30 g-mb-30 g-min-height-50vh">
+			<div class="landing-block-node-card js-animation slideInUp text-center g-px-30 g-mb-30 align-self-start">
 				<div class="g-pos-rel g-parent d-inline-block h-100 g-max-height-500">
 					<img class="landing-block-node-card-img g-object-fit-cover w-100 h-100 g-max-width-100x mx-auto"
 						 data-fancybox="gallery" data-link-classes='d-block g-pos-rel h-auto' alt=""
@@ -36,7 +36,7 @@
 				</div>
 			</div>
 
-			<div class="landing-block-node-card js-animation slideInUp text-center g-px-30 g-mb-30 g-min-height-50vh">
+			<div class="landing-block-node-card js-animation slideInUp text-center g-px-30 g-mb-30 align-self-start">
 				<div class="g-pos-rel g-parent d-inline-block h-100 g-max-height-500">
 					<img class="landing-block-node-card-img g-object-fit-cover w-100 h-100 g-max-width-100x mx-auto"
 						 data-fancybox="gallery" data-link-classes='d-block g-pos-rel h-auto' alt=""
@@ -48,7 +48,7 @@
 				</div>
 			</div>
 
-			<div class="landing-block-node-card js-animation slideInUp text-center g-px-30 g-mb-30 g-min-height-50vh">
+			<div class="landing-block-node-card js-animation slideInUp text-center g-px-30 g-mb-30 align-self-start">
 				<div class="g-pos-rel g-parent d-inline-block h-100 g-max-height-500">
 					<img class="landing-block-node-card-img g-object-fit-cover w-100 h-100 g-max-width-100x mx-auto"
 						 data-fancybox="gallery" data-link-classes='d-block g-pos-rel h-auto' alt=""
@@ -60,7 +60,7 @@
 				</div>
 			</div>
 
-			<div class="landing-block-node-card js-animation slideInUp text-center g-px-30 g-mb-30 g-min-height-50vh">
+			<div class="landing-block-node-card js-animation slideInUp text-center g-px-30 g-mb-30 align-self-start">
 				<div class="g-pos-rel g-parent d-inline-block h-100 g-max-height-500">
 					<img class="landing-block-node-card-img g-object-fit-cover w-100 h-100 g-max-width-100x mx-auto"
 						 data-fancybox="gallery" data-link-classes='d-block g-pos-rel h-auto' alt=""
@@ -72,7 +72,7 @@
 				</div>
 			</div>
 
-			<div class="landing-block-node-card js-animation slideInUp text-center g-px-30 g-mb-30 g-min-height-50vh">
+			<div class="landing-block-node-card js-animation slideInUp text-center g-px-30 g-mb-30 align-self-start">
 				<div class="g-pos-rel g-parent d-inline-block h-100 g-max-height-500">
 					<img class="landing-block-node-card-img g-object-fit-cover w-100 h-100 g-max-width-100x mx-auto"
 						 data-fancybox="gallery" data-link-classes='d-block g-pos-rel h-auto' alt=""
@@ -84,7 +84,7 @@
 				</div>
 			</div>
 
-			<div class="landing-block-node-card js-animation slideInUp text-center g-px-30 g-mb-30 g-min-height-50vh">
+			<div class="landing-block-node-card js-animation slideInUp text-center g-px-30 g-mb-30 align-self-start">
 				<div class="g-pos-rel g-parent d-inline-block h-100 g-max-height-500">
 					<img class="landing-block-node-card-img g-object-fit-cover w-100 h-100 g-max-width-100x mx-auto"
 						 data-fancybox="gallery" data-link-classes='d-block g-pos-rel h-auto' alt=""
@@ -96,7 +96,7 @@
 				</div>
 			</div>
 
-			<div class="landing-block-node-card js-animation slideInUp text-center g-px-30 g-mb-30 g-min-height-50vh">
+			<div class="landing-block-node-card js-animation slideInUp text-center g-px-30 g-mb-30 align-self-start">
 				<div class="g-pos-rel g-parent d-inline-block h-100 g-max-height-500">
 					<img class="landing-block-node-card-img g-object-fit-cover w-100 h-100 g-max-width-100x mx-auto"
 						 data-fancybox="gallery" data-link-classes='d-block g-pos-rel h-auto' alt=""
@@ -108,7 +108,7 @@
 				</div>
 			</div>
 
-			<div class="landing-block-node-card js-animation slideInUp text-center g-px-30 g-mb-30 g-min-height-50vh">
+			<div class="landing-block-node-card js-animation slideInUp text-center g-px-30 g-mb-30 align-self-start">
 				<div class="g-pos-rel g-parent d-inline-block h-100 g-max-height-500">
 					<img class="landing-block-node-card-img g-object-fit-cover w-100 h-100 g-max-width-100x mx-auto"
 						 data-fancybox="gallery" data-link-classes='d-block g-pos-rel h-auto' alt=""
@@ -120,7 +120,7 @@
 				</div>
 			</div>
 
-			<div class="landing-block-node-card js-animation slideInUp text-center g-px-30 g-mb-30 g-min-height-50vh">
+			<div class="landing-block-node-card js-animation slideInUp text-center g-px-30 g-mb-30 align-self-start">
 				<div class="g-pos-rel g-parent d-inline-block h-100 g-max-height-500">
 					<img class="landing-block-node-card-img g-object-fit-cover w-100 h-100 g-max-width-100x mx-auto"
 						 data-fancybox="gallery" data-link-classes='d-block g-pos-rel h-auto' alt=""
@@ -132,7 +132,7 @@
 				</div>
 			</div>
 
-			<div class="landing-block-node-card js-animation slideInUp text-center g-px-30 g-mb-30 g-min-height-50vh">
+			<div class="landing-block-node-card js-animation slideInUp text-center g-px-30 g-mb-30 align-self-start">
 				<div class="g-pos-rel g-parent d-inline-block h-100 g-max-height-500">
 					<img class="landing-block-node-card-img g-object-fit-cover w-100 h-100 g-max-width-100x mx-auto"
 						 data-fancybox="gallery" data-link-classes='d-block g-pos-rel h-auto' alt=""
@@ -144,7 +144,7 @@
 				</div>
 			</div>
 
-			<div class="landing-block-node-card js-animation slideInUp text-center g-px-30 g-mb-30 g-min-height-50vh">
+			<div class="landing-block-node-card js-animation slideInUp text-center g-px-30 g-mb-30 align-self-start">
 				<div class="g-pos-rel g-parent d-inline-block h-100 g-max-height-500">
 					<img class="landing-block-node-card-img g-object-fit-cover w-100 h-100 g-max-width-100x mx-auto"
 						 data-fancybox="gallery" data-link-classes='d-block g-pos-rel h-auto' alt=""
@@ -156,7 +156,7 @@
 				</div>
 			</div>
 
-			<div class="landing-block-node-card js-animation slideInUp text-center g-px-30 g-mb-30 g-min-height-50vh">
+			<div class="landing-block-node-card js-animation slideInUp text-center g-px-30 g-mb-30 align-self-start">
 				<div class="g-pos-rel g-parent d-inline-block h-100 g-max-height-500">
 					<img class="landing-block-node-card-img g-object-fit-cover w-100 h-100 g-max-width-100x mx-auto"
 						 data-fancybox="gallery" data-link-classes='d-block g-pos-rel h-auto' alt=""

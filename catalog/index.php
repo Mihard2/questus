@@ -5,8 +5,8 @@ $Category = $_GET['cat'];
 $Author = $_GET['author'];
 $Tags = $_GET['tags'];
 $GLOBALS['arrfliter'] = array("PROPERTY_MATR_VALUE"=>$Category,
-															"PROPERTY_AUTHOR.ID"=>$Author,
-															'TAGS'=>$Tags,
+							  "PROPERTY_AUTHOR.ID"=>$Author,
+							  "?TAGS"=>$Tags,
 														);
 
 
@@ -81,7 +81,7 @@ $APPLICATION->IncludeComponent(
 		"PAGER_TEMPLATE" => "arrows",
 		"PAGER_TITLE" => "Новости",
 		"PREVIEW_TRUNCATE_LEN" => "250",
-		"SEF_MODE" => "N",
+		"SEF_MODE" => "Y",
 		"SET_LAST_MODIFIED" => "N",
 		"SET_STATUS_404" => "Y",
 		"SET_TITLE" => "Y",
@@ -111,10 +111,14 @@ $APPLICATION->IncludeComponent(
 			4 => "MATERIALS",
 			5 => "",
 		),
-		"VARIABLE_ALIASES" => array(
-			"SECTION_ID" => "SECTION_ID",
-			"ELEMENT_ID" => "ELEMENT_ID",
+		"SEF_FOLDER" => "/catalog/",
+		"SEF_URL_TEMPLATES" => array(
+			"news" => "",
+			"section" => "",
+			"detail" => "#ELEMENT_CODE#/",
 		)
 	),
 	false
-);?><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
+);?>
+
+<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

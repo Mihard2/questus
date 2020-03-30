@@ -69,7 +69,7 @@ return array(
 			),
 			'.landing-block-node-card-container' => array(
 				'name' => Loc::getMessage('LANDING_BLOCK_43.4.COVER_WITH_PRICE_TEXT_BUTTON_BGIMG_NODES_LANDINGBLOCKNODECARD_CONTAINER'),
-				'type' => ['text-align', 'padding-top', 'padding-bottom', 'animation'],
+				'type' => ['align-self', 'text-align', 'padding-top', 'padding-bottom', 'animation'],
 			),
 			'.landing-block-node-card-button-container' => array(
 				'name' => Loc::getMessage('LANDING_BLOCK_43.4.COVER_WITH_PRICE_TEXT_BUTTON_BGIMG_NODES_LANDINGBLOCKNODECARDBUTTONCONTAINER'),

@@ -12,7 +12,7 @@ return array(
 		'section' => array('sidebar'),
 		'dynamic' => false,
 		'subtype' => 'form',
-		'type' => ['page', 'store'],
+		'type' => ['page', 'store', 'smn'],
 	),
 	'nodes' => array(),
 	'style' => array(

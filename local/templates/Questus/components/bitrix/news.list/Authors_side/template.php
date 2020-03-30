@@ -21,9 +21,9 @@ $this->setFrameMode(true);
 	$this->AddDeleteAction($arItem['ID'], $arItem['DELETE_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_DELETE"), array("CONFIRM" => GetMessage('CT_BNL_ELEMENT_DELETE_CONFIRM')));
 	?>
 
-<a href="?<?=$_SERVER["QUERY_STRING"]?>&author=<?=$arItem['ID']?>" id="<?=$this->GetEditAreaId($arItem['ID']);?>">
-			<img src="<?=$arItem["PREVIEW_PICTURE"]["SRC"]?>" alt="">
-			<div class="authors-name"><?echo $arItem["NAME"]?></div>
-			<div class="authors-profession"><?=$arItem["PROPERTIES"]["SPEC"]["VALUE"]?></div>
+	<a href="?<?=$_SERVER["QUERY_STRING"]?>&author=<?=$arItem['ID']?>" id="<?=$this->GetEditAreaId($arItem['ID']);?>">
+		<img src="<?=$arItem["PREVIEW_PICTURE"]["SRC"]?>" alt="">
+		<div class="authors-name"><?echo $arItem["NAME"]?></div>
+		<div class="authors-profession"><?=$arItem["PROPERTIES"]["SPEC"]["VALUE"]?></div>
 	</a>
 <?endforeach;?>

@@ -30,8 +30,7 @@
 
 		<div class="landing-block-node-card js-slide d-flex align-items-end u-bg-overlay g-min-height-100vh g-bg-img-hero g-bg-black-opacity-0_5--after bg-video__wrapper" data-card-preset="video">
 			<div class="landing-block-node-card-videobg-inner bg-video__inner">
-				<iframe
-						class="landing-block-node-card-videobg bg-video__video"
+				<iframe class="landing-block-node-card-videobg bg-video__video"
 						width="100%"
 						src="//www.youtube.com/embed/q4d8g9Dn3ww?autoplay=1&controls=0&loop=1&mute=1&rel=0"
 						data-source="https://www.youtube.com/watch?v=q4d8g9Dn3ww"

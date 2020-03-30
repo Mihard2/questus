@@ -10,6 +10,7 @@ return array(
 	'block' => array(
 		'name' => Loc::getMessage('LANDING_BLOCK_48.SLIDER_WITH_VIDEO_ON_BGIMG_NAME'),
 		'section' => array('cover', 'video'),
+		'type' => ['page', 'store', 'smn'],
 		'dynamic' => false,
 	),
 	'cards' => array(

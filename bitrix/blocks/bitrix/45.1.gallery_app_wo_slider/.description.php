@@ -49,7 +49,7 @@ return array(
 		),
 		'.landing-block-node-card' => array(
 			'name' => Loc::getMessage('LANDING_BLOCK_45.1.GALLERY_APP_WO_SLIDER_CARDS_LANDINGBLOCKNODECARDIMG'),
-			'type' => 'animation',
+			'type' => ['align-self', 'animation'],
 		),
 	),
 	'assets' => array(

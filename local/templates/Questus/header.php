@@ -19,7 +19,7 @@ IncludeTemplateLangFile(__FILE__);
     
     
     <?$APPLICATION->ShowHead()?>
-    <title><?$APPLICATION->ShowTitle()?></title>
+    <title><?$APPLICATION->ShowTitle("Growwithexo")?></title>
     <?$APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH.'/static/css/style.css');?>
 </head>
 <body>
@@ -31,9 +31,9 @@ IncludeTemplateLangFile(__FILE__);
         <div class="container">
             <div class="row mainHeader-block">
                 <?if ($APPLICATION->GetCurPage(false) === '/'):?>
-                  <span class="col-xl-3 col-md-6 col-6 logo"></span>
+                  <span class="col-md-3 col-6 logo"></span>
                <?else:?>
-                  <a href="/" class="col-xl-3 col-md-6 col-6 2 logo"></a>
+                  <a href="/" class="col-md-3 col-6 logo"></a>
                <?endif;?>
                 <div class="col-xl-6 col-md-12 col-6 menu">
 
@@ -56,19 +56,10 @@ IncludeTemplateLangFile(__FILE__);
 
                 </div>
                 
-                <div class="col-xl-3 col-md-6 contacts">
-                    <a href="mailto:questusleadership@gmail.com?body=Hi%20man.%20How%20are%20you%20%3F" class="contacts-mail col-12">
+                <div class="col-xl-3 offset-xl-0 offset-md-3 col-md-6 contacts">
+                    <a href="mailto:info@growwithexo.com" class="contacts-mail col-12">
                          <i class="icon-mail-1"></i>
-                         <?$APPLICATION->IncludeComponent(
-                    	"bitrix:main.include",
-                    	"",
-                    	Array(
-                    		"AREA_FILE_SHOW" => "file",
-                    		"AREA_FILE_SUFFIX" => "inc",
-                    		"EDIT_TEMPLATE" => "",
-                    		"PATH" => "/include/emailLink.php"
-                    	)
-                    );?>
+                         info@growwithexo.com
                     </a>   
                     <?$APPLICATION->IncludeComponent(
                     	"bitrix:main.include",

@@ -169,47 +169,10 @@
             .slide-block,
             .slide-block_wide {
 
-                img {
-                    height: 201px;
-                }
-
                 h4 {
                     height: 54px;
                     overflow: hidden;
                 }
-
-                .shortDesc {
-                    height: 72px;
-                    overflow: hidden;
-                }
-
-                @include mq(md) {
-                    width: 320px;
-                    margin: 0 10px;
-                }
-
-                @include mq(sm) {
-                    width: 280px;
-                    margin: 0 8px;
-
-                    h4 {
-                        font-size: 16px;
-                        height: 54px;
-                        overflow: hidden;
-                    }
-
-                    .infoDate {
-                        font-size: 11px;
-                    }
-
-                    .shortDesc {
-                        font-size: 12px;
-                        height: 72px;
-                        overflow: hidden;
-                    }
-                }
-
-
 
                 .slick-prev {
                     @include mq(md) {
@@ -237,20 +200,6 @@
                 }
             }
 
-            .slide-block_wide {
-                @include mq(md) {
-                    width: 500px;
-                }
-
-                @include mq(sm) {
-                    width: 440px;
-                }
-
-                @include mq(xs) {
-                    width: 300px;
-                }
-            }
-
             .slick-dots {
                 bottom: -45px;
 
@@ -268,6 +217,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
+
+            @include mq(sm) {
+                flex-direction: column;
+            }
+
             a,
             button {
                 min-width: 126px;

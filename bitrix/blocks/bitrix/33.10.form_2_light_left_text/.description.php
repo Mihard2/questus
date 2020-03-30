@@ -12,7 +12,7 @@ return array(
 		'section' => array('forms'),
 		'dynamic' => false,
 		'subtype' => 'form',
-		'type' => ['page', 'store'],
+		'type' => ['page', 'store', 'smn'],
 	),
 	'cards' => array(
 		'.landing-block-card-contact' => array(
