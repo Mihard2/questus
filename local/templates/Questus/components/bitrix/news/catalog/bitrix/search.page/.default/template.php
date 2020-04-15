@@ -11,6 +11,8 @@
 /** @var string $componentPath */
 /** @var CBitrixComponent $component */
 ?>
+
+
 <div class="search-page">
 <form action="" method="get">
 <?if($arParams["USE_SUGGEST"] === "Y"):

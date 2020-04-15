@@ -17,10 +17,14 @@ IncludeTemplateLangFile(__FILE__);
     <meta http-equiv='expires' content='0'>
     <meta http-equiv='pragma' content='no-cache'>
     
+    <meta name="yandex-verification" content="0d708ea873e9624a" />
     
+    <?\Bitrix\Main\Page\Asset::getInstance()->addJs('//www.google.com/recaptcha/api.js');?> 
+
     <?$APPLICATION->ShowHead()?>
     <title><?$APPLICATION->ShowTitle("Growwithexo")?></title>
     <?$APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH.'/static/css/style.css');?>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <body>
     <div class="mainWrapper">

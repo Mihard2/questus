@@ -30,7 +30,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 $res = CIBlockElement::GetList(
   Array("ACTIVE_FROM"=>"DESC"),
   Array("=PROPERTY_POST_LINK" => $arParams["POST_ID"],"IBLOCK_ID"=> 11,"=ACTIVE" => "Y"),
-  array("ACTIVE","CREATED","PORPERTY_POST_LINK","PROPERTY_EMAIL","PROPERTY_NAME","PREVIEW_TEXT"),
+  array("ACTIVE","CREATED","CREATED_DATE","PORPERTY_POST_LINK","PROPERTY_EMAIL","PROPERTY_NAME","PREVIEW_TEXT","CNT"),
   false,
   Array()
 );
@@ -38,10 +38,10 @@ $arResult["ITEMS"] = array();
   while($result = $res->GetNext() ) {
   $arResult["ITEMS"][] = array(
     "ACTIVE"=>$result["ACTIVE"],
-    "CREATED"=>$result["CREATE_DATE"],
+    "CREATED"=>$result["CREATED_DATE"],
     "PREVIEW_TEXT"=>$result["PREVIEW_TEXT"],
     "EMAIL"=>$result["PROPERTY_EMAIL_VALUE"],
-    "NAME"=>$result["PROPERTY_NAME_VALUE"],
+    "NAME"=>$result["PROPERTY_NAME_VALUE"], 
     );
 }
 

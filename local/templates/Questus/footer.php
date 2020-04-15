@@ -10,8 +10,7 @@
     <section class="container">
         <div class="row footer">
 
-            <div class="col-md-4 col-5 order-0 order-md-0 footer_menu">
-                <div class="footer-title">site map</div>
+            <div class="col-md-3 col-5 order-0 order-md-0 footer_menu">
                  <?$APPLICATION->IncludeComponent("bitrix:menu", "menu_multi", Array(
                 	"ALLOW_MULTI_SELECT" => "N",	// Разрешить несколько активных пунктов одновременно
                 		"CHILD_MENU_TYPE" => "left",	// Тип меню для остальных уровней
@@ -29,8 +28,7 @@
                 	false
                 );?>
             </div>
-            <div class="col-md-4 col-sm-12 order-2 order-md-1 footer_contacts">
-                <div class="footer-title">contacts</div>
+            <div class="col-md-5 col-sm-12 order-2 order-md-1 footer_contacts">
                 <ul>
                     <li>
                         <a href="mailto:info@growwithexo.com">
@@ -38,12 +36,12 @@
                         </a>
                     </li>
                     <li>
-                        <a href="tel:+1(619)9198670">
+                        <a href="tel:+1(850)8145452">
                             +1 (850) 814-5452
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)">
+                        <a href="https://goo.gl/maps/cZdq1JV6XqctMiv96" target="_blank">
                             San Diego, CA
                         </a>
                     </li>
@@ -67,15 +65,18 @@
                 </ul>
             </div>
             <div class="col-md-4 col-7 order-1 order-md-2 footer_forms">
-                <div class="footer-title">help</div>
+
+                <? $APPLICATION->IncludeComponent(
+                "linetime:feedbackForm",
+                "subscribe",
+                Array(
+                ),
+                false
+                );?>
                 <form action="/search/" method="GET" class="formSearch">
 						<input type="search" name="q" id="" placeholder="Enter keyword search...">
 						<button type="submit"><i class='icon-search'></i></button>
                 </form> 
-                <form class="formSabscribe">
-                    <input type="email" placeholder="Email">
-                    <button type="submit">subscribe</button>
-                </form>               
             </div>
         </div>
     </section>
@@ -83,18 +84,10 @@
 <script src="<?=SITE_TEMPLATE_PATH?>/static/js/jQuery3.4.1.min.js"></script>
 <script src="<?=SITE_TEMPLATE_PATH?>/static/js/jquery.magnific-popup.min.js"></script>
 <script src="<?=SITE_TEMPLATE_PATH?>/static/js/slick.min.js"></script>
+<script src="<?=SITE_TEMPLATE_PATH?>/static/js/jquery.formstyler.min.js"></script>
 <script src="<?=SITE_TEMPLATE_PATH?>/static/js/audioplayer.js"></script>
 
-<!-- <script src="https://www.google.com/recaptcha/api.js?render=<?php echo SITE_KEY?>"></script>
-<script>
-    grecaptcha.ready(function() {
-        grecaptcha.execute('<?php echo SITE_KEY?>', {action: 'homepage'}).then(function(token) {
-            console.log(token);
-            document.getElementById('g-recaptcha-response').value=token;
-        });
-    });
-</script> -->
-<script src="<?=SITE_TEMPLATE_PATH?>/static/js/main.js?version={version4}"></script>
+<script src="<?=SITE_TEMPLATE_PATH?>/static/js/main.js?version={version7}"></script>
     </div>
 </body>
 

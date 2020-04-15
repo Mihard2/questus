@@ -26,6 +26,11 @@ BX.Landing.EditComponent.prototype = {
 			setTimeout(function() {
 				top.BX.SidePanel.Instance.close();
 			}, 300);
+			top.BX.SidePanel.Instance.postMessage(
+				window,
+				'landingEditClose',
+				{}
+			);
 		}
 	}
 };

@@ -29,16 +29,6 @@
                 order: 1;
             }
 
-            // @include mq(xs) {
-            //     background: url('../../static/media/logo(V).png') no-repeat center center;
-            //     background-size: contain;
-            //     background-position-x: 30px;
-            //     height: 70px;
-            //     margin: 10px 0;
-            // }
-        }
-
-        a.logo {
             &:hover {
                 background-color: #fff;
                 background-image: url('../../static/media/logo(H)hover.png');
@@ -46,16 +36,6 @@
                 background-repeat: no-repeat;
                 background-size: auto 80%;
             }
-
-            // @include mq(xs) {
-            //     &:hover {
-            //         background-color: #fff;
-            //         background-image: url('../../static/media/logo(V)hover.png');
-            //         background-position: center center;
-            //         background-repeat: no-repeat;
-            //         background-size: contain;
-            //     }
-            // }
         }
 
         .menu {
@@ -150,10 +130,12 @@
                 align-items: flex-end;
                 height: 100%;
                 width: 100%;
+                list-style: none;
 
                 li {
                     height: 100%;
                     position: relative;
+                    list-style: none;
 
                     &.dropdown_menu-wrapper {
                         @include mq(sm) {
@@ -165,6 +147,7 @@
                             a {
                                 color: #fff;
                                 margin-right: -25px;
+
                                 &::after {
                                     border-left: 8px solid #fff;
                                 }
@@ -175,11 +158,14 @@
 
                                 li {
                                     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+
                                     a {
                                         color: #fff;
                                     }
+
                                     &.active {
                                         background: #fff;
+
                                         a {
                                             color: #242424;
                                         }

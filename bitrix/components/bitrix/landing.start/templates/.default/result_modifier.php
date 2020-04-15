@@ -11,6 +11,7 @@ use \Bitrix\Main\Localization\Loc;
 Loc::loadMessages(dirname(__FILE__) . '/template.php');
 
 \Bitrix\Main\UI\Extension::load([
+	'ajax',
 	'landing_master'
 ]);
 
@@ -169,13 +170,14 @@ elseif (in_array($this->getPageName(), array('template', 'site_show')))
 	unset($settingsLink);
 }
 
+include __DIR__ . '/popups/agreement.php';
+
 if (
 	$request->get('agreement') == 'Y' &&
 	!$request->get('landing_mode') &&
 	\Bitrix\Landing\Manager::isB24()
 )
 {
-	include __DIR__ . '/popups/agreement.php';
 	?>
 	<script type="text/javascript">
 		BX.ready(function()
@@ -187,4 +189,10 @@ if (
 		});
 	</script>
 	<?
+}
+
+// backward compatibility
+if ($arResult['AGREEMENT_ACCEPTED'])
+{
+	$arResult['AGREEMENT'] = [];
 }

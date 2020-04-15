@@ -5,8 +5,11 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true)
 }
 
 use \Bitrix\Landing\Landing;
+use \Bitrix\Landing\Site;
 use \Bitrix\Landing\Manager;
 use \Bitrix\Landing\Rights;
+use \Bitrix\Landing\TemplateRef;
+use \Bitrix\Landing\Internals\TemplateRefTable;
 use \Bitrix\Main\Entity;
 
 \CBitrixComponent::includeComponentClass('bitrix:landing.base');
@@ -92,6 +95,86 @@ class LandingLandingsComponent extends LandingBaseComponent
 	}
 
 	/**
+	 * Detect areas and requests some additional info.
+	 * @return void
+	 */
+	protected function prepareAreas()
+	{
+		if (!isset($this->arResult['SITES'][$this->arParams['SITE_ID']]['TPL_ID']))
+		{
+			return;
+		}
+
+		$tplIds = [];
+		$areas = [];
+		$templates = $this->getTemplates();
+
+		// get areas in current set
+		$res = TemplateRefTable::getList([
+			'select' => [
+				'*'
+			],
+			'filter' => [
+				'LANDING_ID' => array_keys($this->arResult['LANDINGS'])
+			]
+		]);
+		while ($row = $res->fetch())
+		{
+			if (!isset($tplIds[$row['ENTITY_TYPE']]))
+			{
+				$tplIds[$row['ENTITY_TYPE']] = [];
+			}
+			$tplIds[$row['ENTITY_TYPE']][$row['ENTITY_ID']] = 0;
+			$areas[] = $row;
+		}
+
+		// entities
+		$entityTypes = [
+			TemplateRef::ENTITY_TYPE_SITE,
+			TemplateRef::ENTITY_TYPE_LANDING
+		];
+		foreach ($entityTypes as $entityType)
+		{
+			if (isset($tplIds[$entityType]))
+			{
+				$class = TemplateRef::resolveClassByType($entityType);
+				if (!$class)
+				{
+					continue;
+				}
+				$res = $class::getList([
+					'select' => [
+						'ID', 'TPL_ID'
+					],
+					'filter' => [
+						'ID' => array_keys($tplIds[$entityType]),
+						'=DELETED' => ['Y', 'N']
+					]
+				]);
+				while ($row = $res->fetch())
+				{
+					if (isset($templates[$row['TPL_ID']]))
+					{
+						$tplIds[$entityType][$row['ID']] = $row['TPL_ID'];
+					}
+				}
+			}
+		}
+
+		// combine areas with entities
+		foreach ($areas as $row)
+		{
+			$tplId = $tplIds[$row['ENTITY_TYPE']][$row['ENTITY_ID']];
+			if ($tplId > 0)
+			{
+				$landingRow =& $this->arResult['LANDINGS'][$row['LANDING_ID']];
+				$landingRow['IS_AREA'] = true;
+				$landingRow['AREA_CODE'] = $templates[$tplId]['XML_ID'] . '_' . $row['AREA'];
+			}
+		}
+	}
+
+	/**
 	 * Base executable method.
 	 * @return void
 	 */
@@ -115,6 +198,8 @@ class LandingLandingsComponent extends LandingBaseComponent
 			$this->checkParam('DRAFT_MODE', 'N');
 			$this->checkParam('~AGREEMENT', []);
 
+			\Bitrix\Landing\Hook::setEditMode(true);
+
 			\Bitrix\Landing\Site\Type::setScope(
 				$this->arParams['TYPE']
 			);
@@ -134,6 +219,7 @@ class LandingLandingsComponent extends LandingBaseComponent
 			);
 
 			// make filter
+			$siteId = $this->arParams['SITE_ID'];
 			$filter = LandingFilterComponent::getFilter(
 				LandingFilterComponent::TYPE_LANDING,
 				$this->arParams['TYPE']
@@ -155,6 +241,16 @@ class LandingLandingsComponent extends LandingBaseComponent
 			$this->arResult['IS_DELETED'] = LandingFilterComponent::isDeleted();
 			$this->arResult['SITES'] = $sites = $this->getSites();
 			$this->arResult['IS_INTRANET'] = $this->isIntranet();
+
+			// types mismatch
+			if (
+				!isset($sites[$siteId]) ||
+				$sites[$siteId]['SPECIAL'] == 'Y' ||
+				$sites[$siteId]['TYPE'] != $this->arParams['TYPE']
+			)
+			{
+				\localRedirect($this->getRealFile());
+			}
 
 			if ($this->arResult['IS_INTRANET'])
 			{
@@ -254,6 +350,8 @@ class LandingLandingsComponent extends LandingBaseComponent
 					$item['SORT'] = $item['ID'];
 				}
 				// preview, etc
+				$item['IS_AREA'] = false;
+				$item['AREA_CODE'] = '';
 				$item['PUBLIC_URL'] = '';
 				$item['PREVIEW'] = $pictureFromCloud ? '' : $landing->getPreview($item['ID'], true);
 				if ($item['FOLDER'] == 'Y')
@@ -267,15 +365,7 @@ class LandingLandingsComponent extends LandingBaseComponent
 				}
 			}
 
-			// checking areas
-			$areas = \Bitrix\Landing\TemplateRef::landingIsArea(
-				array_keys($this->arResult['LANDINGS'])
-			);
-			foreach ($this->arResult['LANDINGS'] as &$landingItem)
-			{
-				$landingItem['IS_AREA'] = $areas[$landingItem['ID']] === true;
-			}
-			unset($landingItem);
+			$this->prepareAreas();
 
 			// sort by homepage additional
 			uasort($this->arResult['LANDINGS'], function($a, $b)

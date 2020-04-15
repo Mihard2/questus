@@ -76,6 +76,7 @@
             display: flex;
             justify-content: space-between;
             margin-top: 50px;
+
             @include mq(xs) {
                 flex-direction: column;
             }
@@ -97,6 +98,7 @@
                 &.left {
                     i {
                         margin-right: 33px;
+
                         @include mq(xs) {
                             margin-right: 25px;
                         }
@@ -107,8 +109,10 @@
                     @include mq(xs) {
                         justify-content: flex-end;
                     }
+
                     i {
                         margin-left: 33px;
+
                         @include mq(xs) {
                             margin-left: 25px;
                         }
@@ -147,7 +151,6 @@
 
             &_block {
                 display: flex;
-                flex-direction: column;
                 flex-wrap: wrap;
                 margin-top: 30px;
 
@@ -156,7 +159,7 @@
                     flex-direction: row;
                 }
 
-                .formstyler_checkbox {
+                .search-tags-chain {
                     border: 1px solid #9aa3bc;
                     padding: 7px 10px;
                     width: max-content;
@@ -166,14 +169,6 @@
                     font-size: 17px;
                     cursor: pointer;
 
-                    &::after {
-                        content: 'x';
-                        text-transform: uppercase;
-                        margin-left: 15px;
-                        font-size: 15px;
-                        display: none;
-                    }
-
                     input {
                         position: absolute;
                         z-index: -1;
@@ -181,7 +176,7 @@
                         margin: 10px 0 0 20px;
                     }
 
-                    .checkbox__text {
+                    .search-tags-text {
                         font-family: $font2;
                         font-size: 17px;
                         display: inline-block;
@@ -190,24 +185,72 @@
                     &:hover {
                         background-color: #9aa3bc;
 
-                        .checkbox__text {
+                        .search-tags-text {
                             color: #fff;
 
-                        }
-
-                        &::after {
-                            display: inline-block;
-                            color: #fff;
                         }
                     }
                 }
 
+                .tagActive_wrapper {
+                    width: 100%;
+                    padding-bottom: 30px;
+                }
+
                 .tagActive {
                     background-color: #9aa3bc;
-                    color: #fff;
+                    display: flex;
+                    font-weight: 700;
 
-                    &::after {
-                        display: inline-block;
+                    a {
+                        font-size: 19px;
+                    }
+
+                    .search-tags-link {
+                        margin-left: 5px;
+                        height: 20px;
+                        width: 20px;
+
+                        span {
+                            display: block;
+                            height: 2px;
+                            width: 14px;
+                            background: #242424;
+                            transform: rotate(45deg);
+                            position: relative;
+                            top: 11px;
+                            left: 3px;
+                            transition: all .4s;
+
+                            &::after {
+                                content: "";
+                                height: 2px;
+                                width: 14px;
+                                background: #242424;
+                                position: absolute;
+                                transform: rotate(90deg);
+                                transition: all .4s;
+                            }
+                        }
+                    }
+
+                    &:hover {
+                        transition: all .4s;
+                        border: 1px solid #000;
+
+                        .search-tags-text {
+                            color: #242424;
+                        }
+
+                        span {
+                            background: #fff;
+                            height: 3px;
+
+                            &::after {
+                                background: #fff;
+                                height: 3px;
+                            }
+                        }
                     }
                 }
             }
@@ -233,7 +276,7 @@
             &Blocks {
                 display: flex;
                 flex-direction: column;
-                
+
                 @include mq(sm) {
                     flex-direction: row;
                     flex-wrap: wrap;

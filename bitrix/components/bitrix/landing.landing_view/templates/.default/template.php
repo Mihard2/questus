@@ -205,7 +205,7 @@ if (!$request->offsetExists('landing_mode')):
 				?><?
 				?>class="ui-btn ui-btn-xs ui-btn-light ui-btn-round landing-ui-panel-top-chain-link landing-ui-panel-top-chain-link-site<?= (($arResult['SITES_COUNT'] <= 1) ? ' landing-ui-no-icon' : '');?>" <?
 				?>title="<?= \htmlspecialcharsbx($site['TITLE']);?>">
-				<?= \htmlspecialcharsbx($site['TITLE']);?>
+				<span class="ui-btn-text"><?= \htmlspecialcharsbx($site['TITLE']);?></span>
 			</a>
 			<strong class="landing-ui-panel-top-chain-link-separator"><span></span></strong>
 			<a href="<?= ($arResult['PAGES_COUNT'] <= 1) ? $arParams['PAGE_URL_LANDINGS'] : '#';?>" <?
@@ -213,7 +213,7 @@ if (!$request->offsetExists('landing_mode')):
 				echo ($arResult['PAGES_COUNT'] > 1) ? ' data-slider-ignore-autobinding="true"' : ''
 				?>class="ui-btn ui-btn-xs ui-btn-light ui-btn-round landing-ui-panel-top-chain-link landing-ui-panel-top-chain-link-page<?= (($arResult['PAGES_COUNT'] <= 1) ? ' landing-ui-no-icon' : '');?>" <?
 				?>title="<?= \htmlspecialcharsbx($arResult['LANDING']->getTitle());?>">
-				<?= \htmlspecialcharsbx($arResult['LANDING']->getTitle());?>
+				<span class="ui-btn-text"><?= \htmlspecialcharsbx($arResult['LANDING']->getTitle());?></span>
 			</a>
 		</div>
 		<div class="landing-ui-panel-top-devices">

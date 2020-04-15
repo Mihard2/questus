@@ -72,10 +72,10 @@ $MESS["LANDING_TPL_TITLE_ADD_GROUP"] = "New knowledge base";
 $MESS["LANDING_TPL_TITLE_ADD_KNOWLEDGE"] = "New knowledge base";
 $MESS["LANDING_TPL_TITLE_ADD_PAGE"] = "New Site";
 $MESS["LANDING_TPL_TITLE_ADD_STORE"] = "New online store";
-$MESS["LANDING_TPL_TITLE_EDIT"] = "Website Settings";
+$MESS["LANDING_TPL_TITLE_EDIT"] = "Site settings";
 $MESS["LANDING_TPL_TITLE_EDIT_CATALOG"] = "Catalog Settings";
 $MESS["LANDING_TPL_TITLE_EDIT_GROUP"] = "Knowledge base settings";
 $MESS["LANDING_TPL_TITLE_EDIT_KNOWLEDGE"] = "Knowledge base settings";
-$MESS["LANDING_TPL_TITLE_EDIT_PAGE"] = "Site Settings";
+$MESS["LANDING_TPL_TITLE_EDIT_PAGE"] = "Site settings";
 $MESS["LANDING_TPL_TITLE_EDIT_STORE"] = "Online store settings";
 ?>

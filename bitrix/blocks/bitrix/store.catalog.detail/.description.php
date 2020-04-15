@@ -42,6 +42,7 @@ $return = array(
 							'element',
 						),
 					),
+					'ALLOW_SEO_DATA' => array(),
 					'HIDE_NOT_AVAILABLE' => array(),
 					'HIDE_NOT_AVAILABLE_OFFERS' => array(),
 					// price

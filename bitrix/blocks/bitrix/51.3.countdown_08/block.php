@@ -1,5 +1,4 @@
-<section
-		class="landing-block landing-block-node-img g-bg-attachment-scroll u-bg-overlay g-flex-centered g-bg-img-hero g-bg-black-opacity-0_6--after g-pt-100 g-pb-120"
+<section class="landing-block landing-block-node-img g-bg-attachment-scroll u-bg-overlay g-flex-centered g-bg-img-hero g-bg-black-opacity-0_6--after g-pt-100 g-pb-120"
 		style="background-image: url(https://cdn.bitrix24.site/bitrix/images/landing/business/1332x806/img1.jpg);">
 	<div class="landing-block-node-container container g-max-width-800 u-bg-overlay__inner">
 		<div class="text-center g-mb-35 g-mb-60--sm">
@@ -21,7 +20,7 @@
 						<div class="landing-block-node-number-number g-color-white g-font-size-22 g-font-size-40--sm g-font-weight-600 g-mb-0 g-mb-10--sm">
 							<span class="js-cd-days">12</span>
 						</div>
-						<span class="landing-block-node-number-text g-color-white text-uppercase g-font-size-10 g-font-size-12--sm">Days</span>
+						<span class="landing-block-node-number-text landing-block-node-number-text-days g-color-white text-uppercase g-font-size-10 g-font-size-12--sm">Days</span>
 					</div>
 				</div>
 
@@ -30,7 +29,7 @@
 						<div class="landing-block-node-number-number g-color-white g-font-size-22 g-font-size-40--sm g-font-weight-600 g-mb-0 g-mb-10--sm">
 							<span class="js-cd-hours">01</span>
 						</div>
-						<span class="landing-block-node-number-text g-color-white text-uppercase g-font-size-10 g-font-size-12--sm">Hours</span>
+						<span class="landing-block-node-number-text landing-block-node-number-text-hours g-color-white text-uppercase g-font-size-10 g-font-size-12--sm">Hours</span>
 					</div>
 				</div>
 
@@ -39,7 +38,7 @@
 						<div class="landing-block-node-number-number g-color-white g-font-size-22 g-font-size-40--sm g-font-weight-600 g-mb-0 g-mb-10--sm">
 							<span class="js-cd-minutes">52</span>
 						</div>
-						<span class="landing-block-node-number-text g-color-white text-uppercase g-font-size-10 g-font-size-12--sm">Minutes</span>
+						<span class="landing-block-node-number-text landing-block-node-number-text-minutes g-color-white text-uppercase g-font-size-10 g-font-size-12--sm">Minutes</span>
 					</div>
 				</div>
 
@@ -48,7 +47,7 @@
 						<div class="landing-block-node-number-number g-color-white g-font-size-22 g-font-size-40--sm g-font-weight-600 g-mb-0 g-mb-10--sm">
 							<span class="js-cd-seconds">52</span>
 						</div>
-						<span class="landing-block-node-number-text g-color-white text-uppercase g-font-size-10 g-font-size-12--sm">Seconds</span>
+						<span class="landing-block-node-number-text landing-block-node-number-text-seconds g-color-white text-uppercase g-font-size-10 g-font-size-12--sm">Seconds</span>
 					</div>
 				</div>
 

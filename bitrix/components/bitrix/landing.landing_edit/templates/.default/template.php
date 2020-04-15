@@ -716,9 +716,17 @@ if ($arParams['SUCCESS_SAVE'])
 				<tr class="landing-form-hidden-row" data-landing-additional-detail="metrika">
 					<td class="ui-form-label ui-form-label-align-top"><?= Loc::getMessage('LANDING_TPL_HOOK_METRIKA');?></td>
 					<td class="ui-form-right-cell ui-form-right-cell-metrika">
-						<?$template->showSimple('GACOUNTER');?>
-						<?$template->showSimple('GTM');?>
 						<?
+						if (isset($hooks['GACOUNTER']))
+						{
+							$pageFields = $hooks['GACOUNTER']->getPageFields();
+							if (!$pageFields['GACOUNTER_CLICK_TYPE']->getValue())
+							{
+								$pageFields['GACOUNTER_CLICK_TYPE']->setValue('text');
+							}
+						}
+						$template->showSimple('GACOUNTER');
+						$template->showSimple('GTM');
 						if (Manager::availableOnlyForZone('ru'))
 						{
 							$template->showSimple('YACOUNTER');

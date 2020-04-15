@@ -280,14 +280,9 @@ class LandingPubComponent extends LandingBaseComponent
 		}
 		$requestedPage = trim($requestedPage, '/');
 		$requestedPageParts = explode('/', $requestedPage);
-		// real path of current script
-		$realFilePath = $server->get('REAL_FILE_PATH');
-		if (!$realFilePath)
-		{
-			$realFilePath = $server->getScriptName();
-		}
 		// compatibility mode, before detect page we need to know
-		// is it siteman site (after transfer) or typical b24 site
+		// is it SMN site (after transfer SMN>B24) or typical b24 site
+		$realFilePath = $this->getRealFile();
 		if (
 			Manager::isExtendedSMN() &&
 			$this->arParams['DRAFT_MODE'] != 'Y' &&
@@ -478,7 +473,7 @@ class LandingPubComponent extends LandingBaseComponent
 		if (
 			$serverHost &&
 			!$previewTemplate &&
-			(!defined('LANDING_DISABLE_CLOUD') || LANDING_DISABLE_CLOUD !== true)
+			!Manager::isCloudDisable()
 		)
 		{
 			if (strpos($serverHost, ':') !== false)
@@ -840,10 +835,7 @@ class LandingPubComponent extends LandingBaseComponent
 				$landing = $this->arResult['LANDING'];
 				if (
 					Manager::isB24() &&
-					(
-						!defined('LANDING_DISABLE_CLOUD') ||
-						LANDING_DISABLE_CLOUD !== true
-					)
+					!Manager::isCloudDisable()
 				)
 				{
 					$pubPathMask = '@^' . Manager::getPublicationPath('[\d]+') . '@i';
@@ -864,7 +856,10 @@ class LandingPubComponent extends LandingBaseComponent
 				{
 					if (strpos($url, '#system_' . $code) !== false)
 					{
-						$landing = Landing::createInstance($page['LANDING_ID']);
+						$landing = Landing::createInstance(
+							$page['LANDING_ID'],
+							['skip_blocks' => true]
+						);
 						if ($landing->exist())
 						{
 							$url = $landing->getPublicUrl(false, false);
@@ -890,7 +885,8 @@ class LandingPubComponent extends LandingBaseComponent
 			if (isset($syspages['catalog']))
 			{
 				$landing = Landing::createInstance(
-					$syspages['catalog']['LANDING_ID']
+					$syspages['catalog']['LANDING_ID'],
+					['skip_blocks' => true]
 				);
 				if ($landing->exist())
 				{
@@ -1153,6 +1149,17 @@ class LandingPubComponent extends LandingBaseComponent
 	}
 
 	/**
+	 * Returns force content for robots.txt
+	 * @return string
+	 */
+	protected function getForceRobots()
+	{
+		return 'User-agent: *' . PHP_EOL .
+			   'Disallow: /pub/site/*' . PHP_EOL .
+			   'Disallow: /preview/*';
+	}
+
+	/**
 	 * Base executable method.
 	 * @return void
 	 */
@@ -1203,6 +1210,10 @@ class LandingPubComponent extends LandingBaseComponent
 				($lid = $this->detectPage())
 			)
 			{
+				if ($this->isPreviewMode)
+				{
+					Hook::setEditMode();
+				}
 				// for cloud some magic for optimization
 				if (Manager::isB24())
 				{
@@ -1239,6 +1250,7 @@ class LandingPubComponent extends LandingBaseComponent
 				// if landing found
 				if ($landing->exist())
 				{
+					$landing->updateVersion();
 					$this->arParams['TYPE'] = $landing::getSiteType();
 					// if intranet, check rights for showing menu
 					if (!$landing->getDomainId())
@@ -1259,7 +1271,14 @@ class LandingPubComponent extends LandingBaseComponent
 						if (isset($hooksSite['ROBOTS']))
 						{
 							Manager::getApplication()->restartBuffer();
-							$robotsContent = trim($hooksSite['ROBOTS']->exec());
+							if ($hooksSite['ROBOTS']->enabled())
+							{
+								$robotsContent = trim($hooksSite['ROBOTS']->exec());
+							}
+							else
+							{
+								$robotsContent = '';
+							}
 							// check sitemaps url
 							$sitemap = Landing::getList(array(
 								'select' => array(
@@ -1279,16 +1298,14 @@ class LandingPubComponent extends LandingBaseComponent
 											  		Site::getPublicUrl($landing->getSiteId()) .
 											  		'/sitemap.xml';
 							}
-							// out
 							if ($robotsContent)
 							{
-								header('content-type: text/plain');
-								echo $robotsContent;
+								$robotsContent .= PHP_EOL . PHP_EOL;
 							}
-							else
-							{
-								$this->setHttpStatusOnce($this::ERROR_STATUS_NOT_FOUND);
-							}
+							$robotsContent .= $this->getForceRobots();
+							// out
+							header('content-type: text/plain');
+							echo $robotsContent;
 							die();
 						}
 						else
@@ -1318,30 +1335,34 @@ class LandingPubComponent extends LandingBaseComponent
 				$this->setErrors(
 					$landing->getError()->getErrors()
 				);
-				// events
-				$this->onBeforeLocalRedirect();
-				$this->onSearchGetURL();
-				$this->onSaleBasketItemBeforeSaved();
-				$this->onBeforeEventSend();
-				$this->onEpilog();
-				// change view for public mode
-				Manager::setPageView(
-					'MainClass',
-					'landing-public-mode'
-				);
-				// call tracker
-				if (
-					$this->arParams['DRAFT_MODE'] != 'Y' &&
-					\Bitrix\Main\Loader::includeModule('crm')
-				)
+
+				if ($landing->getError()->isEmpty())
 				{
+					// events
+					$this->onBeforeLocalRedirect();
+					$this->onSearchGetURL();
+					$this->onSaleBasketItemBeforeSaved();
+					$this->onBeforeEventSend();
+					$this->onEpilog();
+					// change view for public mode
 					Manager::setPageView(
-						'FooterJS',
-						CallTracker::instance()->getEmbeddedScript()
+						'MainClass',
+						'landing-public-mode'
 					);
+					// call tracker
+					if (
+						$this->arParams['DRAFT_MODE'] != 'Y' &&
+						\Bitrix\Main\Loader::includeModule('crm')
+					)
+					{
+						Manager::setPageView(
+							'FooterJS',
+							CallTracker::instance()->getEmbeddedScript()
+						);
+					}
+					// views
+					\Bitrix\Landing\Landing\View::inc($lid);
 				}
-				// views
-				\Bitrix\Landing\Landing\View::inc($lid);
 			}
 			else
 			{

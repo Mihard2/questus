@@ -98,7 +98,7 @@ Manager::setPageView(
 									createPage: '<?= \htmlspecialcharsbx(\CUtil::jsEscape($urlCreatePage));?>',
 									deleteSite: '#',
 									editSite: '<?= \htmlspecialcharsbx(\CUtil::jsEscape($urlEdit));?>',
-								 	exportSite: '<?= \htmlspecialcharsbx(\CUtil::jsEscape($item['EXPORT_URI']->getUri()));?>',
+								 	exportSite: '<?= \htmlspecialcharsbx(\CUtil::jsEscape($item['EXPORT_URI']));?>',
 									publicPage: '#',
 								 	isActive: <?= ($item['ACTIVE'] == 'Y') ? 'true' : 'false';?>,
 								 	isDeleted: <?= ($item['DELETED'] == 'Y') ? 'true' : 'false';?>,
@@ -120,10 +120,17 @@ Manager::setPageView(
 				</div>
 				<?if ($item['DELETED'] == 'Y'):?>
 					<span class="landing-item-link"></span>
-				<?elseif ($arParams['TILE_MODE'] == 'view'):?>
-					<a href="<?= \htmlspecialcharsbx($item['PUBLIC_URL']);?>" class="landing-item-link" target="_top"></a>
+				<?elseif ($arParams['TILE_MODE'] == 'view' && $item['PUBLIC_URL']):?>
+					<a href="<?= \htmlspecialcharsbx($item['PUBLIC_URL']);?>" class="landing-item-link"></a>
+				<?elseif ($urlView):?>
+					<a href="<?= $urlView;?>" class="landing-item-link"></a>
 				<?else:?>
-					<a href="<?= $urlView;?>" class="landing-item-link" target="_top"></a>
+					<span class="landing-item-link"></span>
+				<?endif;?>
+				<?if ($arParams['OVER_TITLE']):?>
+					<div class="landing-item-btn-wrap">
+						<button class="landing-item-btn" type="button"><?= $arParams['OVER_TITLE'];?></button>
+					</div>
 				<?endif;?>
 				<?if ($arParams['DRAFT_MODE'] != 'Y' || $item['DELETED'] == 'Y'):?>
 				<div class="landing-item-status-block">
@@ -150,7 +157,7 @@ Manager::setPageView(
 
 		<?
 		// show developer sites (from main module)
-		if ($lastPage && $arResult['SMN_SITES'])
+		if ($lastPage && $arParams['TYPE'] == 'PAGE' && $arResult['SMN_SITES'])
 		{
 			foreach ($arResult['SMN_SITES'] as $item)
 			{
@@ -280,7 +287,6 @@ Manager::setPageView(
 						],
 						stopParameters: [
 							'action',
-							'slider',
 							'fields%5Bdelete%5D'
 						],
 						options: {
@@ -349,224 +355,225 @@ Manager::setPageView(
 		<?endif;?>
 	});
 
-	function showTileMenu(node, params)
+	if (typeof showTileMenu === 'undefined')
 	{
-		var menuItems = [
-			{
-				text: '<?= \CUtil::jsEscape(Loc::getMessage('LANDING_TPL_ACTION_VIEW'));?>',
-				href: params.viewSite,
-				disabled: !params.viewSite || params.isDeleted,
-			},
-			{
-				text: '<?= \CUtil::jsEscape(Loc::getMessage('LANDING_TPL_ACTION_COPYLINK'));?>',
-				className: 'landing-popup-menu-item-icon',
-				disabled: !params.publicUrl || params.isDeleted,
-				onclick: function(e, item)
+		function showTileMenu(node, params)
+		{
+			var menuItems = [
 				{
-					if (BX.clipboard.isCopySupported())
+					text: '<?= \CUtil::jsEscape(Loc::getMessage('LANDING_TPL_ACTION_VIEW'));?>',
+					href: params.viewSite,
+					disabled: !params.viewSite || params.isDeleted,
+				},
+				{
+					text: '<?= \CUtil::jsEscape(Loc::getMessage('LANDING_TPL_ACTION_COPYLINK'));?>',
+					className: 'landing-popup-menu-item-icon',
+					disabled: !params.publicUrl || params.isDeleted,
+					onclick: function(e, item)
 					{
-						BX.clipboard.copy(params.publicUrl);
-					}
-					var menuItem = item.layout.item;
-					menuItem.classList.add('landing-link-copied');
-
-					BX.bind(menuItem.childNodes[0], 'transitionend', function ()
-					{
-						setTimeout(function()
+						if (BX.clipboard.isCopySupported())
 						{
-							this.popupWindow.close();
-							menuItem.classList.remove('landing-link-copied');
-							menu.destroy();
-							isMenuShown = false;
-						}.bind(this),250);
-					}.bind(this))
-				}
-			},
-			{
-				text: '<?= \CUtil::jsEscape($component->getMessageType('LANDING_TPL_ACTION_GOTO'));?>',
-				className: 'landing-popup-menu-item-icon',
-				href: params.publicUrl,
-				target: '_blank',
-				disabled: !params.publicUrl || params.isDeleted || !params.isActive,
-			},
-			{
-				text: '<?= \CUtil::jsEscape(Loc::getMessage('LANDING_TPL_ACTION_ADDPAGE'));?>',
-				href: params.createPage,
-				disabled: params.isDeleted || params.isEditDisabled,
-				onclick: function()
-				{
-					this.popupWindow.close();
-				}
-			},
-			{
-				text: '<?= \CUtil::jsEscape($this->__component->getMessageType('LANDING_TPL_ACTION_EDIT'));?>',
-				href: params.editSite,
-				target: '_blank',
-				disabled: params.isDeleted || params.isSettingsDisabled,
-				onclick: function()
-				{
-					this.popupWindow.close();
-				}
-			},
-			<?if ($arParams['DRAFT_MODE'] != 'Y'):?>
-			{
-				text: params.isActive
-					? '<?= \CUtil::jsEscape(Loc::getMessage('LANDING_TPL_ACTION_UNPUBLIC'));?>'
-					: '<?= \CUtil::jsEscape(Loc::getMessage('LANDING_TPL_ACTION_PUBLIC'));?>',
-				href: params.publicPage,
-				disabled: params.isDeleted || params.isPublicationDisabled,
-				onclick: function(event)
-				{
-					event.preventDefault();
+							BX.clipboard.copy(params.publicUrl);
+						}
+						var menuItem = item.layout.item;
+						menuItem.classList.add('landing-link-copied');
 
-					var successFunction = function()
-					{
-						tileGrid.action(
-							params.isActive
-								? 'Site::unpublic'
-								: 'Site::publication',
+						BX.bind(menuItem.childNodes[0], 'transitionend', function ()
+						{
+							setTimeout(function()
 							{
-								id: params.ID
-							},
-							null,
-							'<?= \CUtil::jsEscape($this->getComponent()->getName());?>'
-						);
-					};
-
-					if (!params.isActive && <?= $arResult['AGREEMENT'] ? 'true' : 'false';?>)
-					{
-						landingAgreementPopup({
-							success: successFunction
-						});
-						return;
+								this.popupWindow.close();
+								menuItem.classList.remove('landing-link-copied');
+								menu.destroy();
+								isMenuShown = false;
+							}.bind(this),250);
+						}.bind(this))
 					}
-					else
+				},
+				{
+					text: '<?= \CUtil::jsEscape($component->getMessageType('LANDING_TPL_ACTION_GOTO'));?>',
+					className: 'landing-popup-menu-item-icon',
+					href: params.publicUrl,
+					target: '_blank',
+					disabled: !params.publicUrl || params.isDeleted || !params.isActive,
+				},
+				{
+					text: '<?= \CUtil::jsEscape(Loc::getMessage('LANDING_TPL_ACTION_ADDPAGE'));?>',
+					href: params.createPage,
+					disabled: params.isDeleted || params.isEditDisabled,
+					onclick: function()
 					{
-						successFunction();
 						this.popupWindow.close();
 					}
-					menu.destroy();
-				}
-			},
-			<?endif;?>
-			{
-				text: params.isDeleted
-						? '<?= \CUtil::jsEscape($this->__component->getMessageType('LANDING_TPL_ACTION_UNDELETE'));?>'
-						: '<?= \CUtil::jsEscape($this->__component->getMessageType('LANDING_TPL_ACTION_DELETE'));?>',
-				disabled: params.isDeleteDisabled,
-				href: params.deleteSite,
-				onclick: function(event)
+				},
 				{
-					event.preventDefault();
-					this.popupWindow.close();
-					menu.destroy();
-
-					if (params.isDeleted)
+					text: '<?= \CUtil::jsEscape($this->__component->getMessageType('LANDING_TPL_ACTION_EDIT'));?>',
+					href: params.editSite,
+					target: '_blank',
+					disabled: params.isDeleted || params.isSettingsDisabled,
+					onclick: function()
 					{
-						tileGrid.action(
-							'Site::markUndelete',
-							{
-								id: params.ID
-							}
-						);
+						this.popupWindow.close();
 					}
-					else
+				},
+				<?if ($arParams['DRAFT_MODE'] != 'Y'):?>
+				{
+					text: params.isActive
+						? '<?= \CUtil::jsEscape(Loc::getMessage('LANDING_TPL_ACTION_UNPUBLIC'));?>'
+						: '<?= \CUtil::jsEscape(Loc::getMessage('LANDING_TPL_ACTION_PUBLIC'));?>',
+					href: params.publicPage,
+					disabled: params.isDeleted || params.isPublicationDisabled,
+					onclick: function(event)
 					{
-						BX.Landing.UI.Tool.ActionDialog.getInstance()
-							.show({
-								content: '<?= \CUtil::jsEscape(Loc::getMessage('LANDING_TPL_ACTION_DELETE_CONFIRM'));?>'
-							})
-							.then(
-								function() {
-									//BX.Landing.History.getInstance().removePageHistory(params.ID);
-									tileGrid.action(
-										'Site::markDelete',
-										{
-											id: params.ID
-										}
-									);
-								},
-								function() {
+						event.preventDefault();
 
+						var successFunction = function()
+						{
+							tileGrid.action(
+								params.isActive
+									? 'Site::unpublic'
+									: 'Site::publication',
+								{
+									id: params.ID
+								},
+								null,
+								'<?= \CUtil::jsEscape($this->getComponent()->getName());?>'
+							);
+						};
+
+						if (!params.isActive && <?= $arResult['AGREEMENT'] ? 'true' : 'false';?>)
+						{
+							landingAgreementPopup({
+								success: successFunction
+							});
+							return;
+						}
+						else
+						{
+							successFunction();
+							this.popupWindow.close();
+						}
+						menu.destroy();
+					}
+				},
+				<?endif;?>
+				{
+					text: params.isDeleted
+							? '<?= \CUtil::jsEscape($this->__component->getMessageType('LANDING_TPL_ACTION_UNDELETE'));?>'
+							: '<?= \CUtil::jsEscape($this->__component->getMessageType('LANDING_TPL_ACTION_DELETE'));?>',
+					disabled: params.isDeleteDisabled,
+					href: params.deleteSite,
+					onclick: function(event)
+					{
+						event.preventDefault();
+						this.popupWindow.close();
+						menu.destroy();
+
+						if (params.isDeleted)
+						{
+							tileGrid.action(
+								'Site::markUndelete',
+								{
+									id: params.ID
 								}
 							);
+						}
+						else
+						{
+							BX.Landing.UI.Tool.ActionDialog.getInstance()
+								.show({
+									content: '<?= \CUtil::jsEscape(Loc::getMessage('LANDING_TPL_ACTION_DELETE_CONFIRM'));?>'
+								})
+								.then(
+									function() {
+										//BX.Landing.History.getInstance().removePageHistory(params.ID);
+										tileGrid.action(
+											'Site::markDelete',
+											{
+												id: params.ID
+											}
+										);
+									},
+									function() {
+
+									}
+								);
+						}
+					}
+				},
+				<?if (defined('ASD_TTT')):?>
+				params.exportSite
+				? {
+					delimiter: true
+				}
+				: null,
+				params.exportSite
+				? {
+					text: '<?= \CUtil::jsEscape(Loc::getMessage('LANDING_TPL_ACTION_EXPORT'));?>',
+					href: params.exportSite
+					<?if ($arResult['EXPORT_ENABLED'] == 'N'):?>
+					,onclick: function(event)
+					{
+						var msg = BX.Landing.UI.Tool.ActionDialog.getInstance();
+						msg.show({
+							content: '<?= \CUtil::jsEscape(Loc::getMessage('LANDING_TPL_EXPORT_DISABLED'));?>',
+							confirm: 'OK',
+							type: 'alert'
+						});
+						BX.PreventDefault(event);
+					}
+					<?endif;?>
+				}
+				: null,
+				<?endif;?>
+				<?if (false && $arParams['TYPE'] != 'STORE' && \Bitrix\Main\ModuleManager::isModuleInstalled('bitrix24')):?>
+				{
+					text: '<?= \CUtil::jsEscape(Loc::getMessage('LANDING_TPL_ACTION_TRANSFER'));?>',
+					onclick: function(event)
+					{
+						tileGrid.transfer(params.ID, {
+							type: 'store',
+							domainId: params.domainId,
+							domainName: params.domainName
+											.replace('.bitrix24site.by', '.bitrix24shop.by')
+											.replace('.bitrix24.site', '.bitrix24.shop'),
+							domainB24Name: params.domainB24Name
+						});
+						BX.PreventDefault(event);
 					}
 				}
-			},
-			<?if (defined('ASD_TTT')):?>
-			params.exportSite
-			? {
-				delimiter: true
-			}
-			: null,
-			<?if (defined('ASD_TTT')):?>
-			params.exportSite
-			? {
-				text: '<?= \CUtil::jsEscape(Loc::getMessage('LANDING_TPL_ACTION_EXPORT'));?>',
-				href: params.exportSite
-				<?if ($arResult['EXPORT_ENABLED'] == 'N'):?>
-				,onclick: function(event)
-				{
-					var msg = BX.Landing.UI.Tool.ActionDialog.getInstance();
-					msg.show({
-						content: '<?= \CUtil::jsEscape(Loc::getMessage('LANDING_TPL_EXPORT_DISABLED'));?>',
-						confirm: 'OK',
-						type: 'alert'
-					});
-					BX.PreventDefault(event);
-				}
 				<?endif;?>
-			}
-			: null,
-			<?endif;?>
-			<?if (false && $arParams['TYPE'] != 'STORE' && \Bitrix\Main\ModuleManager::isModuleInstalled('bitrix24')):?>
-			{
-				text: '<?= \CUtil::jsEscape(Loc::getMessage('LANDING_TPL_ACTION_TRANSFER'));?>',
-				onclick: function(event)
-				{
-					tileGrid.transfer(params.ID, {
-						type: 'store',
-						domainId: params.domainId,
-						domainName: params.domainName
-										.replace('.bitrix24site.by', '.bitrix24shop.by')
-										.replace('.bitrix24.site', '.bitrix24.shop'),
-						domainB24Name: params.domainB24Name
-					});
-					BX.PreventDefault(event);
-				}
-			}
-			<?endif;?>
-			<?endif;?>
-		];
+			];
 
-		if (!isMenuShown) {
-			menu = new BX.PopupMenuWindow(
-				'landing-popup-menu' + params.ID,
-				node,
-				menuItems,
-				{
-					autoHide : true,
-					offsetTop: -2,
-					offsetLeft: -55,
-					className: 'landing-popup-menu',
-					events: {
-						onPopupClose: function onPopupClose() {
-							menu.destroy();
-							isMenuShown = false;
+			if (!isMenuShown) {
+				menu = new BX.PopupMenuWindow(
+					'landing-popup-menu' + params.ID,
+					node,
+					menuItems,
+					{
+						autoHide : true,
+						offsetTop: -2,
+						offsetLeft: -55,
+						className: 'landing-popup-menu',
+						events: {
+							onPopupClose: function onPopupClose() {
+								menu.destroy();
+								isMenuShown = false;
+							},
 						},
-					},
-				}
-			);
-			menu.show();
+					}
+				);
+				menu.show();
 
-			isMenuShown = true;
-		}
-		else
-		{
-			menu.destroy();
-			isMenuShown = false;
-		}
+				isMenuShown = true;
+			}
+			else
+			{
+				menu.destroy();
+				isMenuShown = false;
+			}
 
+		}
 	}
 
 </script>

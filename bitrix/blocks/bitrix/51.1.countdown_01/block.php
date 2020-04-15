@@ -18,7 +18,7 @@
 					<div class="landing-block-node-number-number g-color-black g-font-size-25 g-font-size-36--sm mb-0">
 						<span class="js-cd-days">12</span>
 					</div>
-					<span class="landing-block-node-number-text g-color-black g-font-size-10 g-font-size-12--sm">Days</span>
+					<span class="landing-block-node-number-text landing-block-node-number-text-days g-color-black g-font-size-10 g-font-size-12--sm">Days</span>
 				</div>
 
 				<div class="d-inline-block u-countdown--days-hide">
@@ -29,7 +29,7 @@
 					<div class="landing-block-node-number-number g-color-black g-font-size-25 g-font-size-36--sm mb-0">
 						<span class="js-cd-hours">01</span>
 					</div>
-					<span class="landing-block-node-number-text g-color-black g-font-size-10 g-font-size-12--sm">Hours</span>
+					<span class="landing-block-node-number-text landing-block-node-number-text-hours g-color-black g-font-size-10 g-font-size-12--sm">Hours</span>
 				</div>
 
 				<div class="d-inline-block">
@@ -40,7 +40,7 @@
 					<div class="landing-block-node-number-number g-color-black g-font-size-25 g-font-size-36--sm mb-0">
 						<span class="js-cd-minutes">52</span>
 					</div>
-					<span class="landing-block-node-number-text g-color-black g-font-size-10 g-font-size-12--sm">Minutes</span>
+					<span class="landing-block-node-number-text landing-block-node-number-text-minutes g-color-black g-font-size-10 g-font-size-12--sm">Minutes</span>
 				</div>
 
 				<div class="d-inline-block">
@@ -51,7 +51,7 @@
 					<div class="landing-block-node-number-number g-color-black g-font-size-25 g-font-size-36--sm mb-0">
 						<span class="js-cd-seconds">52</span>
 					</div>
-					<span class="landing-block-node-number-text g-color-black g-font-size-10 g-font-size-12--sm">Seconds</span>
+					<span class="landing-block-node-number-text landing-block-node-number-text-seconds g-color-black g-font-size-10 g-font-size-12--sm">Seconds</span>
 				</div>
 
 			</div>

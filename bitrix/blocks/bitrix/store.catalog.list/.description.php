@@ -77,7 +77,6 @@ $return = array(
 					'MESS_BTN_BUY' => array(),
 					'MESS_BTN_ADD_TO_BASKET' => array(),
 					'MESS_BTN_SUBSCRIBE' => array(),
-					'MESS_BTN_DETAIL' => array(),
 					'MESS_NOT_AVAILABLE' => array(),
 					'USE_ENHANCED_ECOMMERCE' => array(),
 					'DATA_LAYER_NAME' => array(),

@@ -64,7 +64,7 @@ return [
 					0 => '<span bxstyle="font-weight: 700;">How can we help you?</span>',
 				],
 				'.landing-block-node-text' => [
-					0 => '<p>Ask a question of search any keyword</p>',
+					0 => '<p>Ask a question or search any keyword</p>',
 				],
 			],
 			'style' => [
@@ -78,13 +78,6 @@ return [
 					0 => 'landing-block landing-block-node-bgimage g-flex-centered u-bg-overlay g-bg-img-hero g-bg-darkblue-opacity-0_7--after g-mt-auto g-pb-25 g-pl-auto g-pr-auto g-pt-6 g-min-height-50vh',
 				],
 			],
-			// 'attrs' => [
-			// 	'.landing-block-node-form' => [
-			// 		0 => [
-			// 			'action' => '#landing235',
-			// 		],
-			// 	],
-			// ],
 		],
 		'#block3349' => [
 			'old_id' => 3349,
@@ -224,7 +217,7 @@ return [
 					0 => 'landing-block-node-title g-font-weight-400 g-my-0 g-font-size-48 text-left g-font-montserrat container g-max-width-100x g-pl-0 g-pr-0',
 				],
 				'#wrapper' => [
-					0 => 'landing-block js-animation fadeInUp g-pl-0 g-pt-20 g-pb-auto text-center',
+					0 => 'landing-block js-animation fadeInUp g-pt-20 g-pb-auto text-center g-pl-7 g-pr-15',
 				],
 			],
 		],
@@ -239,10 +232,10 @@ return [
 			],
 			'style' => [
 				'.landing-block-node-text' => [
-					0 => 'landing-block-node-text g-pb-1 container g-pa-0 g-max-width-container text-left g-font-open-sans g-color-black-opacity-0_8 g-font-size-16',
+					0 => 'landing-block-node-text g-pb-1 container g-pa-0 g-max-width-100x text-left g-font-open-sans g-color-black-opacity-0_8 g-font-size-16',
 				],
 				'#wrapper' => [
-					0 => 'landing-block js-animation fadeInUp g-pt-50 g-pb-50 g-pl-7 g-pr-15 g-pl-5--sm g-pr-5--sm',
+					0 => 'landing-block js-animation fadeInUp g-pt-50 g-pb-50 g-pl-7 g-pr-15',
 				],
 			],
 		],
@@ -288,7 +281,7 @@ return [
 					0 => 'landing-block-node-title g-font-weight-400 g-my-0 g-font-size-48 text-left g-font-montserrat container g-max-width-100x g-pl-0 g-pr-0',
 				],
 				'#wrapper' => [
-					0 => 'landing-block js-animation fadeInUp text-center g-pt-20 g-pb-auto g-pl-7 g-pr-15 g-pl-5--sm g-pr-5--sm',
+					0 => 'landing-block js-animation fadeInUp text-center g-pt-20 g-pb-auto g-pl-7 g-pr-15',
 				],
 			],
 		],
@@ -306,7 +299,7 @@ return [
 					0 => 'landing-block-node-title g-font-weight-400 g-my-0 text-left g-font-montserrat g-font-size-38 container g-max-width-100x g-pl-0 g-pr-0',
 				],
 				'#wrapper' => [
-					0 => 'landing-block js-animation fadeInUp g-pt-20 g-pb-auto text-center g-pl-7 g-pr-15 g-pl-5--sm g-pr-5--sm',
+					0 => 'landing-block js-animation fadeInUp g-pt-20 g-pb-auto text-center g-pl-7 g-pr-15',
 				],
 			],
 		],
@@ -324,7 +317,7 @@ return [
 					0 => 'landing-block-node-title g-font-weight-400 g-my-0 text-left g-font-montserrat g-font-size-30 container g-max-width-100x g-pl-0 g-pr-0',
 				],
 				'#wrapper' => [
-					0 => 'landing-block js-animation fadeInUp g-pt-20 g-pb-auto text-center g-pl-7 g-pr-15 g-pl-5--sm g-pr-5--sm',
+					0 => 'landing-block js-animation fadeInUp g-pt-20 g-pb-auto text-center g-pl-7 g-pr-15',
 				],
 			],
 		],
@@ -342,7 +335,7 @@ return [
 					0 => 'landing-block-node-title g-font-weight-400 g-my-0 text-left g-font-montserrat g-font-size-22 container g-max-width-100x g-pl-0 g-pr-0',
 				],
 				'#wrapper' => [
-					0 => 'landing-block js-animation fadeInUp g-pb-auto g-pt-25 text-center g-pl-7 g-pr-15 g-pl-5--sm g-pr-5--sm',
+					0 => 'landing-block js-animation fadeInUp g-pb-auto g-pt-25 text-center g-pl-7 g-pr-15',
 				],
 			],
 		],
@@ -360,7 +353,7 @@ return [
 					0 => 'landing-block-node-title g-font-weight-400 g-my-0 text-left g-font-montserrat g-font-size-17 container g-max-width-100x g-pl-0 g-pr-0',
 				],
 				'#wrapper' => [
-					0 => 'landing-block js-animation fadeInUp g-pb-auto g-pt-auto text-center g-pl-7 g-pr-15 g-pl-5--sm g-pr-5--sm',
+					0 => 'landing-block js-animation fadeInUp g-pb-auto g-pt-auto text-center g-pl-7 g-pr-15',
 				],
 			],
 		],
@@ -378,7 +371,7 @@ return [
 					0 => 'landing-block-node-text g-pb-1 container g-pa-0 text-left g-font-open-sans g-color-black-opacity-0_8 g-font-size-16 g-max-width-100x',
 				],
 				'#wrapper' => [
-					0 => 'landing-block js-animation fadeInUp g-pt-4 g-pb-20 g-pl-auto g-pl-7 g-pr-15 g-pl-5--sm g-pr-5--sm',
+					0 => 'landing-block js-animation fadeInUp g-pt-4 g-pb-20 g-pl-auto g-pl-7 g-pr-15',
 				],
 			],
 		],
@@ -396,7 +389,7 @@ return [
 					0 => 'landing-block-node-text g-pb-1 container g-pa-0 text-left g-font-open-sans g-font-size-14 g-color-black-opacity-0_6 g-max-width-100x',
 				],
 				'#wrapper' => [
-					0 => 'landing-block js-animation fadeInUp g-pb-50 g-pt-auto g-pl-auto g-pl-7 g-pr-15 g-pl-5--sm g-pr-5--sm',
+					0 => 'landing-block js-animation fadeInUp g-pb-50 g-pt-auto g-pl-auto g-pl-7 g-pr-15',
 				],
 			],
 		],

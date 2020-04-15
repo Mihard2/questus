@@ -30,7 +30,6 @@ $MESS["LANDING_TPL_COL_CREATED"] = "Erstellt am";
 $MESS["LANDING_TPL_COL_MODIFIED"] = "Geändert am";
 $MESS["LANDING_TPL_COL_TITLE"] = "Name";
 $MESS["LANDING_TPL_DELETED"] = "Gelöscht";
-$MESS["LANDING_TPL_EXPORT_DISABLED"] = "Sie sollten den Export in den Moduleinstellungen im administrativen Bereich aktivieren";
 $MESS["LANDING_TPL_PUBLIC"] = "Veröffentlicht";
 $MESS["LANDING_TPL_TITLE"] = "Websites";
 $MESS["LANDING_TPL_TITLE_KNOWLEDGE"] = "Wissensbasis";

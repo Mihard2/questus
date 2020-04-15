@@ -36,6 +36,12 @@ class LandingBaseComponent extends \CBitrixComponent
 	const NAVIGATION_ID = 'nav';
 
 	/**
+	 * Current user options.
+	 * @var array|null
+	 */
+	protected $userOptions = null;
+
+	/**
 	 * Current errors.
 	 * @var array
 	 */
@@ -92,8 +98,7 @@ class LandingBaseComponent extends \CBitrixComponent
 	 */
 	protected function previewFromCloud()
 	{
-		$disableCloud = defined('LANDING_DISABLE_CLOUD') &&
-						LANDING_DISABLE_CLOUD === true;
+		$disableCloud = Manager::isCloudDisable();
 		return Manager::isB24() && !$disableCloud;
 	}
 
@@ -601,7 +606,7 @@ class LandingBaseComponent extends \CBitrixComponent
 	 */
 	protected function getUri(array $add = [])
 	{
-		$curUri = $this->getUriInstance();
+		$curUri = clone $this->getUriInstance();
 
 		if ($add)
 		{
@@ -776,6 +781,51 @@ class LandingBaseComponent extends \CBitrixComponent
 		unset($ajaxResult);
 		die();
 	}
+
+	/**
+	 * Initiates user options from storage.
+	 * @return void
+	 */
+	protected function initUserOption(): void
+	{
+		if ($this->userOptions === null)
+		{
+			$this->userOptions = \CUserOptions::getOption('landing', 'editor_option');
+			if (!is_array($this->userOptions))
+			{
+				$this->userOptions = [];
+			}
+		}
+	}
+
+	/**
+	 * Save some data for current user.
+	 * @param string $key Key of value.
+	 * @param mixed $value Mixed value.
+	 * @return void
+	 */
+	protected function setUserOption(string $key, $value): void
+	{
+		$this->initUserOption();
+		$this->userOptions[$key] = $value;
+		\CUserOptions::setOption('landing', 'editor_option', $this->userOptions);
+	}
+
+	/**
+	 * Returns some user data by key.
+	 * @param string $key Option key.
+	 * @return mixed|null
+	 */
+	protected function getUserOption(string $key)
+	{
+		$this->initUserOption();
+		if (array_key_exists($key, $this->userOptions))
+		{
+			return $this->userOptions[$key];
+		}
+		return null;
+	}
+
 
 	/**
 	 * Base executable method.

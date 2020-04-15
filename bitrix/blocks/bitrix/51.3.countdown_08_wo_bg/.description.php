@@ -11,8 +11,8 @@ return array(
 		'name' => Loc::getMessage('LANDING_BLOCK_51_3_COUNTDOWN_08_WO_BG--NAME'),
 		'section' => array('countdowns'),
 		'dynamic' => false,
-		'version' => '18.5.0',
-		'type' => ['page', 'store'],
+		'version' => '18.5.0', // old param for backward compatibility. Can used for old versions of module via repo. Do not delete!
+		'type' => ['page', 'store', 'smn'],
 	),
 	'nodes' => array(
 		'.landing-block-node-title' => array(

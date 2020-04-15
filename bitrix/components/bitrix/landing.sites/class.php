@@ -9,7 +9,6 @@ use \Bitrix\Landing\Site;
 use \Bitrix\Landing\Landing;
 use \Bitrix\Landing\Rights;
 use \Bitrix\Landing\Manager;
-use \Bitrix\Landing\Zip;
 use \Bitrix\Main\Engine\UrlManager;
 use \Bitrix\Main\ModuleManager;
 use \Bitrix\Main\Loader;
@@ -124,12 +123,15 @@ class LandingSitesComponent extends LandingBaseComponent
 			$landingNull = Landing::createInstance(0);
 			$pictureFromCloud = $this->previewFromCloud();
 			$this->checkParam('TYPE', '');
+			$this->checkParam('OVER_TITLE', '');
 			$this->checkParam('TILE_MODE', 'list');
 			$this->checkParam('PAGE_URL_SITE', '');
 			$this->checkParam('PAGE_URL_SITE_EDIT', '');
 			$this->checkParam('PAGE_URL_LANDING_EDIT', '');
 			$this->checkParam('DRAFT_MODE', 'N');
 			$this->checkParam('~AGREEMENT', []);
+
+			\Bitrix\Landing\Hook::setEditMode(true);
 
 			\Bitrix\Landing\Site\Type::setScope(
 				$this->arParams['TYPE']
@@ -154,6 +156,7 @@ class LandingSitesComponent extends LandingBaseComponent
 				LandingFilterComponent::TYPE_SITE,
 				$this->arParams['TYPE']
 			);
+			$filter['=SPECIAL'] = 'N';
 			if (
 				Manager::isExtendedSMN() &&
 				$this->arParams['TYPE'] == 'STORE')
@@ -168,7 +171,6 @@ class LandingSitesComponent extends LandingBaseComponent
 				$filter['=TYPE'] = $this->arParams['TYPE'];
 			}
 			$this->arResult['SMN_SITES'] = $this->getSmnSites();
-			$this->arResult['EXPORT_ENABLED'] = Zip\Config::serviceEnabled() ? 'Y' : 'N';
 			$this->arResult['IS_DELETED'] = LandingFilterComponent::isDeleted();
 			$this->arResult['SITES'] = $this->getSites([
 				'select' => [
@@ -262,9 +264,7 @@ class LandingSitesComponent extends LandingBaseComponent
 				}
 				$item['DOMAIN_NAME'] = $puny->decode($item['DOMAIN_NAME']);
 				$item['DOMAIN_B24_NAME'] = Domain::getBitrix24Subdomain($item['DOMAIN_NAME']);
-				$item['EXPORT_URI'] = UrlManager::getInstance()->create('landing.site.download', [
-					'id' => $item['ID']
-				]);
+				$item['EXPORT_URI'] = '#export';
 			}
 			unset($item);
 			if ($ids)

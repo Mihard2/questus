@@ -87,7 +87,7 @@ $drawTr = function($siteId, array $selectedId = [], $title = '') use($arResult)
 				<td class="table-blue-td-select-remove">
 					' . (
 						($i == $count-1 && $siteId > 0)
-						? '<a href="javascript:void(0);" class="landing-rightsblock-remove" data-id="' . $siteId . '">
+						? '<a href="javascript:void(0);" class="landing-rightsblock-remove bitrix24-metrika" data-metrika24="role_site_delete" data-id="' . $siteId . '">
 								' . Loc::getMessage('LANDING_TPL_BUTTON_DEL_RIGHT') . '
 							</a>'
 						: ''
@@ -197,7 +197,8 @@ unset($site);
 
 	<?if ($arResult['SITES']):?>
 	<div style="padding: 20px 0 20px 0;">
-		<span class="landing-role-add" <?
+		<span class="landing-role-add bitrix24-metrika" <?
+			?>data-metrika24="role_site_add" <?
 			?>id="landing-role-add" <?
 			?>onclick="showSiteMenu(
 				this,
@@ -215,7 +216,7 @@ unset($site);
 
 	<div class="pinable-block">
 		<div class="landing-form-footer-container">
-			<button id="landing-rights-save" type="submit" class="ui-btn ui-btn-success" name="submit" value="<?= Loc::getMessage('LANDING_TPL_BUTTON_SAVE');?>">
+			<button id="landing-rights-save" type="submit" class="ui-btn ui-btn-success bitrix24-metrika" data-metrika24="role_save" name="submit" value="<?= Loc::getMessage('LANDING_TPL_BUTTON_SAVE');?>">
 				<?= Loc::getMessage('LANDING_TPL_BUTTON_SAVE');?>
 			</button>
 			<a class="ui-btn ui-btn-md ui-btn-link" href="<?= $arParams['PAGE_URL_ROLES'];?>">

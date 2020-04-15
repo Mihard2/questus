@@ -1,0 +1,84 @@
+.search-page {
+    padding-top: 50px;
+
+    .search-query {
+        margin: 20px 0 60px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .title {
+            color: #242424;
+            text-align: center;
+            caption-side: top;
+            text-transform: uppercase;
+            font-family: $font1;
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+        .search-query_wrapper {
+            display: flex;
+            width: 100%;
+            .search-result {
+                width: 100%;
+            }
+            input{
+                &.search-query {
+                    padding: 5px 20px;
+                    border: none;
+                    background: transparent;
+                    border-bottom: 2px solid #000;
+                    margin: 0;
+                    width: 100%;
+                }
+                &.search-button {
+                    background: transparent;
+                    border: 2px solid #000;
+                    height: 100%;
+                    width: 130px;
+                    cursor: pointer;
+                    transition: all .4s;
+                    &:hover {
+                        background: #000;
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
+
+    .search-advanced {
+        margin: 0 0 45px 15px;
+        .search-advanced-result {
+            width: auto;
+            border-bottom: 1px solid #000;
+        }
+    }
+
+    .search-result {
+        .search-item {
+            padding-bottom: 20px;
+            border-bottom: 1px solid gray;
+            margin: 20px 0;
+
+            .img {
+                img {
+                    width: 100%;
+                }
+            }
+
+            .description {
+
+                h4,
+                div {
+                    font-family: $font2;
+                }
+            }
+        }
+    }
+
+    b {
+        font-family: $font1;
+        font-size: 1.2em;
+    }
+}

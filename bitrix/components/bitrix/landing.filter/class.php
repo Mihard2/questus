@@ -46,6 +46,12 @@ class LandingFilterComponent extends LandingBaseComponent
 	protected static $isDeleted = false;
 
 	/**
+	 * External filter.
+	 * @var array
+	 */
+	protected static $externalFilter = [];
+
+	/**
 	 * Allowed or not some type.
 	 * @param string $type Type.
 	 * @return boolean
@@ -82,6 +88,20 @@ class LandingFilterComponent extends LandingBaseComponent
 	}
 
 	/**
+	 * Sets external filter.
+	 * @param string $key Filter row key.
+	 * @param mixed $value Filter row value.
+	 * @return void
+	 */
+	public static function setExternalFilter($key, $value)
+	{
+		if (is_string($key))
+		{
+			self::$externalFilter[$key] = $value;
+		}
+	}
+
+	/**
 	 * Returns current raw filter by type.
 	 * @param string $type Filter type.
 	 * @param string $siteType Site type.
@@ -109,7 +129,7 @@ class LandingFilterComponent extends LandingBaseComponent
 	 */
 	public static function getFilter($type, $siteType = 'PAGE')
 	{
-		$filter = array();
+		$filter = self::$externalFilter;
 
 		// in slider filter must be ignored
 		$context = Application::getInstance()->getContext();

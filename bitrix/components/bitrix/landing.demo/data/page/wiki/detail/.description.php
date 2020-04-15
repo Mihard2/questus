@@ -62,7 +62,7 @@ return [
 					0 => 'landing-block-node-title g-font-weight-400 g-my-0 text-left g-font-montserrat g-font-size-38 container g-max-width-100x g-pl-0 g-pr-0',
 				],
 				'#wrapper' => [
-					0 => 'landing-block js-animation fadeInUp g-pt-20 g-pb-auto text-center g-pl-7 g-pr-15 g-pl-5--sm g-pr-5--sm',
+					0 => 'landing-block js-animation fadeInUp g-pt-20 g-pb-auto text-center g-pl-7 g-pr-15',
 				],
 			],
 		],
@@ -81,7 +81,7 @@ return [
 					0 => 'landing-block-node-text g-font-size-16 g-pb-1 container g-pa-0 g-max-width-container text-left g-font-open-sans g-color-black-opacity-0_8',
 				],
 				'#wrapper' => [
-					0 => 'landing-block js-animation fadeInUp g-pb-15 g-pt-30 g-pl-7 g-pr-15 g-pl-5--sm g-pr-5--sm',
+					0 => 'landing-block js-animation fadeInUp g-pb-15 g-pt-30 g-pl-7 g-pr-15',
 				],
 			],
 		],
@@ -122,7 +122,7 @@ return [
 					0 => 'landing-block-node-text g-font-size-16 g-pb-1 container g-pa-0 g-max-width-container text-left g-font-open-sans g-color-black-opacity-0_8',
 				],
 				'#wrapper' => [
-					0 => 'landing-block js-animation fadeInUp g-pt-30 g-pb-20 g-pl-7 g-pr-15 g-pl-5--sm g-pr-5--sm',
+					0 => 'landing-block js-animation fadeInUp g-pt-30 g-pb-20 g-pl-7 g-pr-15',
 				],
 			],
 		],
@@ -140,7 +140,7 @@ return [
 					0 => 'landing-block-node-title g-font-weight-400 g-my-0 text-left g-font-montserrat g-font-size-30 container g-max-width-100x g-pl-0 g-pr-0',
 				],
 				'#wrapper' => [
-					0 => 'landing-block js-animation fadeInUp g-pt-20 g-pb-auto text-center g-pl-7 g-pr-15 g-pl-5--sm g-pr-5--sm',
+					0 => 'landing-block js-animation fadeInUp g-pt-20 g-pb-auto text-center g-pl-7 g-pr-15',
 				],
 			],
 		],
@@ -186,7 +186,7 @@ return [
 					0 => 'landing-block-node-text g-font-size-16 g-pb-1 container g-pa-0 g-max-width-container text-left g-font-open-sans g-color-black-opacity-0_8',
 				],
 				'#wrapper' => [
-					0 => 'landing-block js-animation fadeInUp g-pb-15 g-pt-30 g-pl-7 g-pr-15 g-pl-5--sm g-pr-5--sm',
+					0 => 'landing-block js-animation fadeInUp g-pb-15 g-pt-30 g-pl-7 g-pr-15',
 				],
 			],
 		],
@@ -245,7 +245,7 @@ return [
 					0 => 'landing-block-node-text g-font-size-16 g-pb-1 container g-pa-0 g-max-width-container text-left g-font-open-sans g-color-black-opacity-0_8',
 				],
 				'#wrapper' => [
-					0 => 'landing-block js-animation fadeInUp g-pt-30 g-pb-20 g-pl-7 g-pr-15 g-pl-5--sm g-pr-5--sm',
+					0 => 'landing-block js-animation fadeInUp g-pt-30 g-pb-20 g-pl-7 g-pr-15',
 				],
 			],
 		],

@@ -150,13 +150,14 @@
 
             @include mq(lg) {
                 width: 357px;
-
+                height: 445px;
                 img {
                     height: 200px;
                 }
             }
             @include mq(md) {
                 width: 320px;
+                height: 410px;
                 margin: 0 8px;
                 img  {
                     height: 180px;
@@ -174,7 +175,7 @@
 
                 .shortDesc {
                     font-size: 12px;
-                    height: 72px;
+                    height: 150px;
                     overflow: hidden;
                 }
             }

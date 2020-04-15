@@ -75,8 +75,7 @@ $APPLICATION->SetTitle("About Us");
 		"SORT_ORDER2" => "ASC",
 		"STRICT_SECTION_CHECK" => "N"
 	)
-);?> <a class="action-block2 btn" href="/catalog/">
-		content </a>
+);?> 
 	</div>
  </article>
 </div>

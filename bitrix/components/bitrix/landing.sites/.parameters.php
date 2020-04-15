@@ -34,7 +34,8 @@ $arComponentParameters = Array(
 		),
 		'SEF' => array(
 			'NAME' => getMessage('LANDING_CMP_PAR_SEF'),
-			'TYPE' => 'STRING'
+			'TYPE' => 'STRING',
+			'MULTIPLE' => 'Y'
 		),
 		'TILE_MODE' => array(
 			'NAME' => getMessage('LANDING_CMP_PAR_TILE_MODE'),
@@ -48,6 +49,10 @@ $arComponentParameters = Array(
 		'DRAFT_MODE' => array(
 			'NAME' => getMessage('LANDING_CMP_PAR_DRAFT_MODE'),
 			'TYPE' => 'CHECKBOX'
-		)
+		),
+		'OVER_TITLE' => array(
+			'NAME' => getMessage('LANDING_CMP_PAR_OVER_TITLE'),
+			'TYPE' => 'STRING'
+		),
 	)
 );

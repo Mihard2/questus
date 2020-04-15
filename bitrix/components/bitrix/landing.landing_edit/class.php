@@ -237,7 +237,6 @@ class LandingEditComponent extends LandingBaseFormComponent
 			$this->id = $this->arParams['LANDING_ID'];
 			$this->successSavePage = $this->arParams['PAGE_URL_LANDINGS'];
 
-			$this->arResult['LANDING_INST'] = null;
 			$this->arResult['TEMPLATES'] = $this->getTemplates();
 			$this->arResult['LANDING'] = $this->getRow();
 			$this->arResult['LANDINGS'] = $this->arParams['SITE_ID'] > 0
@@ -290,32 +289,41 @@ class LandingEditComponent extends LandingBaseFormComponent
 
 			if ($this->id)
 			{
-				$this->arResult['SITES'] = $this->getSites();
+				$this->arResult['SITES'] = $sites = $this->getSites();
+
+				// types mismatch
+				if (
+					!isset($sites[$this->arParams['SITE_ID']]) ||
+					$sites[$this->arParams['SITE_ID']]['TYPE'] != $this->arParams['TYPE']
+				)
+				{
+					\localRedirect($this->getRealFile());
+				}
+
 				$this->arResult['IS_INTRANET'] = $this->isIntranet();
 				\Bitrix\Landing\Hook::setEditMode();
-				if ($this->arResult['IS_INTRANET'])
-				{
-					\Bitrix\Landing\Hook::setIntranetMode();
-				}
 				$this->arResult['HOOKS'] = $this->getHooks();
 				$this->arResult['HOOKS_SITE'] = $this->getHooks('Site', $this->arParams['SITE_ID']);
 				$this->arResult['TEMPLATES_REF'] = TemplateRef::getForLanding($this->id);
 				$this->arResult['META'] = $this->getMeta();
 				$this->arResult['DOMAINS'] = $this->getDomains();
 			}
-
-			if ($this->id)
-			{
-				$this->arResult['LANDING_INST'] = Landing::createInstance($this->id);
-			}
 		}
 
 		// callback for update landing
 		$tplRef = $this->request('TPL_REF');
-		\Bitrix\Landing\Landing::callback('OnAfterUpdate',
+		Landing::callback('OnAfterUpdate',
 			function(\Bitrix\Main\Event $event) use ($tplRef)
 			{
+				static $updated = false;
+
+				if ($updated)
+				{
+					return;
+				}
+
 				$primary = $event->getParameter('primary');
+				$updated = true;
 				$areaCount = 0;
 				$tplId = $this->arResult['LANDING']['TPL_ID']['CURRENT'];
 				$siteId = $this->arResult['LANDING']['SITE_ID']['CURRENT'];

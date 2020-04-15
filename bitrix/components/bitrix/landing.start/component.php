@@ -139,6 +139,7 @@ $landingTypes = \Bitrix\Landing\Site::getTypes();
 
 // template vars
 $arResult['AGREEMENT'] = array();
+$arResult['AGREEMENT_ACCEPTED'] = false;
 $arResult['CHECK_FEATURE_PERM'] = Manager::checkFeature(
 	Manager::FEATURE_PERMISSIONS_AVAILABLE
 );
@@ -373,6 +374,7 @@ if (
 }
 
 $currentLang = LANGUAGE_ID;
+$currentZone = Manager::getZone();
 $agreementCode = 'landing_agreement';
 $agreementsId = array();
 $agreements = array(
@@ -391,9 +393,24 @@ $virtualLangs = array(
 // actual from lang-file
 foreach ($agreements as $lng => $item)
 {
-	if (file_exists(__DIR__ . '/lang/' . $lng . '/component.php'))
+	$fileLng = ($currentZone == 'kz') ? 'kz' : $lng;
+	$fileLng = ($currentZone == 'by') ? 'by' : $lng;
+
+	if (
+		$currentZone == 'by' ||
+		$currentZone == 'kz'
+	)
 	{
-		include __DIR__ . '/lang/' . $lng . '/component.php';
+		$langFile = __DIR__ . '/lang/' . $lng . '/component_' . $currentZone . '.php';
+	}
+	else
+	{
+		$langFile = __DIR__ . '/lang/' . $lng . '/component.php';
+	}
+
+	if (file_exists($langFile))
+	{
+		include $langFile;
 		$agreements[$lng] = array(
 			'ID' => 0,
 			'NAME' => isset($MESS['LANDING_CMP_AGREEMENT_NAME'])
@@ -507,7 +524,7 @@ elseif (
 }
 else
 {
-	$redirectIfUnAcept = true;
+	$redirectIfUnAccept = true;
 }
 
 // check accepted
@@ -519,8 +536,8 @@ $res = ConsentTable::getList(array(
 ));
 if ($res->fetch())
 {
-	$redirectIfUnAcept = false;
-	$arResult['AGREEMENT'] = array();
+	$redirectIfUnAccept = false;
+	$arResult['AGREEMENT_ACCEPTED'] = true;
 }
 
 // accept
@@ -538,8 +555,8 @@ if (
 
 // if not accept and don't exist agreement
 if (
-	isset($redirectIfUnAcept) &&
-	$redirectIfUnAcept === true
+	isset($redirectIfUnAccept) &&
+	$redirectIfUnAccept === true
 )
 {
 	LocalRedirect(SITE_DIR, true);

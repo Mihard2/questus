@@ -27,6 +27,20 @@ if ($arResult['ERRORS'])
 	return;
 }
 
+if ($arParams['DRAFT_MODE'] == 'Y')
+{
+	Extension::load([
+		'landing.wiki.public',
+		'sidepanel'
+	]);
+}
+else
+{
+	Extension::load([
+		'sidepanel'
+	]);
+}
+
 // edit menu
 if (
 	$arParams['SHOW_EDIT_PANEL'] == 'Y' &&
@@ -35,10 +49,12 @@ if (
 {
 	Extension::load([
 		'ui.buttons',
-		'ui.buttons.icons',
-		'landing.wiki.public',
-		'sidepanel',
+		'ui.buttons.icons'
 	]);
+	ob_start(function($content)
+	{
+		Manager::setPageView('AfterBodyOpen',$content);
+	});
 	?>
 	<div class="landing-pub-top-panel-wrapper">
 		<div class="landing-pub-top-panel">
@@ -50,14 +66,14 @@ if (
 				</div>
 				<div class="landing-pub-top-panel-chain">
 					<?$title = $component->getMessageType('LANDING_TPL_SITES');?>
-					<a href="#<?//= $arParams['PAGE_URL_SITES'];?>" class="ui-btn ui-btn-xs ui-btn-light ui-btn-round landing-pub-top-panel-chain-link" title="<?= $title;?>">
+					<span class="ui-btn ui-btn-xs ui-btn-light ui-btn-round landing-pub-top-panel-chain-link" style="pointer-events: none" title="<?= $title;?>">
 						<?= $title;?>
-					</a>
+					</span>
 					<strong class="landing-pub-top-panel-chain-separator"><span></span></strong>
 					<?$title = \htmlspecialcharsbx($landing->getTitle());?>
-					<a href="#<?//= $arParams['PAGE_URL_SITE_SHOW'];?>" class="ui-btn ui-btn-xs ui-btn-light ui-btn-round landing-pub-top-panel-chain-link" title="<?= $title;?>">
+					<span class="ui-btn ui-btn-xs ui-btn-light ui-btn-round landing-pub-top-panel-chain-link" style="pointer-events: none" title="<?= $title;?>">
 						<?= $title;?>
-					</a>
+					</span>
 				</div>
 			</div>
 			<?/*<div class="landing-pub-top-panel-right">
@@ -71,6 +87,7 @@ if (
 		</script>
 	</div>
 	<?
+	ob_end_flush();
 }
 
 // landing view

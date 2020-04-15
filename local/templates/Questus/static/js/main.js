@@ -1,17 +1,17 @@
 $(document).ready(function () {
 
     //*     BG HEADER BLOCK
-    
-    $('.header-link_active').hover( function(){
+
+    $('.header-link_active').hover(function () {
         $('.head-block').toggleClass('head-block-active');
     });
-    
+
     // $('.dropdown_menu-wrapper ul li a').hover( function() {
     //     $('.dropdown_menu-wrapper a.dropdown_link').css('background: #fff; color: #242424');
     // });
 
 
-    
+
     //*     END BG HEADER BLOCK
 
     //*     MOBILE MENU
@@ -93,9 +93,9 @@ $(document).ready(function () {
         type: 'inline',
         removalDelay: 500, //delay removal by X to allow out-animation
         callbacks: {
-          beforeOpen: function() {
-            this.st.mainClass = this.st.el.attr('data-effect');
-          },
+            beforeOpen: function () {
+                this.st.mainClass = this.st.el.attr('data-effect');
+            },
         },
         midClick: true, // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.    
     });
@@ -114,6 +114,5 @@ $(document).ready(function () {
 
 
     //*     END MAGNIFIC POPUP
-
 
 });

@@ -113,6 +113,7 @@
 .content {
     .sliders-block {
         padding-top: 120px;
+        padding-bottom: 70px;
         text-align: center;
 
         @include mq(md) {
@@ -224,7 +225,7 @@
 
             a,
             button {
-                min-width: 126px;
+                min-width: 146px;
                 height: 55px;
                 letter-spacing: 1.3px;
                 text-transform: uppercase;
@@ -337,5 +338,29 @@
     }
     .button-block {
         margin-bottom: 40px;
+    }
+}
+
+.contacts-page {
+    padding-top: 30px;
+    .contacts-block {
+        display: flex;
+        justify-content: center;
+        padding-bottom: 150px;
+        @include mq(sm) {
+            padding-bottom: 20px;
+        }
+        ul {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            list-style: none;
+            li {
+                a {
+                    line-height: 52px;
+                    font-size: 25px;
+                }
+            }
+        }
     }
 }

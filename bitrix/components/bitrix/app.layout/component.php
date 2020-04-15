@@ -97,7 +97,9 @@ $arParams['POPUP'] = isset($arParams['POPUP']) ? $arParams['POPUP'] : false;
 
 if(strlen($arParams['CODE']) <= 0)
 {
-	ShowError(GetMessage('REST_AL_ERROR_APP_NOT_FOUND'));
+	$componentPage = 'error';
+	$arResult['ERROR_MESSAGE'] = GetMessage('REST_AL_ERROR_APP_NOT_FOUND');
+	$this->IncludeComponentTemplate($componentPage);
 	return;
 }
 
@@ -174,7 +176,9 @@ if(
 		$placementHandlerInfo = $dbRes->fetch();
 		if(!$placementHandlerInfo)
 		{
-			ShowError(GetMessage('REST_AL_ERROR_APP_PLACEMENT_NOT_INSTALLED'));
+			$componentPage = 'error';
+			$arResult['ERROR_MESSAGE'] = GetMessage('REST_AL_ERROR_APP_PLACEMENT_NOT_INSTALLED');
+			$this->IncludeComponentTemplate($componentPage);
 			return;
 		}
 
@@ -269,7 +273,9 @@ if(
 				{
 					if($arResult['AUTH']['error'] !== "PAYMENT_REQUIRED")
 					{
-						ShowError($arResult['AUTH']['error'].($arResult['AUTH']['error_description'] ? ': '.$arResult['AUTH']['error_description'] : ''));
+						$componentPage = 'error';
+						$arResult['ERROR_MESSAGE'] = $arResult['AUTH']['error'].($arResult['AUTH']['error_description'] ? ': '.$arResult['AUTH']['error_description'] : '');
+						$this->IncludeComponentTemplate($componentPage);
 						return;
 					}
 					else
@@ -311,6 +317,12 @@ if(
 		$arResult['DETAIL_URL'] = str_replace("#code#", $arApp['CODE'], $arParams['DETAIL_URL']);
 
 		$arResult['APP_STATUS'] = \Bitrix\Rest\AppTable::getAppStatusInfo($arApp, $arResult['DETAIL_URL']);
+
+		$arResult["IS_SUBSCRIBE_PAID"] = COption::GetOptionString("bitrix24", "~mp24_paid", "N") == "Y";
+		if ($arResult["IS_SUBSCRIBE_PAID"])
+		{
+			$arResult["SUBSCRIBE_PAID_DATE"] = COption::GetOptionString("bitrix24", "~mp24_paid_date");
+		}
 
 		$arResult['APP_NEED_REINSTALL'] = $arApp['STATUS'] == \Bitrix\Rest\AppTable::STATUS_PAID && !isset($arApp['SHARED_KEY']);
 
@@ -404,7 +416,9 @@ if(
 			}
 			else
 			{
-				ShowError(GetMessage('REST_AL_ERROR_APP_NOT_INSTALLED'));
+				$componentPage = 'error';
+				$arResult['ERROR_MESSAGE'] = GetMessage('REST_AL_ERROR_APP_NOT_INSTALLED');
+				$this->IncludeComponentTemplate($componentPage);
 				return;
 			}
 		}
@@ -477,7 +491,17 @@ if(
 			\Bitrix\Rest\UsageStatTable::finalize();
 		}
 
-		$this->IncludeComponentTemplate();
+		$componentPage = '';
+		if(
+			$arResult['APP_STATUS']['PAYMENT_EXPIRED'] == 'Y'
+			|| $arResult['APP_STATUS']['STATUS'] == \Bitrix\Rest\AppTable::STATUS_SUBSCRIPTION
+			&& !$arResult["IS_SUBSCRIBE_PAID"]
+		)
+		{
+			$componentPage = 'payment';
+		}
+
+		$this->IncludeComponentTemplate($componentPage);
 
 		if($arParams['POPUP'])
 		{
@@ -489,7 +513,9 @@ if(
 	}
 	else
 	{
-		ShowError(GetMessage('REST_AL_ERROR_APP_NOT_FOUND'));
+		$componentPage = 'error';
+		$arResult['ERROR_MESSAGE'] = GetMessage('REST_AL_ERROR_APP_NOT_FOUND');
+		$this->IncludeComponentTemplate($componentPage);
 	}
 }
 elseif(strlen($appCode) > 0)
@@ -502,7 +528,9 @@ elseif(strlen($appCode) > 0)
 }
 else
 {
-	ShowError(GetMessage('REST_AL_ERROR_APP_NOT_FOUND'));
+	$componentPage = 'error';
+	$arResult['ERROR_MESSAGE'] = GetMessage('REST_AL_ERROR_APP_NOT_FOUND');
+	$this->IncludeComponentTemplate($componentPage);
 }
 
 ?>

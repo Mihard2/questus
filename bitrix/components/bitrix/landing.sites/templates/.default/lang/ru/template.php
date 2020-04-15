@@ -38,7 +38,6 @@ $MESS['LANDING_TPL_ACTION_TRANSFER'] = 'Перенести в Магазины';
 $MESS['LANDING_TPL_TTL_DELETE'] = 'До окончательного удаления';
 $MESS['LANDING_TPL_TTL_DELETE_D'] = 'д.';
 $MESS['LANDING_TPL_ACTION_DELETE_CONFIRM'] = 'Действительно удалить?';
-$MESS['LANDING_TPL_EXPORT_DISABLED'] = 'Разрешите экспорт в настройках модуля в административной части.';
 $MESS['LANDING_TPL_TRANSFER_NOTE'] = 'Вы уверены, что хотите сделать перенос из раздела Сайты в раздел Магазины? Обратный перенос будет невозможен.';
 $MESS['LANDING_TPL_TRANSFER_NEW_ADDRESS'] = 'Новый адрес сайта';
 $MESS['LANDING_TPL_TRANSFER_NEW_ADDRESS_DISABLED'] = 'Адрес сайта занят, необходимо указать другой';

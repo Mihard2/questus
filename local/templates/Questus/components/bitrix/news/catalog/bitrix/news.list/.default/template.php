@@ -12,40 +12,14 @@
 /** @var CBitrixComponent $component */
 $this->setFrameMode(true);
 ?>
-	<!-- <div class="pageTitle container"></div> -->
-	<div class="container posts">
+	<div class="posts">
 	<div class="row">
 	
 <div class="col-12 catalog">
 <article class="sliders-block">
 
-<div>
-	<span class="Tag">
-		<? if (isset($_GET["cat"])): ?>
-			This category: <? echo $_GET["cat"];?>
-		<?endif;?>
-	</span>
-	<span class="Group">
-		<? if (isset($_GET["tags"])): ?>
-			Tags filter: <? echo $_GET["tags"];?>
-		<?endif;?>
-	</span>
-	<span class="AuthorName">
-		<? if (isset($_GET["authorName"])): ?>
-			Author filter: <? echo $_GET["authorName"];?>
-		<?endif;?>
-	</span>
-</div>
-
-
-
 
 <h3 class="title">Content</h3>
-
-
-<!-- <pre>
-<?print_r($arResult)?>
-</pre> -->
 
 <div class="button-block button-block_slider">
  		<a href="/catalog/?cat=BLOG" class="<? if (isset($_GET["cat"]) && $_GET["cat"] === "BLOG"): ?>btn-active<?endif;?>">blog</a> 
@@ -89,17 +63,17 @@ $this->setFrameMode(true);
 </div>
 
 
+<div class="container">
+	<aside class="col-md-12 filters row" id="aside1">
 
-<aside class="col-md-12 filters row" id="aside1">
-
-<article class="authors col-md-3">
-		<div class="authors-title openBlock">authors</div>
-		<div class="closeBlock">
-				<div class="authorsBlocks">
+		<article class="authors col-md-4">
+			<div class="authors-title openBlock">authors</div>
+			<div class="closeBlock">
+					<div class="authorsBlocks">
 					<?$APPLICATION->IncludeComponent(
-	"bitrix:news.list",
-	"Authors_side",
-	array(
+		"bitrix:news.list",
+		"Authors_side",
+		array(
 		"ACTIVE_DATE_FORMAT" => "d.m.Y",
 		"ADD_SECTIONS_CHAIN" => "Y",
 		"AJAX_MODE" => "N",
@@ -158,35 +132,35 @@ $this->setFrameMode(true);
 		"SORT_ORDER2" => "ASC",
 		"STRICT_SECTION_CHECK" => "N",
 		"COMPONENT_TEMPLATE" => "Authors_side"
-	),
-	false
-);?>
-				</div>
-		</div>
-</article>
+		),
+		false
+		);?>
+					</div>
+			</div>
+		</article>
 
-<article class="search col-md-5">
-		<div class="search_title openBlock" id="search">searche</div>
+		<article class="search col-md-4">
+		<div class="search_title openBlock" id="search">search</div>
 		<div class="closeBlock">
 				<form action="/search/" method="GET">
 						<input type="search" name="q" id="" placeholder="Enter keyword search...">
 						<button type="submit"><i class='icon-search'></i></button>
 				</form>
 		</div>
-</article>
+		</article>
 
-<article class="col-md-4">
-<?$APPLICATION->IncludeComponent(
-	"bitrix:search.tags.cloud",
-	"tags",
+		<article class="col-md-4">
+		<?$APPLICATION->IncludeComponent(
+	"bitrix:search.tags.cloud", 
+	"tags", 
 	array(
 		"COMPONENT_TEMPLATE" => "tags",
 		"SORT" => "NAME",
 		"PAGE_ELEMENTS" => "150",
 		"PERIOD" => "",
 		"URL_SEARCH" => "",
-		"TAGS_INHERIT" => "N",
-		"CHECK_DATES" => "N",
+		"TAGS_INHERIT" => "Y",
+		"CHECK_DATES" => "Y",
 		"FILTER_NAME" => "",
 		"arrFILTER" => array(
 			0 => "iblock_Blog",
@@ -207,9 +181,9 @@ $this->setFrameMode(true);
 	),
 	false
 );?>
-</article>
-</aside>
-
+		</article>
+	</aside>
+</div>
 
 </section>
 </div>

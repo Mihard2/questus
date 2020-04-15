@@ -56,4 +56,12 @@ $arUrlRewrite=array (
     'PATH' => '/products/index.php',
     'SORT' => 100,
   ),
+  7 => 
+  array (
+    'CONDITION' => '#^/team/#',
+    'RULE' => '',
+    'ID' => 'bitrix:news',
+    'PATH' => '/team/index.php',
+    'SORT' => 100,
+  ),
 );

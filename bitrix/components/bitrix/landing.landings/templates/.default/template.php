@@ -145,6 +145,8 @@ if ($arParams['TILE_MODE'] == 'view')
 	}
 
 	$uriFolder = null;
+	$areaCode = '';
+	$areaTitle = '';
 	$urlEdit = str_replace('#landing_edit#', $item['ID'], $arParams['~PAGE_URL_LANDING_EDIT']);
 	$urlView = str_replace('#landing_edit#', $item['ID'], $arParams['~PAGE_URL_LANDING_VIEW']);
 
@@ -165,6 +167,17 @@ if ($arParams['TILE_MODE'] == 'view')
 	if ($arParams['DRAFT_MODE'] == 'Y' && $item['DELETED'] != 'Y')
 	{
 		$item['ACTIVE'] = 'Y';
+	}
+
+	if ($item['IS_AREA'])
+	{
+		$areaCode = $item['AREA_CODE'];
+		$areaTitle = Loc::getMessage('LANDING_TPL_AREA_' . strtoupper($item['AREA_CODE']));
+	}
+	else if ($item['IS_HOMEPAGE'])
+	{
+		$areaCode = 'main_page';
+		$areaTitle = Loc::getMessage('LANDING_TPL_AREA_MAIN_PAGE');
 	}
 	?>
 	<?if ($uriFolder):?>
@@ -234,27 +247,40 @@ if ($arParams['TILE_MODE'] == 'view')
 									isEditDisabled: <?= ($arResult['ACCESS_SITE']['EDIT'] != 'Y') ? 'true' : 'false';?>,
 									isSettingsDisabled: <?= ($arResult['ACCESS_SITE']['SETTINGS'] != 'Y') ? 'true' : 'false';?>,
 									isPublicationDisabled: <?= ($arResult['ACCESS_SITE']['PUBLICATION'] != 'Y') ? 'true' : 'false';?>,
-									isDeleteDisabled: <?= ($arResult['ACCESS_SITE']['DELETE'] != 'Y' || $item['IS_HOMEPAGE']) ? 'true' : 'false';?>
+									isDeleteDisabled: <?= ($arResult['ACCESS_SITE']['DELETE'] != 'Y') ? 'true' : 'false';?>
 								})">
 						<span class="landing-title-btn-inner"><?= Loc::getMessage('LANDING_TPL_ACTIONS');?></span>
 					</div>
 					<div class="landing-title-wrap">
-						<?if ($item['IS_HOMEPAGE']):?>
-							<div class="landing-title-overflow landing-item-home-icon"><?= \htmlspecialcharsbx($item['TITLE']);?></div>
-						<?else:?>
-							<div class="landing-title-overflow"><?= \htmlspecialcharsbx($item['TITLE']);?></div>
-						<?endif;?>
+						<div class="landing-title-overflow"><?= \htmlspecialcharsbx($item['TITLE']);?></div>
 					</div>
 				</div>
-				<span class="landing-item-cover" <?if ($item['PREVIEW']) {?> style="background-image: url(<?=
-					\htmlspecialcharsbx($item['PREVIEW'])?>);"<?}?>></span>
+				<?if ($item['IS_HOMEPAGE']):?>
+					<div class="landing-item-desc">
+						<span class="landing-item-desc-text"><?= \htmlspecialcharsbx($areaTitle);?></span>
+					</div>
+				<?endif;?>
+				<div class="landing-item-cover<?= $item['IS_AREA'] ? ' landing-item-cover-area' : '';?>"
+					<?if ($item['PREVIEW'] && !$item['IS_AREA']) {?> style="background-image: url(<?=
+					\htmlspecialcharsbx($item['PREVIEW'])?>);"<?}?>>
+					<?if ($item['IS_HOMEPAGE'] || $item['IS_AREA']):?>
+					<div class="landing-item-area">
+						<div class="landing-item-area-icon<?=' landing-item-area-icon-' . htmlspecialcharsbx($areaCode);?>"></div>
+						<?if ($item['IS_AREA']):?>
+							<span class="landing-item-area-text"><?= \htmlspecialcharsbx($areaTitle);?></span>
+						<?endif;?>
+					</div>
+					<?endif;?>
+				</div>
 			</div>
 			<?if ($item['DELETED'] == 'Y'):?>
 				<span class="landing-item-link"></span>
-			<?elseif ($arParams['TILE_MODE'] == 'edit'):?>
+			<?elseif ($arParams['TILE_MODE'] == 'view' && $item['PUBLIC_URL']):?>
+				<a href="<?= \htmlspecialcharsbx($item['PUBLIC_URL']);?>" class="landing-item-link" target="_top"></a>
+			<?elseif ($urlView):?>
 				<a href="<?= \htmlspecialcharsbx($urlView);?>" class="landing-item-link" target="_top"></a>
 			<?else:?>
-				<a href="<?= \htmlspecialcharsbx($item['PUBLIC_URL']);?>" class="landing-item-link" target="_top"></a>
+				<span class="landing-item-link"></span>
 			<?endif;?>
 			<?if ($arParams['DRAFT_MODE'] != 'Y' || $item['DELETED'] == 'Y'):?>
 			<div class="landing-item-status-block">
@@ -313,8 +339,7 @@ if ($arParams['TILE_MODE'] == 'view')
 					stopParameters: [
 						'action',
 						'fields%5Bdelete%5D',
-						'nav',
-						'slider'
+						'nav'
 					],
 					options: {
 						allowChangeHistory: false,
@@ -382,237 +407,239 @@ if ($arParams['TILE_MODE'] == 'view')
 		<?endif;?>
 	});
 
-
-	function showTileMenu(node, params)
+	if (typeof showTileMenu === 'undefined')
 	{
-		var menuItems = [
-			{
-				text: '<?= \CUtil::jsEscape(Loc::getMessage('LANDING_TPL_ACTION_VIEW'));?>',
-				disabled: params.isDeleted || params.isEditDisabled,
-				<?if ($arParams['TILE_MODE'] == 'view'):?>
-				href: params.viewSite,
-				<?else:?>
-				onclick: function(e, item)
+		function showTileMenu(node, params)
+		{
+			var menuItems = [
 				{
-					window.top.location.href = params.viewSite;
-				}
-				<?endif;?>
-			},
-			{
-				text: '<?= \CUtil::jsEscape(Loc::getMessage('LANDING_TPL_ACTION_COPYLINK'));?>',
-				className: 'landing-popup-menu-item-icon',
-				disabled: params.isArea || params.isDeleted,
-				onclick: function(e, item)
-				{
-					if (BX.clipboard.isCopySupported())
+					text: '<?= \CUtil::jsEscape(Loc::getMessage('LANDING_TPL_ACTION_VIEW'));?>',
+					disabled: params.isDeleted || params.isEditDisabled,
+					<?if ($arParams['TILE_MODE'] == 'view'):?>
+					href: params.viewSite,
+					<?else:?>
+					onclick: function(e, item)
 					{
-						BX.clipboard.copy(params.publicUrl);
+						window.top.location.href = params.viewSite;
 					}
-					var menuItem = item.layout.item;
-					menuItem.classList.add('landing-link-copied');
-
-					BX.bind(menuItem.childNodes[0], 'transitionend', function ()
+					<?endif;?>
+				},
+				{
+					text: '<?= \CUtil::jsEscape(Loc::getMessage('LANDING_TPL_ACTION_COPYLINK'));?>',
+					className: 'landing-popup-menu-item-icon',
+					disabled: params.isArea || params.isDeleted,
+					onclick: function(e, item)
 					{
-						setTimeout(function()
+						if (BX.clipboard.isCopySupported())
 						{
-							this.popupWindow.close();
-							menuItem.classList.remove('landing-link-copied');
-							menu.destroy();
-							isMenuShown = false;
-						}.bind(this),250);
+							BX.clipboard.copy(params.publicUrl);
+						}
+						var menuItem = item.layout.item;
+						menuItem.classList.add('landing-link-copied');
 
-					}.bind(this));
-				}
-			},
-			{
-				text: '<?= \CUtil::jsEscape(Loc::getMessage('LANDING_TPL_ACTION_GOTO'));?>',
-				className: 'landing-popup-menu-item-icon',
-				href: params.publicUrl,
-				target: '_blank',
-				disabled: params.isArea || params.isDeleted || !params.isActive,
-				onclick: function(event)
-				{
-					if (top.window !== window)
-					{
-						event.preventDefault();
-						top.window.location.href = params.publicUrl;
-					}
-				}
-			},
-			{
-				text: '<?= \CUtil::jsEscape(Loc::getMessage('LANDING_TPL_ACTION_EDIT'));?>',
-				href: params.editPage,
-				disabled: params.isDeleted || params.isSettingsDisabled,
-				onclick: function()
-				{
-					this.popupWindow.close();
-				}
-			},
-			{
-				text: '<?= \CUtil::jsEscape(Loc::getMessage('LANDING_TPL_ACTION_COPY'));?>',
-				disabled: params.isDeleted || (params.isFolder && <?= !$folderId ? 'true' : 'false';?>) || params.isEditDisabled,
-				onclick: function(event)
-				{
-					event.preventDefault();
-
-					BX.Landing.UI.Tool.ActionDialog.getInstance()
-						.show({
-							title: '<?= \CUtil::jsEscape(Loc::getMessage('LANDING_TPL_ACTION_COPY_TITLE'));?>',
-							content: BX('landing-site-selector')
-						})
-						.then(
-							function() {
-								params.copyPage += '&additional[siteId]=';
-								params.copyPage += BX('landing-site-selector').value;
-								<?if ($folderId):?>
-								params.copyPage += '&additional[folderId]=';
-								params.copyPage += <?= (int)$folderId;?>;
-								<?endif;?>
-								var loaderContainer = BX.create('div',{
-									attrs:{className:'landing-filter-loading-container'}
-								});
-								document.body.appendChild(loaderContainer);
-								var loader = new BX.Loader({size: 130, color: '#bfc3c8'});
-								loader.show(loaderContainer);
-								if (top.window !== window)
-								{
-									// we are in slider
-									window.location.href = params.copyPage;
-								}
-								else
-								{
-									top.window.location.href = params.copyPage;
-								}
-							},
-							function() {
-								//
-							}
-						);
-					this.popupWindow.close();
-				}
-			},
-			<?if ($arParams['DRAFT_MODE'] != 'Y'):?>
-			{
-				text: params.isActive
-					? '<?= \CUtil::jsEscape(Loc::getMessage('LANDING_TPL_ACTION_UNPUBLIC'));?>'
-					: '<?= \CUtil::jsEscape(Loc::getMessage('LANDING_TPL_ACTION_PUBLIC'));?>',
-				href: params.publicPage,
-				disabled: params.isDeleted || params.isPublicationDisabled,
-				onclick: function(event)
-				{
-					event.preventDefault();
-
-					var successFunction = function()
-					{
-						tileGrid.action(
-							params.isActive
-								? 'Landing::unpublic'
-								: 'Landing::publication',
+						BX.bind(menuItem.childNodes[0], 'transitionend', function ()
+						{
+							setTimeout(function()
 							{
-								lid: params.ID
-							},
-							null,
-							'<?= \CUtil::jsEscape($this->getComponent()->getName());?>'
-						);
-					};
+								this.popupWindow.close();
+								menuItem.classList.remove('landing-link-copied');
+								menu.destroy();
+								isMenuShown = false;
+							}.bind(this),250);
 
-					if (!params.isActive && <?= $arResult['AGREEMENT'] ? 'true' : 'false';?>)
-					{
-						landingAgreementPopup({
-							success: successFunction
-						});
-						return;
+						}.bind(this));
 					}
-					else
+				},
+				{
+					text: '<?= \CUtil::jsEscape(Loc::getMessage('LANDING_TPL_ACTION_GOTO'));?>',
+					className: 'landing-popup-menu-item-icon',
+					href: params.publicUrl,
+					target: '_blank',
+					disabled: params.isArea || params.isDeleted || !params.isActive,
+					onclick: function(event)
 					{
-						successFunction();
+						if (top.window !== window)
+						{
+							event.preventDefault();
+							top.window.location.href = params.publicUrl;
+						}
+					}
+				},
+				{
+					text: '<?= \CUtil::jsEscape(Loc::getMessage('LANDING_TPL_ACTION_EDIT'));?>',
+					href: params.editPage,
+					disabled: params.isDeleted || params.isSettingsDisabled,
+					onclick: function()
+					{
 						this.popupWindow.close();
 					}
-					menu.destroy();
-				}
-			},
-			<?endif;?>
-			{
-				text: params.isDeleted
-					? (
-						(params.isFolder && <?= !$folderId ? 'true' : 'false';?>)
-						? '<?= \CUtil::jsEscape(Loc::getMessage('LANDING_TPL_ACTION_UNDELETE_FOLDER'));?>'
-						: '<?= \CUtil::jsEscape(Loc::getMessage('LANDING_TPL_ACTION_UNDELETE'));?>'
-					)
-					: (
-						(params.isFolder && <?= !$folderId ? 'true' : 'false';?>)
-						? '<?= \CUtil::jsEscape(Loc::getMessage('LANDING_TPL_ACTION_DELETE_FOLDER'));?>'
-						: '<?= \CUtil::jsEscape(Loc::getMessage('LANDING_TPL_ACTION_DELETE'));?>'
-					),
-				href: params.deletePage,
-				disabled: params.folderIndex || params.isDeleteDisabled,
-				onclick: function(event)
+				},
 				{
-					event.preventDefault();
-
-					this.popupWindow.close();
-					menu.destroy();
-
-					if (params.isDeleted)
+					text: '<?= \CUtil::jsEscape(Loc::getMessage('LANDING_TPL_ACTION_COPY'));?>',
+					disabled: params.isDeleted || (params.isFolder && <?= !$folderId ? 'true' : 'false';?>) || params.isEditDisabled,
+					onclick: function(event)
 					{
-						tileGrid.action(
-							'Landing::markUndelete',
-							{
-								lid: params.ID
-							}
-						);
-					}
-					else
-					{
+						event.preventDefault();
+
 						BX.Landing.UI.Tool.ActionDialog.getInstance()
 							.show({
-								content: '<?= \CUtil::jsEscape(Loc::getMessage('LANDING_TPL_ACTION_REC_CONFIRM'));?>'
+								title: '<?= \CUtil::jsEscape(Loc::getMessage('LANDING_TPL_ACTION_COPY_TITLE'));?>',
+								content: BX('landing-site-selector')
 							})
 							.then(
 								function() {
-									//BX.Landing.History.getInstance().removePageHistory(params.ID);
-									tileGrid.action(
-										'Landing::markDelete',
-										{
-											lid: params.ID
-										}
-									);
+									params.copyPage += '&additional[siteId]=';
+									params.copyPage += BX('landing-site-selector').value;
+									<?if ($folderId):?>
+									params.copyPage += '&additional[folderId]=';
+									params.copyPage += <?= (int)$folderId;?>;
+									<?endif;?>
+									var loaderContainer = BX.create('div',{
+										attrs:{className:'landing-filter-loading-container'}
+									});
+									document.body.appendChild(loaderContainer);
+									var loader = new BX.Loader({size: 130, color: '#bfc3c8'});
+									loader.show(loaderContainer);
+									if (top.window !== window)
+									{
+										// we are in slider
+										window.location.href = params.copyPage;
+									}
+									else
+									{
+										top.window.location.href = params.copyPage;
+									}
 								},
 								function() {
-
+									//
 								}
 							);
+						this.popupWindow.close();
+					}
+				},
+				<?if ($arParams['DRAFT_MODE'] != 'Y'):?>
+				{
+					text: params.isActive
+						? '<?= \CUtil::jsEscape(Loc::getMessage('LANDING_TPL_ACTION_UNPUBLIC'));?>'
+						: '<?= \CUtil::jsEscape(Loc::getMessage('LANDING_TPL_ACTION_PUBLIC'));?>',
+					href: params.publicPage,
+					disabled: params.isDeleted || params.isPublicationDisabled,
+					onclick: function(event)
+					{
+						event.preventDefault();
+
+						var successFunction = function()
+						{
+							tileGrid.action(
+								params.isActive
+									? 'Landing::unpublic'
+									: 'Landing::publication',
+								{
+									lid: params.ID
+								},
+								null,
+								'<?= \CUtil::jsEscape($this->getComponent()->getName());?>'
+							);
+						};
+
+						if (!params.isActive && <?= $arResult['AGREEMENT'] ? 'true' : 'false';?>)
+						{
+							landingAgreementPopup({
+								success: successFunction
+							});
+							return;
+						}
+						else
+						{
+							successFunction();
+							this.popupWindow.close();
+						}
+						menu.destroy();
+					}
+				},
+				<?endif;?>
+				{
+					text: params.isDeleted
+						? (
+							(params.isFolder && <?= !$folderId ? 'true' : 'false';?>)
+							? '<?= \CUtil::jsEscape(Loc::getMessage('LANDING_TPL_ACTION_UNDELETE_FOLDER'));?>'
+							: '<?= \CUtil::jsEscape(Loc::getMessage('LANDING_TPL_ACTION_UNDELETE'));?>'
+						)
+						: (
+							(params.isFolder && <?= !$folderId ? 'true' : 'false';?>)
+							? '<?= \CUtil::jsEscape(Loc::getMessage('LANDING_TPL_ACTION_DELETE_FOLDER'));?>'
+							: '<?= \CUtil::jsEscape(Loc::getMessage('LANDING_TPL_ACTION_DELETE'));?>'
+						),
+					href: params.deletePage,
+					disabled: params.folderIndex || params.isDeleteDisabled,
+					onclick: function(event)
+					{
+						event.preventDefault();
+
+						this.popupWindow.close();
+						menu.destroy();
+
+						if (params.isDeleted)
+						{
+							tileGrid.action(
+								'Landing::markUndelete',
+								{
+									lid: params.ID
+								}
+							);
+						}
+						else
+						{
+							BX.Landing.UI.Tool.ActionDialog.getInstance()
+								.show({
+									content: '<?= \CUtil::jsEscape(Loc::getMessage('LANDING_TPL_ACTION_REC_CONFIRM'));?>'
+								})
+								.then(
+									function() {
+										//BX.Landing.History.getInstance().removePageHistory(params.ID);
+										tileGrid.action(
+											'Landing::markDelete',
+											{
+												lid: params.ID
+											}
+										);
+									},
+									function() {
+
+									}
+								);
+						}
 					}
 				}
-			}
-		];
+			];
 
-		if (!isMenuShown) {
-			menu = new BX.PopupMenuWindow(
-				'landing-popup-menu' + params.ID,
-				node,
-				menuItems,
-				{
-					autoHide : true,
-					offsetTop: -2,
-					offsetLeft: -55,
-					className: 'landing-popup-menu',
-					events: {
-						onPopupClose: function onPopupClose() {
-							menu.destroy();
-							isMenuShown = false;
+			if (!isMenuShown) {
+				menu = new BX.PopupMenuWindow(
+					'landing-popup-menu' + params.ID,
+					node,
+					menuItems,
+					{
+						autoHide : true,
+						offsetTop: -2,
+						offsetLeft: -55,
+						className: 'landing-popup-menu',
+						events: {
+							onPopupClose: function onPopupClose() {
+								menu.destroy();
+								isMenuShown = false;
+							},
 						},
-					},
-				}
-			);
-			menu.show();
+					}
+				);
+				menu.show();
 
-			isMenuShown = true;
-		}
-		else
-		{
-			menu.destroy();
-			isMenuShown = false;
+				isMenuShown = true;
+			}
+			else
+			{
+				menu.destroy();
+				isMenuShown = false;
+			}
 		}
 	}
 

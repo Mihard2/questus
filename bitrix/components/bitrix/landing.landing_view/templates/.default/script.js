@@ -99,6 +99,22 @@
 					if (installed) {}
 				}
 			);
+			// event on settings slider close
+			if (this.topInit)
+			{
+				BX.addCustomEvent('SidePanel.Slider:onMessage',
+					function(event)
+					{
+						if (event.getEventId() === 'landingEditClose')
+						{
+							setTimeout(function()
+							{
+								window.location.reload();
+							}, 1000);
+						}
+					}
+				);
+			}
 			// on required links click
 			if (!this.topInit)
 			{
@@ -167,12 +183,10 @@
 
 			for (var i = 0, c = this.sliderConditions.length; i < c; i++)
 			{
-				conditions.push(
-					new RegExp(this.sliderConditions[i])
-				);
+				conditions.push(this.sliderConditions[i]);
 			}
 
-			if (!conditions)
+			if (conditions.length <= 0)
 			{
 				return;
 			}
@@ -180,31 +194,7 @@
 			var sliderOptions = top.BX.clone({
 				rules: [
 					{
-						condition: conditions,
-						options: {
-							events: {
-								onClose: function()
-								{
-									if (
-										window['landingSettingsSaved'] === true ||
-										top && top.window && top.window['landingSettingsSaved'] === true
-									)
-									{
-										BX.Landing.Component.View.changeTop(
-											this.id,
-											{changeState: false}
-										);
-										BX('landing-view-frame').contentWindow.location.reload();
-									}
-
-									if (BX.PopupMenu.getCurrentMenu())
-									{
-										BX.PopupMenu.getCurrentMenu().close();
-									}
-								}.bind(this)
-							},
-							allowChangeHistory: false
-						}
+						condition: conditions
 					}
 				]
 			});
@@ -454,16 +444,16 @@
 				);
 			}
 			// nav chain
-			BX('landing-navigation-site').text = this.siteTitle;
-			BX('landing-navigation-site').setAttribute('title', this.siteTitle);
-			BX('landing-navigation-page').text = this.title;
-			BX('landing-navigation-page').setAttribute('title', this.title);
+			// BX('landing-navigation-site').text = this.siteTitle;
+			// BX('landing-navigation-site').setAttribute('title', this.siteTitle);
+			// BX('landing-navigation-page').text = this.title;
+			// BX('landing-navigation-page').setAttribute('title', this.title);
 			// set browser title and url
-			if (options.changeState === true)
-			{
-				parent.window.history.pushState('', this.title, this.urls['landingView']);
-			}
-			document.title = this.title;
+			// if (options.changeState === true)
+			// {
+			// 	parent.window.history.pushState('', this.title, this.urls['landingView']);
+			// }
+			// document.title = this.title;
 		},
 
 		/**

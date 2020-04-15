@@ -30,7 +30,6 @@ $MESS["LANDING_TPL_COL_CREATED"] = "Створено";
 $MESS["LANDING_TPL_COL_MODIFIED"] = "Змінено";
 $MESS["LANDING_TPL_COL_TITLE"] = "Назва";
 $MESS["LANDING_TPL_DELETED"] = "Видалений";
-$MESS["LANDING_TPL_EXPORT_DISABLED"] = "Дозвольте експорт у налаштуваннях модуля в адміністративній частині.";
 $MESS["LANDING_TPL_PUBLIC"] = "Опублікований";
 $MESS["LANDING_TPL_TITLE"] = "Сайти";
 $MESS["LANDING_TPL_TITLE_KNOWLEDGE"] = "База знань";

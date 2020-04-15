@@ -479,6 +479,8 @@ function deleteAccessRow(link)
 		var layouts = document.querySelectorAll('.landing-form-layout-item');
 		var detailLayoutContainer = document.querySelector('.landing-form-layout-detail');
 		var layoutForm = document.querySelector('.landing-form-page-layout');
+		var gaSendClickCheckbox = document.getElementById('field-gacounter_send_click-use');
+		var gaSendClickSelect = document.getElementById('field-gacounter_click_type-use');
 		layouts = Array.prototype.slice.call(layouts, 0);
 		params.messages = params.messages || {};
 
@@ -641,6 +643,32 @@ function deleteAccessRow(link)
 			{
 				layoutContainer.classList.remove('landing-form-list-inner-prev');
 			}
+		}
+
+		function checkGaSendClickCheckbox() {
+
+			var parentNode = gaSendClickCheckbox.closest('.ui-checkbox-hidden-input-inner');
+
+			if (gaSendClickCheckbox.checked)
+			{
+				gaSendClickSelect.classList.add('ui-select-gacounter-show');
+				parentNode.classList.add('ui-checkbox-hidden-input-inner-gacounter');
+			}
+			else
+			{
+				gaSendClickSelect.classList.remove('ui-select-gacounter-show');
+				parentNode.classList.remove('ui-checkbox-hidden-input-inner-gacounter');
+			}
+		}
+
+		if (gaSendClickCheckbox)
+		{
+			gaSendClickCheckbox.addEventListener('click', function()
+			{
+				checkGaSendClickCheckbox();
+			}.bind(this));
+
+			checkGaSendClickCheckbox();
 		}
 	};
 

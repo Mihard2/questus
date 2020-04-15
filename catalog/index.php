@@ -4,9 +4,9 @@ $APPLICATION->SetTitle("Title");
 $Category = $_GET['cat'];
 $Author = $_GET['author'];
 $Tags = $_GET['tags'];
-$GLOBALS['arrfliter'] = array("PROPERTY_MATR_VALUE"=>$Category,
+$GLOBALS['arfliter'] = array("PROPERTY_MATR_VALUE"=>$Category,
 							  "PROPERTY_AUTHOR.ID"=>$Author,
-							  "?TAGS"=>$Tags,
+							  "?TAGS"=>$Tags
 														);
 
 
@@ -31,10 +31,11 @@ $APPLICATION->IncludeComponent(
 		"DETAIL_ACTIVE_DATE_FORMAT" => "d.m.Y",
 		"DETAIL_DISPLAY_BOTTOM_PAGER" => "Y",
 		"DETAIL_DISPLAY_TOP_PAGER" => "N",
-		"FILTER_NAME" => "arrfliter",
+		"FILTER_NAME" => "arfliter",
 		"DETAIL_FIELD_CODE" => array(
 			0 => "",
-			1 => "",
+			1 => "PREVIEW_PICTURE",
+			2 => "",
 		),
 		"DETAIL_PAGER_SHOW_ALL" => "Y",
 		"DETAIL_PAGER_TEMPLATE" => "",

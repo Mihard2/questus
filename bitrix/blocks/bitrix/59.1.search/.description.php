@@ -16,7 +16,7 @@ return [
 			'type' => 'form',
 			'resultPage' => 'search-result',
 		],
-		'version' => '20.0.0',
+		'version' => '20.0.0', // old param for backward compatibility. Can used for old versions of module via repo. Do not delete!
 	],
 	'nodes' => [
 		'.landing-block-node-bgimage' => [
@@ -47,9 +47,17 @@ return [
 				'name' => Loc::getMessage('LANDING_BLOCK_59_1_TEXT'),
 				'type' => ['typo'],
 			],
-			'.landing-block-button' => [
+			'.landing-block-node-button-container' => [
 				'name' => Loc::getMessage('LANDING_BLOCK_59_1_BUTTON'),
-				'type' => ['background-color', 'color'],
+				'type' => ['button-color', 'color', 'color-hover'],
+			],
+			'.landing-block-node-input-container' => [
+				'name' => Loc::getMessage('LANDING_BLOCK_59_1_INPUT'),
+				'type' => ['background-color', 'background-hover'],
+			],
+			'.landing-block-node-input-text' => [
+				'name' => Loc::getMessage('LANDING_BLOCK_59_1_TEXT'),
+				'type' => ['color', 'color-hover'],
 			],
 		],
 	],

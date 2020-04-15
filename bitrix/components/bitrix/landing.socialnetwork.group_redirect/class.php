@@ -49,20 +49,27 @@ class LandingSocialnetworkGroupRedirectComponent extends LandingBaseComponent
 	{
 		if ($this->init())
 		{
-			\Bitrix\Landing\Site\Type::setScope('GROUP');
+			\Bitrix\Landing\Site\Type::setScope(
+				\Bitrix\Landing\Site\Type::SCOPE_CODE_GROUP
+			);
 			$realFileDir = dirname($this->getRealFile());
 			$sitePath = substr($this->getUriPath(), strlen($realFileDir));
 			$landingId = UrlPreview::getPreviewByCode($sitePath);
 
 			if ($landingId)
 			{
-				$landing = Landing::createInstance($landingId);
+				$landing = Landing::createInstance($landingId, [
+					'skip_blocks' => true
+				]);
 				if ($landing->exist())
 				{
 					$groupId = $this->getGroupIdBySiteId($landing->getSiteId());
 					if ($groupId)
 					{
-						$groupPath = Connector\SocialNetwork::getTabUrl($groupId);
+						$groupPath = Connector\SocialNetwork::getTabUrl(
+							$groupId,
+							$landing->getPublicUrl(false, false)
+						);
 						if ($groupPath)
 						{
 							localRedirect($groupPath, true);
@@ -70,6 +77,8 @@ class LandingSocialnetworkGroupRedirectComponent extends LandingBaseComponent
 					}
 				}
 			}
+
+			showError(Loc::getMessage('LANDING_CMP_GROUP_NOT_FOUND'));
 		}
 	}
 }

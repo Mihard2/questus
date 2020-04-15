@@ -14,16 +14,19 @@ $this->setFrameMode(true);
 ?>
 
 
-
+<form method="GET">
 <?foreach($arResult["ITEMS"] as $arItem):?>
-	<?
-	$this->AddEditAction($arItem['ID'], $arItem['EDIT_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_EDIT"));
-	$this->AddDeleteAction($arItem['ID'], $arItem['DELETE_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_DELETE"), array("CONFIRM" => GetMessage('CT_BNL_ELEMENT_DELETE_CONFIRM')));
-	?>
+	<input type="checkbox" name="author[]" value="<?=$arItem['ID']?>" />
+	<div><?echo $arItem["NAME"]?></div>
+<?endforeach;?>
+	<button type="submit">Filter</button>
+</form>
 
+
+<?/*?>
 	<a href="?<?=$_SERVER["QUERY_STRING"]?>&author=<?=$arItem['ID']?>" id="<?=$this->GetEditAreaId($arItem['ID']);?>">
 		<img src="<?=$arItem["PREVIEW_PICTURE"]["SRC"]?>" alt="">
 		<div class="authors-name"><?echo $arItem["NAME"]?></div>
 		<div class="authors-profession"><?=$arItem["PROPERTIES"]["SPEC"]["VALUE"]?></div>
 	</a>
-<?endforeach;?>
+<?*/?>

@@ -42,9 +42,19 @@ class LandingViewComponent extends LandingBaseComponent
 	{
 		\Bitrix\Landing\Landing::setPreviewMode(true);
 
-		$landing = Landing::createInstance($id);
+		$landing = Landing::createInstance($id, [
+			'skip_blocks' => true
+		]);
 		if ($landing->exist())
 		{
+			if (
+				$landing->getSmnSiteId() &&
+				Manager::isExtendedSMN() &&
+				$this->arParams['DRAFT_MODE'] != 'Y'
+			)
+			{
+				Manager::forceB24disable(true);
+			}
 			$url = $landing->getPublicUrl(false, true, true);
 			if ($this->arParams['DONT_LEAVE_AFTER_PUBLICATION'] == 'Y')
 			{
@@ -74,7 +84,9 @@ class LandingViewComponent extends LandingBaseComponent
 	protected function actionChangeTop($lid)
 	{
 		$site = null;
-		$landing = Landing::createInstance($lid);
+		$landing = Landing::createInstance($lid, [
+			'skip_blocks' => true
+		]);
 		if ($landing->exist())
 		{
 			$site = $this->getSites([
@@ -180,7 +192,9 @@ class LandingViewComponent extends LandingBaseComponent
 			return $publicIds[$id];
 		}
 
-		$landing = Landing::createInstance($id);
+		$landing = Landing::createInstance($id, [
+			'skip_blocks' => true
+		]);
 		$context = \Bitrix\Main\Application::getInstance()->getContext();
 		$request = $context->getRequest();
 		$agreementExist = isset($this->arParams['AGREEMENT']) &&
@@ -224,7 +238,9 @@ class LandingViewComponent extends LandingBaseComponent
 				{
 					foreach ($areas as $aId)
 					{
-						$landingArea = Landing::createInstance($aId);
+						$landingArea = Landing::createInstance($aId, [
+							'skip_blocks' => true
+						]);
 						if (
 							$landingArea->exist() &&
 							$landingArea->publication()
@@ -282,7 +298,9 @@ class LandingViewComponent extends LandingBaseComponent
 	 */
 	protected function actionPublicationAll($id)
 	{
-		$landing = Landing::createInstance($id);
+		$landing = Landing::createInstance($id, [
+			'skip_blocks' => true
+		]);
 
 		if ($landing->exist())
 		{
@@ -337,7 +355,9 @@ class LandingViewComponent extends LandingBaseComponent
 	 */
 	protected function actionUnpublic($id)
 	{
-		$landing = Landing::createInstance($id);
+		$landing = Landing::createInstance($id, [
+			'skip_blocks' => true
+		]);
 
 		if ($landing->exist())
 		{
@@ -433,8 +453,34 @@ class LandingViewComponent extends LandingBaseComponent
 		{
 			$sites[$siteId] = 0;
 		}
-		
+
 		return $sites[$siteId];
+	}
+
+	/**
+	 * Returns block section, opened by default.
+	 * @param string $type Site type.
+	 * @return string
+	 */
+	protected function getCurrentBlockSection(string $type): string
+	{
+		$storeKey = 'opened_types';
+		$openedTypes = (array)$this->getUserOption($storeKey);
+		if (!in_array($type, $openedTypes))
+		{
+			$openedTypes[] = $type;
+			$this->setUserOption($storeKey, $openedTypes);
+			switch ($type)
+			{
+				case 'PAGE':
+				case 'STORE':
+					return 'cover';
+				case 'KNOWLEDGE':
+					return 'recommended';
+			}
+		}
+
+		return 'last';
 	}
 
 	/**
@@ -443,7 +489,7 @@ class LandingViewComponent extends LandingBaseComponent
 	 */
 	protected function onLandingView()
 	{
-		$type = strtolower($this->arParams['TYPE']);
+		$type = strtoupper($this->arParams['TYPE']);
 		$landing = $this->arResult['LANDING'];
 		$params = $this->arParams;
 		$eventManager = EventManager::getInstance();
@@ -458,6 +504,7 @@ class LandingViewComponent extends LandingBaseComponent
 				$meta = $landing->getMeta();
 				$options['folder_id'] = $landing->getFolderId();
 				$options['version'] = Manager::getVersion();
+				$options['default_section'] = $this->getCurrentBlockSection($type);
 				$options['params'] = (array)$params['PARAMS'];
 				$options['params']['type'] = $params['TYPE'];
 				$options['params']['draftMode'] = $params['DRAFT_MODE'] == 'Y';
@@ -620,10 +667,12 @@ class LandingViewComponent extends LandingBaseComponent
 				{
 					if (isset($section['type']) && $section['type'])
 					{
-						if (!in_array(
-								$options['params']['type'],
-						  		array_map('strtoupper', (array)$section['type'])
-						))
+						$section['type'] = array_map('strtoupper', (array)$section['type']);
+						if (in_array('PAGE', $section['type']))
+						{
+							$section['type'][] = 'SMN';
+						}
+						if (!in_array($options['params']['type'], $section['type']))
 						{
 							unset($options['blocks'][$sectionCode]);
 							continue;
@@ -631,9 +680,17 @@ class LandingViewComponent extends LandingBaseComponent
 					}
 					foreach ($section['items'] as $code => &$block)
 					{
+						if (!empty($block['type']))
+						{
+							$block['type'] = array_map('strtoupper', (array)$block['type']);
+							if (in_array('PAGE', $block['type']))
+							{
+								$block['type'][] = 'SMN';
+							}
+						}
 						if (
 							!empty($block['type']) &&
-							!in_array($type, (array)$block['type']) &&
+							!in_array($type, $block['type']) &&
 							($b24 || $block['type'] == 'null')
 						)
 						{
@@ -712,7 +769,7 @@ class LandingViewComponent extends LandingBaseComponent
 			}
 		);
 	}
-	
+
 	/**
 	 * Handler on template epilog.
 	 * @return void
@@ -818,21 +875,14 @@ class LandingViewComponent extends LandingBaseComponent
 		$urls['landingEdit'] = new \Bitrix\Main\Web\Uri(
 			$replaceParamUrl('landing_edit')
 		);
-		$urls['landingEdit']->addParams([
-			'slider' => 'Y'
-		]);
 		$urls['landingSiteEdit'] = new \Bitrix\Main\Web\Uri(
 			$replaceParamUrl('site_edit')
 		);
-		$urls['landingSiteEdit']->addParams([
-			'slider' => 'Y'
-		]);
 		$urls['landingCatalogEdit'] = new \Bitrix\Main\Web\Uri(
 			$replaceParamUrl('site_edit')
 		);
 		$urls['landingCatalogEdit']->addParams([
-			'tpl' => 'catalog',
-			'slider' => 'Y'
+			'tpl' => 'catalog'
 		]);
 		$urls['landingFrame'] = new \Bitrix\Main\Web\Uri(
 			$replaceParamUrl('landing_view')
@@ -861,17 +911,21 @@ class LandingViewComponent extends LandingBaseComponent
 		$sliderUrlKeys = [
 			'landing_edit', 'site_edit', 'site_show'
 		];
+		$sefUrls = isset($this->arParams['SEF'])
+					? $this->arParams['SEF']
+					: (
+						isset($this->arParams['PARAMS']['sef_url'])
+						? $this->arParams['PARAMS']['sef_url']
+						: []
+					);
 		foreach ($sliderUrlKeys as $key)
 		{
-			if (
-				isset($this->arParams['SEF'][$key]) &&
-				$this->arParams['SEF'][$key]
-			)
+			if (isset($sefUrls[$key]) && $sefUrls[$key])
 			{
-				$url = $this->arParams['SEF'][$key];
+				$url = $sefUrls[$key];
 				$url = str_replace(
 					['#site_show#', '#site_edit#', '#landing_edit#', '?'],
-					['[0-9]+', '[0-9]+', '[0-9]+', '\\\?'],
+					['[0-9]+', '[0-9]+', '[0-9]+', '\\?'],
 					$url
 				);
 				$sliderConditions[$key] = $url;
@@ -913,6 +967,7 @@ class LandingViewComponent extends LandingBaseComponent
 				$this->arParams['TYPE']
 			);
 
+			Hook::setEditMode();
 			Landing::setEditMode();
 			$landing = Landing::createInstance($this->arParams['LANDING_ID']);
 
@@ -942,7 +997,7 @@ class LandingViewComponent extends LandingBaseComponent
 				}
 				else
 				{
-					return;
+					\localRedirect($this->getRealFile());
 				}
 				// disable optimisation
 				if (\Bitrix\Landing\Manager::isB24())

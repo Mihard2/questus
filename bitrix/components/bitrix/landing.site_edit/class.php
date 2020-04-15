@@ -244,10 +244,6 @@ class LandingSiteEditComponent extends LandingBaseFormComponent
 			if ($this->id)
 			{
 				\Bitrix\Landing\Hook::setEditMode();
-				if ($this->arResult['IS_INTRANET'])
-				{
-					\Bitrix\Landing\Hook::setIntranetMode();
-				}
 				$this->arResult['HOOKS'] = $this->getHooks();
 				$this->arResult['TEMPLATES_REF'] = TemplateRef::getForSite($this->id);
 			}

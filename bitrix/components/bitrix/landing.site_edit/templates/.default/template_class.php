@@ -41,8 +41,9 @@ class Template
 				// use-checkbox
 				if (isset($pageFields[$code . '_USE']))
 				{
+					$type = $pageFields[$code . '_USE']->getType();
 					$pageFields[$code . '_USE']->viewForm(array(
-						'class' => 'ui-checkbox',
+					  	'class' => self::getCssByType($type),
 						'id' => 'checkbox-' . strtolower($code) . '-use',
 						'name_format' => 'fields[ADDITIONAL_FIELDS][#field_code#]'
 					));
@@ -87,7 +88,7 @@ class Template
 					echo '<div class="ui-checkbox-hidden-input-hook">';
 					echo $field->viewForm(array(
 						'id' => 'field-' . strtolower($key) . '-use',
-						'class' => ($type == 'checkbox') ? 'ui-checkbox' : 'ui-input',
+						'class' => self::getCssByType($type),
 						'name_format' => 'fields[ADDITIONAL_FIELDS][#field_code#]'
 					));
 					if ($type == 'checkbox')

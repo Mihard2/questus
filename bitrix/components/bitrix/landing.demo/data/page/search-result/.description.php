@@ -14,6 +14,7 @@ return [
 	'description' => Loc::getMessage('LANDING_DEMO_SEARCH-RESULT-DESCRIPTION'),
 	'publication' => true,
 	'version' => 3,
+	'active' => false,
 	'fields' => [
 		'RULE' => null,
 		'ADDITIONAL_FIELDS' => [
@@ -51,7 +52,7 @@ return [
 					0 => '<span bxstyle="font-weight: 700;">How can we help you?</span>',
 				],
 				'.landing-block-node-text' => [
-					0 => '<p>Ask a question of search any keyword</p>',
+					0 => '<p>Ask a question or search any keyword</p>',
 				],
 			],
 			'style' => [
@@ -80,7 +81,7 @@ return [
 					0 => 'landing-block-node-title g-font-weight-400 g-my-0 g-font-size-48 text-left g-font-montserrat container g-max-width-100x g-pl-0 g-pr-0',
 				],
 				'#wrapper' => [
-					0 => 'landing-block js-animation fadeInUp g-pl-auto g-pb-auto g-pt-30 text-center',
+					0 => 'landing-block js-animation fadeInUp g-pl-auto g-pb-auto g-pt-30 text-center g-pl-7 g-pr-15',
 				],
 			],
 		],

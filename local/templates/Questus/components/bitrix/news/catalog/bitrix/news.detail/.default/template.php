@@ -11,14 +11,11 @@
 /** @var string $componentPath */
 /** @var CBitrixComponent $component */
 $this->setFrameMode(true);
+$countRes = count($arResult['COMMENTS_COUNT']);
 
 ?>
 
-<!-- <pre>
-<?print_r($arResult)?>
-</pre> -->
-
-<div class="detailPost 1">
+<div class="detailPost">
 	<div class="container">
         <section class="row">
 			<header class="col-12">
@@ -82,7 +79,21 @@ $this->setFrameMode(true);
 				<?else:?>
 					<?echo $arResult["PREVIEW_TEXT"];?>
 				<?endif?> -->
-            </article>
+			</article>
+			<footer class="col-12">
+					<div class="row">
+						<div class="col-7 tags">
+							Tags:
+							<span class="tag"><?=$arResult["TAGS"]?></span>
+						</div>
+						<div class="offset-2 col-3 comments">
+							<span>
+								<b><? echo $countRes?></b>
+							</span>
+							comments
+						</div>
+					</div>
+			</footer>
 		</section>
 	</div>
 </div>
@@ -101,19 +112,16 @@ $this->setFrameMode(true);
             <div class="col-sm-8 share-block">
                 <div class="share-title">share</div>
                 <div class="share-links">
-                    <a href="https://www.facebook.com/sharer.php?u=http://bit.ly/FBshareArticle">
-                        <i class="icon-facebook"></i>
-					</a>
-					
-                    <a href="">
-                        <i class="icon-twitter"></i>
-                    </a>
-                    <a href="">
-                        <i class="icon-linkedin"></i>
-                    </a>
-                    <a href="">
-                        <i class="icon-email"></i>
-                    </a>
+					<script type="text/javascript">(function() {
+					  if (window.pluso)if (typeof window.pluso.start == "function") return;
+					  if (window.ifpluso==undefined) { window.ifpluso = 1;
+					    var d = document, s = d.createElement('script'), g = 'getElementsByTagName';
+					    s.type = 'text/javascript'; s.charset='UTF-8'; s.async = true;
+					    s.src = ('https:' == window.location.protocol ? 'https' : 'http')  + '://share.pluso.ru/pluso-like.js';
+					    var h=d[g]('body')[0];
+					    h.appendChild(s);
+					  }})();</script>
+					<div class="pluso" data-background="transparent" data-options="big,square,line,horizontal,counter,theme=04" data-services="facebook,linkedin,email"></div>
                 </div>
             </div>
             <a href="javascript:void(0)" class="col-sm-2 switch-next">
@@ -127,10 +135,13 @@ $this->setFrameMode(true);
 	<?
 		$APPLICATION->IncludeComponent("linetime:comments", "",
 		 array(
-							"POST_ID" => $arResult["ID"],
+			"POST_ID" => $arResult["ID"],
 		));
 	?>
 </div>
+
+
+
 
 <!-- <div class="news-detail-share">
 	<noindex>

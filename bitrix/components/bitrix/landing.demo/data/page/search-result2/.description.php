@@ -14,6 +14,7 @@ return [
 	'description' => Loc::getMessage('LANDING_DEMO_SEARCH-RESULT2-DESCRIPTION'),
 	'publication' => true,
 	'version' => 3,
+	'active' => false,
 	'fields' => [
 		'RULE' => null,
 		'ADDITIONAL_FIELDS' => [

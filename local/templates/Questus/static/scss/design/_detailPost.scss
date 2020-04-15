@@ -77,21 +77,147 @@
 
         &-links {
             padding-bottom: 200px;
+            .pluso {
+                width: 100%;
+                &>div {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
 
-            a {
-                margin: 0 12px;
+                    span {
 
-                i {
-                    font-size: 30px;
+                        a {
+                            display: inline-block;
+                            width: 45px;
+                            height: 45px;
+                            background: transparent !important;
+                            margin: 7px;
 
-                    &.icon-email {
-                        display: inline-block;
-                        transform: rotate(-45deg);
+                            &.pluso-more {
+                                display: none !important;
+                            }
+
+                            &::after {
+                                content: '';
+                                display: block;
+                                width: 100%;
+                                height: 100%;
+                            }
+
+                            &.pluso-facebook {
+                                &::after {
+                                    background: url("../../static/media/icons/Facebook.png") no-repeat center center;
+                                    background-size: 30%;
+
+                                }
+                            }
+
+                            &.pluso-linkedin {
+                                &::after {
+                                    background: url("../../static/media/icons/Linkedin.png") no-repeat center center;
+                                    background-size: 50%;
+
+                                }
+                            }
+
+                            &.pluso-email {
+                                &::after {
+                                    background: url("../../static/media/icons/Email.png") no-repeat center center;
+                                    background-size: 50%;
+
+                                }
+                            }
+                        }
+
+                        &.pluso-wrap {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            width: 90%;
+                            max-width: 210px;
+                        }
+
+                        &.pluso-counter {
+                            display: none;
+                            b {
+                                top: auto;
+                                left: auto;
+                                box-shadow: none;
+                                border: none;
+                                background-color: #242424;
+                                color: #fff;
+                                font-size: 15px;
+                                font-weight: 700;
+                                border-radius: 6px;
+                                &::after {
+                                    display: none;
+                                }
+                            }
+                        }
                     }
                 }
             }
+
         }
     }
+
+    // .share {
+    //     .switch {
+
+    //         &-prev,
+    //         &-next {
+    //             font-size: 16px;
+    //             line-height: 24px;
+
+    //             .switch {
+    //                 display: flex;
+    //                 justify-content: space-between;
+    //                 text-transform: uppercase;
+    //                 align-items: baseline;
+    //                 font-size: 18px;
+    //                 letter-spacing: 0.9px;
+    //                 font-weight: 600;
+    //                 margin-bottom: 15px;
+
+    //                 i {
+    //                     font-size: 22px;
+    //                 }
+    //             }
+    //         }
+
+    //         &-prev {
+    //             text-align: right;
+    //         }
+    //     }
+
+    //     &-block {
+    //         text-align: center;
+    //     }
+
+    //     &-title {
+    //         text-transform: uppercase;
+    //         font-size: 24px;
+    //         letter-spacing: 1.2px;
+    //         margin-bottom: 25px;
+    //     }
+
+    //     &-links {
+    //         padding-bottom: 200px;
+
+    //         a {
+    //             margin: 0 12px;
+
+    //             i {
+    //                 font-size: 30px;
+
+    //                 &.icon-email {
+    //                     display: inline-block;
+    //                     transform: rotate(-45deg);
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
 
     .comments-block {
         display: flex;
@@ -168,8 +294,8 @@
                 text-transform: uppercase;
                 font-size: 24px;
                 letter-spacing: 1.2px;
-                margin-bottom: 20px;
-                padding-left: 0;
+                margin-bottom: 35px;
+                padding-left: 25px;
             }
 
             .row {
@@ -182,17 +308,15 @@
                 }
 
                 .name-comment {
-                    font-size: 18px;
-                    text-transform: uppercase;
-                    font-weight: 600;
                     text-align: right;
-                    line-height: 32px;
-
                     span {
                         display: block;
-                        font-size: 14px;
-                        font-weight: 400;
+                        font-size: 18px;
+                        font-weight: 600;
+                        line-height: 32px;
                         letter-spacing: 2.1px;
+                        margin-top: 20px;
+                        text-transform: uppercase;
                     }
 
                     // display: flex;

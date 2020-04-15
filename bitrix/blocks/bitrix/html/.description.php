@@ -9,7 +9,7 @@ use \Bitrix\Main\Localization\Loc;
 return array(
 	'block' => array(
 		'name' => Loc::getMessage('LD_BLOCK_HTML_NAME'),
-		'section' => array('other'),
+		'section' => array('other', 'recommended'),
 		'html' => false
 	),
 	'nodes' => array(
