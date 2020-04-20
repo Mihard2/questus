@@ -31,7 +31,7 @@ if($_POST){
     <div class="live-reply col-sm-8">
         <form action="<?=$_SERVER["REQUEST_URL"]?>" method="POST">
             <fieldset>
-                <legend>live a reply</legend>
+                <legend>Leave a reply</legend>
                 <label>Your email address will not be published. Required fields are marked *</label>
                 <div class="input-wrap">
                     <input type="text" name="name" id="text" placeholder="your name*" required>

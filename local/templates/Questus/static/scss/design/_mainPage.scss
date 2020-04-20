@@ -359,6 +359,10 @@
                 a {
                     line-height: 52px;
                     font-size: 25px;
+                    &:hover {
+                        background: $fontColor;
+                        color: #fff;
+                    }
                 }
             }
         }

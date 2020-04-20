@@ -14,6 +14,53 @@ $this->setFrameMode(true);
 
 
 ?>
+<!-- <pre>
+	<?print_r($arResult)?>
+</pre> -->
+	<article class="tags-filter">
+		<div class="tags-filter_title openBlock">tags</div>
+		<div class="tags-filter_block">
+			<?
+			if($arParams["SHOW_CHAIN"] != "N" && !empty($arResult["TAGS_CHAIN"])):
+			?>
+				<noindex class="tagActive_wrapper">
+					<div class="search-tags-chain tagActive"><?
+						foreach ($arResult["TAGS_CHAIN"] as $tags):
+							?><a class="search-tags-text" href="<?=$tags["TAG_PATH"]?>" rel="nofollow"><?=$tags["TAG_NAME"]?></a> <?
+							?><a href="<?=$tags["TAG_WITHOUT"]?>" class="search-tags-link" rel="nofollow"><span></span></a>  <?
+						endforeach;?>
+					</div>
+				</noindex>
+			<?
+			endif;
+			?>
+			<form method="GET">
+			<?
+			if(is_array($arResult["SEARCH"]) && !empty($arResult["SEARCH"])):
+			?>
+					<?foreach($arResult["SEARCH"] as $key => $res) { ?>
+						<input type="checkbox" name="tags[]" value="<?=$res['URL']?>" />
+						<div><?= $res["NAME"]?></div>
+					<?}?>
+					<button type="submit">Tags</button>
+				<!-- <noindex>	
+					<? foreach ($arResult["SEARCH"] as $key => $res) { 
+						?> <label class="search-tags-chain">
+							<a class="search-tags-text" href="<?=$res["URL"]?>"  rel="nofollow"><?=$res["NAME"]?></a> 
+						</label><?
+					}?>
+				</noindex> -->
+			<?
+			endif;
+			?>
+			</form>
+		</div>
+	</article>
+
+
+
+
+<!-- 
 	<article class="tags-filter">
 		<div class="tags-filter_title openBlock">tags</div>
 		<div class="tags-filter_block">
@@ -44,4 +91,4 @@ $this->setFrameMode(true);
 			endif;
 			?>
 		</div>
-	</article>
+	</article> -->

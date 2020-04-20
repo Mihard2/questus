@@ -364,81 +364,91 @@
             }
         }
     }
+}
+.Team-person {
+    padding-top: 60px;
 
-    .Team-person {
-        padding-top: 60px;
+    header {
+        margin-bottom: 30px;
 
-        header {
-            margin-bottom: 30px;
-
-            .photo {
-                .detail_picture {
-                    display: block;
-                    width: 100%;
-                    border-radius: 100%
-                }
-            }
-
-            .personName {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-
-                h3.title {
-                    font-family: $font1;
-                    margin-bottom: 22px;
-                }
-
-                .specialty {
-                    font-size: 25px;
-                    font-family: $font2;
-                    text-align: center;
-                }
-            }
-        }
-
-        &_title {
-            font-family: $font1;
-            text-transform: uppercase;
-            font-size: 20px;
-            position: relative;
-            margin-bottom: 30px;
-            padding-bottom: 30px;
-            font-weight: 700;
-
-            &::after {
-                content: "";
+        .photo {
+            .detail_picture {
                 display: block;
-                height: 15px;
-                width: 100px;
-                background: #000;
-                position: absolute;
-                bottom: 0;
-                left: 0;
+                width: 100%;
+                border-radius: 100%
             }
         }
 
-        &_text {
-            font-size: 17px;
-            letter-spacing: .7px;
-            line-height: 35px;
-            padding-bottom: 30px;
-            h4 {
-                margin-bottom: 10px;
-                font-size: 20px;
-            }
-            ul {
-                padding-left: 20px;
-                margin-bottom: 30px;
-            }
-        }
-        &_contacts {
+        .personName {
             display: flex;
             flex-direction: column;
-            a {
-                margin-bottom: 20px;
-                padding-left: 40px;
+            align-items: center;
+            justify-content: center;
+
+            h3.title {
+                font-family: $font1;
+                margin-bottom: 22px;
+            }
+
+            .specialty {
+                font-size: 25px;
+                font-family: $font2;
+                text-align: center;
+            }
+        }
+    }
+
+    &_title {
+        font-family: $font1;
+        text-transform: uppercase;
+        font-size: 20px;
+        position: relative;
+        margin-bottom: 30px;
+        padding-bottom: 30px;
+        font-weight: 700;
+
+        &::after {
+            content: "";
+            display: block;
+            height: 15px;
+            width: 100px;
+            background: #000;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+    }
+
+    &_text {
+        font-size: 17px;
+        letter-spacing: .7px;
+        line-height: 35px;
+        padding-bottom: 30px;
+        h4 {
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+        ul {
+            padding-left: 20px;
+            margin-bottom: 30px;
+        }
+    }
+    &_contacts {
+        margin-bottom: 30px;
+        display: flex;
+        flex-direction: column;
+        a {
+            margin-bottom: 20px;
+            width: max-content;
+            font-size: 23px;
+            padding: 0 5px;
+            i {
+                margin-right: 20px;
+                font-size: 23px;
+            }
+            &:hover {
+                background: $fontColor;
+                color: #fff;
             }
         }
     }

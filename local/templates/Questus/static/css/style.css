@@ -3400,39 +3400,39 @@ button {
   filter: grayscale(0);
 }
 
-.aboutUs .Team-person {
+.Team-person {
   padding-top: 60px;
 }
 
-.aboutUs .Team-person header {
+.Team-person header {
   margin-bottom: 30px;
 }
 
-.aboutUs .Team-person header .photo .detail_picture {
+.Team-person header .photo .detail_picture {
   display: block;
   width: 100%;
   border-radius: 100%;
 }
 
-.aboutUs .Team-person header .personName {
+.Team-person header .personName {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.aboutUs .Team-person header .personName h3.title {
+.Team-person header .personName h3.title {
   font-family: "Oswald", sans-serif;
   margin-bottom: 22px;
 }
 
-.aboutUs .Team-person header .personName .specialty {
+.Team-person header .personName .specialty {
   font-size: 25px;
   font-family: "Montserrat", sans-serif;
   text-align: center;
 }
 
-.aboutUs .Team-person_title {
+.Team-person_title {
   font-family: "Oswald", sans-serif;
   text-transform: uppercase;
   font-size: 20px;
@@ -3442,7 +3442,7 @@ button {
   font-weight: 700;
 }
 
-.aboutUs .Team-person_title::after {
+.Team-person_title::after {
   content: "";
   display: block;
   height: 15px;
@@ -3453,31 +3453,44 @@ button {
   left: 0;
 }
 
-.aboutUs .Team-person_text {
+.Team-person_text {
   font-size: 17px;
   letter-spacing: .7px;
   line-height: 35px;
   padding-bottom: 30px;
 }
 
-.aboutUs .Team-person_text h4 {
+.Team-person_text h4 {
   margin-bottom: 10px;
   font-size: 20px;
 }
 
-.aboutUs .Team-person_text ul {
+.Team-person_text ul {
   padding-left: 20px;
   margin-bottom: 30px;
 }
 
-.aboutUs .Team-person_contacts {
+.Team-person_contacts {
+  margin-bottom: 30px;
   display: flex;
   flex-direction: column;
 }
 
-.aboutUs .Team-person_contacts a {
+.Team-person_contacts a {
   margin-bottom: 20px;
-  padding-left: 40px;
+  width: max-content;
+  font-size: 23px;
+  padding: 0 5px;
+}
+
+.Team-person_contacts a i {
+  margin-right: 20px;
+  font-size: 23px;
+}
+
+.Team-person_contacts a:hover {
+  background: #242424;
+  color: #fff;
 }
 
 .mfp-zoom-in.mfp-bg {
@@ -4589,6 +4602,11 @@ button {
 .contacts-page .contacts-block ul li a {
   line-height: 52px;
   font-size: 25px;
+}
+
+.contacts-page .contacts-block ul li a:hover {
+  background: #242424;
+  color: #fff;
 }
 
 @media (max-width: 767px) {

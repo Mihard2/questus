@@ -15,6 +15,12 @@ $countRes = count($arResult['COMMENTS_COUNT']);
 
 ?>
 
+<pre>
+	<?print_r($arResult)?>
+</pre>
+
+
+
 <div class="detailPost">
 	<div class="container">
         <section class="row">
