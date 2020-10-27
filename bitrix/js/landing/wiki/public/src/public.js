@@ -4,7 +4,7 @@ import {SliderHacks} from 'landing.sliderhacks';
 Event.bind(document, 'click', (event: MouseEvent) => {
 	if (Type.isDomNode(event.target))
 	{
-		const link = event.target.closest('a:not(.ui-btn)');
+		const link = event.target.closest('a:not(.ui-btn):not([data-fancybox])');
 		if (Type.isDomNode(link))
 		{
 			if (Type.isStringFilled(link.href) && link.target !== '_blank')
@@ -24,8 +24,15 @@ Event.bind(document, 'click', (event: MouseEvent) => {
 				&& Type.isStringFilled(urlParams.href)
 			)
 			{
-				event.stopImmediatePropagation();
-				void SliderHacks.reloadSlider(urlParams.href);
+				if (urlParams.target === '_self')
+				{
+					event.stopImmediatePropagation();
+					void SliderHacks.reloadSlider(urlParams.href);
+				}
+				else
+				{
+					top.open(urlParams.href, urlParams.target);
+				}
 			}
 		}
 	}

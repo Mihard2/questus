@@ -1006,9 +1006,15 @@
 					BX.remove(containerForRemove);
 				}, 1000);
 			}
+
 			if (
 				animation !== "simple"
 				&& typeof BXMobileApp == "undefined" // non-mobile
+				&& !( // if it is not a slider over
+					window.top === window &&
+					BX.getClass('BX.SidePanel.Instance') &&
+					BX.SidePanel.Instance.isOpen()
+				)
 			)
 			{
 				var curPos = BX.pos(container),
@@ -1027,10 +1033,10 @@
 							window.scrollTo(0, scroll.scrollTop + state.height);
 						}
 					},
-
 					complete : function(){
 						container.style.cssText = "";
-					}
+						BX.onCustomEvent(this, "OnUCRecordWasShown", [this.ENTITY_XML_ID, id, container]);
+					}.bind(this)
 				})).animate();
 			}
 			else

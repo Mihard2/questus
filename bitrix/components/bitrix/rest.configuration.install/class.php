@@ -63,13 +63,17 @@ class CRestConfigurationInstallComponent extends CBitrixComponent implements Con
 			'IMPORT_DISK_STORAGE_PARAMS',
 			'APP',
 			'MODE',
+			'MANIFEST_CODE',
 			'UNINSTALL_APP_ON_FINISH'
 		];
 	}
 
 	protected function prepareResult()
 	{
-		$result = [];
+		$result = [
+			'MANIFEST' => []
+		];
+		$manifest = null;
 
 		if(!empty($this->arParams['IMPORT_MANIFEST']['CODE']))
 		{
@@ -85,6 +89,15 @@ class CRestConfigurationInstallComponent extends CBitrixComponent implements Con
 			{
 				$result['NOTIFY'][] = Loc::getMessage("REST_CONFIGURATION_INSTALL_ERROR_MANIFEST_NOT_FOUND");
 			}
+		}
+		elseif($this->arParams['MANIFEST_CODE'])
+		{
+			$manifest = Manifest::get($this->arParams['MANIFEST_CODE']);
+		}
+
+		if(!is_null($manifest))
+		{
+			$result['MANIFEST'] = $manifest;
 		}
 
 		$this->arResult = $result;
@@ -237,12 +250,8 @@ class CRestConfigurationInstallComponent extends CBitrixComponent implements Con
 
 	protected function getImportContext()
 	{
-		$result = 'external';
-		if(!empty($this->arParams['APP']['ID']))
-		{
-			$result = Helper::getInstance()->prefixAppContext.$this->arParams['APP']['ID'];
-		}
-		return $result;
+		$id = !empty($this->arParams['APP']['ID']) ? $this->arParams['APP']['ID'] : 0;
+		return Helper::getInstance()->getContextAction($id);
 	}
 
 	public function startAction()
@@ -596,6 +605,44 @@ class CRestConfigurationInstallComponent extends CBitrixComponent implements Con
 		return $result;
 	}
 
+	public function loadManifestAction()
+	{
+		$result = [
+			'next' => false
+		];
+
+		if($this->checkRequiredParams())
+		{
+			$request = Application::getInstance()->getContext()->getRequest();
+			$step = intVal($request->getPost("step"));
+			$next = htmlspecialcharsbx($request->getPost("next"));
+			$type = $request->getPost("type");
+			$items = Manifest::callEventInit(
+				$this->arParams['MANIFEST_CODE'],
+				[
+					'TYPE' => $type != 'import' ? 'EXPORT' : 'IMPORT',
+					'STEP' => $step,
+					'NEXT' => $next,
+					'ITEM_CODE' => $this->arParams['ITEM_CODE']
+				]
+			);
+			foreach ($items as $item)
+			{
+				if ($item['ERROR_MESSAGES'])
+				{
+					$result['errors'][] = $item['ERROR_MESSAGES'];
+				}
+				if ($item['ERROR_ACTION'])
+				{
+					$result['errorsNotice'][] = $item['ERROR_ACTION'];
+				}
+
+				$result['next'] = $item['NEXT'];
+			}
+		}
+		return $result;
+	}
+
 	public function configureActions()
 	{
 		return [
@@ -657,6 +704,15 @@ class CRestConfigurationInstallComponent extends CBitrixComponent implements Con
 				],
 				'postfilters' => [
 
+				]
+			],
+			'loadManifest' => [
+				'prefilters' => [
+					new ActionFilter\Authentication(),
+					new ActionFilter\HttpMethod(
+						[ActionFilter\HttpMethod::METHOD_POST]
+					),
+					new ActionFilter\Csrf()
 				]
 			]
 		];

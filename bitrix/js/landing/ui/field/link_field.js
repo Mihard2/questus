@@ -273,7 +273,7 @@
 			var type = this.hrefInput.getPlaceholderType();
 			var pageType = BX.Landing.Env.getInstance().getType();
 
-			if (type === "landing" && pageType !== "KNOWLEDGE" && pageType !== "GROUP")
+			if (type === "PAGE" && pageType !== "KNOWLEDGE" && pageType !== "GROUP")
 			{
 				var value = this.hrefInput.getValue();
 
@@ -429,11 +429,6 @@
 					{
 						this.targetInput.setValue('_blank');
 					}
-				}
-				else
-				{
-					this.targetInput.enable();
-					this.targetInput.setValue('_self');
 				}
 			}
 		},
@@ -614,27 +609,31 @@
 
 		adjustVideo: function()
 		{
-			var embedURL = "attrs" in this.content && "data-url" in this.content.attrs ? this.content.attrs["data-url"] : "";
-			var ServiceFactory = new BX.Landing.MediaService.Factory();
-			this.mediaService = ServiceFactory.create(
-				this.hrefInput.getValue(),
-				BX.Landing.Utils.getQueryParams(embedURL)
-			);
-
-			if (this.mediaService)
+			var pageType = BX.Landing.Env.getInstance().getType();
+			if (pageType !== 'KNOWLEDGE' && pageType !== 'GROUP')
 			{
-				this.mediaService.url = this.hrefInput.getValue();
+				var embedURL = "attrs" in this.content && "data-url" in this.content.attrs ? this.content.attrs["data-url"] : "";
+				var ServiceFactory = new BX.Landing.MediaService.Factory();
+				this.mediaService = ServiceFactory.create(
+					this.hrefInput.getValue(),
+					BX.Landing.Utils.getQueryParams(embedURL)
+				);
 
-				this.disableMedia();
-
-				if (this.isAvailableMedia())
+				if (this.mediaService)
 				{
-					this.enableMedia();
+					this.mediaService.url = this.hrefInput.getValue();
+
+					this.disableMedia();
+
+					if (this.isAvailableMedia())
+					{
+						this.enableMedia();
+					}
 				}
-			}
-			else
-			{
-				this.disableMedia();
+				else
+				{
+					this.disableMedia();
+				}
 			}
 		},
 

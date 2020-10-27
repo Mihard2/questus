@@ -10,6 +10,9 @@ const hidePseudoContent = Symbol('hidePseudoContent');
 const disableEditorPointerEvents = Symbol('disableEditorPointerEvents');
 const enableEditorPointerEvents = Symbol('enableEditorPointerEvents');
 
+/**
+ * @memberOf BX.Landing.UI.Panel
+ */
 export class StylePanel extends Content
 {
 	shouldAdjustTopPanelControls = false;

@@ -8,6 +8,9 @@ import type {SourceItem} from './internal/prepare-sources';
 import './css/style.css';
 import getFilterStub from './internal/filter-stub';
 
+/**
+ * @memberOf BX.Landing.UI.Field
+ */
 export class SourceField extends BaseField
 {
 	constructor(options)

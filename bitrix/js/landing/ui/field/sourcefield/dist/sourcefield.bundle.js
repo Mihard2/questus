@@ -1,7 +1,7 @@
 this.BX = this.BX || {};
 this.BX.Landing = this.BX.Landing || {};
 this.BX.Landing.UI = this.BX.Landing.UI || {};
-(function (exports,landing_env,landing_ui_field_basefield,landing_loc,main_core) {
+(function (exports, main_core, landing_loc, landing_env, landing_ui_field_basefield) {
 	'use strict';
 
 	function getFilterStub() {
@@ -143,6 +143,10 @@ this.BX.Landing.UI = this.BX.Landing.UI || {};
 
 	  return data;
 	}
+	/**
+	 * @memberOf BX.Landing.UI.Field
+	 */
+
 	var SourceField =
 	/*#__PURE__*/
 	function (_BaseField) {
@@ -494,5 +498,5 @@ this.BX.Landing.UI = this.BX.Landing.UI || {};
 
 	exports.SourceField = SourceField;
 
-}((this.BX.Landing.UI.Field = this.BX.Landing.UI.Field || {}),BX.Landing,BX.Landing.UI.Field,BX.Landing,BX));
+}(this.BX.Landing.UI.Field = this.BX.Landing.UI.Field || {}, BX, BX.Landing, BX.Landing, BX.Landing.UI.Field));
 //# sourceMappingURL=sourcefield.bundle.js.map

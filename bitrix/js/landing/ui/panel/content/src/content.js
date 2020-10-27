@@ -6,6 +6,9 @@ import scrollTo from './internal/scroll-to';
 import './css/style.css';
 import 'landing.utils';
 
+/**
+ * @memberOf BX.Landing.UI.Panel
+ */
 export class Content extends BasePanel
 {
 	static createOverlay(): HTMLDivElement

@@ -1,7 +1,7 @@
 this.BX = this.BX || {};
 this.BX.Landing = this.BX.Landing || {};
 this.BX.Landing.UI = this.BX.Landing.UI || {};
-(function (exports,main_core,landing_env) {
+(function (exports, main_core, landing_env) {
 	'use strict';
 
 	function _templateObject9() {
@@ -93,6 +93,10 @@ this.BX.Landing.UI = this.BX.Landing.UI || {};
 
 	  return data;
 	}
+	/**
+	 * @memberOf BX.Landing.UI.Form
+	 */
+
 	var BaseForm =
 	/*#__PURE__*/
 	function (_Event$EventEmitter) {
@@ -317,5 +321,5 @@ this.BX.Landing.UI = this.BX.Landing.UI || {};
 
 	exports.BaseForm = BaseForm;
 
-}((this.BX.Landing.UI.Form = this.BX.Landing.UI.Form || {}),BX,BX.Landing));
+}(this.BX.Landing.UI.Form = this.BX.Landing.UI.Form || {}, BX, BX.Landing));
 //# sourceMappingURL=baseform.bundle.js.map

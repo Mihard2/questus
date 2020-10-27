@@ -1,5 +1,5 @@
 this.BX = this.BX || {};
-(function (exports,landing_env,landing_loc,landing_ui_panel_content,landing_sliderhacks,main_core) {
+(function (exports, main_core, landing_env, landing_loc, landing_ui_panel_content, landing_sliderhacks) {
 	'use strict';
 
 	/**
@@ -69,6 +69,10 @@ this.BX = this.BX || {};
 	BX.Landing.getMode = function () {
 	  return 'edit';
 	};
+	/**
+	 * @memberOf BX.Landing
+	 */
+
 
 	var Main =
 	/*#__PURE__*/
@@ -491,9 +495,6 @@ this.BX = this.BX || {};
 	            lang: 'ua'
 	          };
 	          break;
-
-	        default:
-	          break;
 	      }
 
 	      return options;
@@ -757,9 +758,11 @@ this.BX = this.BX || {};
 
 	        void new BX.Landing.Block(block, {
 	          id: blockId,
-	          active: true,
 	          requiredUserAction: res.requiredUserAction,
 	          manifest: res.manifest,
+	          access: res.access,
+	          active: main_core.Text.toBoolean(res.active),
+	          anchor: res.anchor,
 	          dynamicParams: res.dynamicParams
 	        });
 	        return self.runBlockScripts(res).then(function () {
@@ -1089,5 +1092,5 @@ this.BX = this.BX || {};
 
 	exports.Main = Main;
 
-}((this.BX.Landing = this.BX.Landing || {}),BX.Landing,BX.Landing,BX.Landing.UI.Panel,BX.Landing,BX));
+}(this.BX.Landing = this.BX.Landing || {}, BX, BX.Landing, BX.Landing, BX.Landing.UI.Panel, BX.Landing));
 //# sourceMappingURL=main.bundle.js.map

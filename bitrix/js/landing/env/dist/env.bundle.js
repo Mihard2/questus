@@ -1,5 +1,5 @@
 this.BX = this.BX || {};
-(function (exports,main_core) {
+(function (exports, main_core) {
 	'use strict';
 
 	var defaultOptions = {
@@ -9,6 +9,10 @@ this.BX = this.BX || {};
 	};
 
 	var optionsKey = Symbol('options');
+	/**
+	 * @memberOf BX.Landing
+	 */
+
 	var Env =
 	/*#__PURE__*/
 	function () {
@@ -44,6 +48,11 @@ this.BX = this.BX || {};
 	      return babelHelpers.objectSpread({}, this[optionsKey]);
 	    }
 	  }, {
+	    key: "setOptions",
+	    value: function setOptions(options) {
+	      this[optionsKey] = main_core.Runtime.merge(this[optionsKey], options);
+	    }
+	  }, {
 	    key: "getType",
 	    value: function getType() {
 	      return this.getOptions().params.type;
@@ -69,5 +78,5 @@ this.BX = this.BX || {};
 
 	exports.Env = Env;
 
-}((this.BX.Landing = this.BX.Landing || {}),BX));
+}(this.BX.Landing = this.BX.Landing || {}, BX));
 //# sourceMappingURL=env.bundle.js.map

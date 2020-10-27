@@ -1,7 +1,10 @@
 this.BX = this.BX || {};
-(function (exports,main_core,landing_env) {
+(function (exports, main_core, landing_env) {
 	'use strict';
 
+	/**
+	 * @memberOf BX.Landing
+	 */
 	var Backend =
 	/*#__PURE__*/
 	function () {
@@ -363,10 +366,11 @@ this.BX = this.BX || {};
 	    value: function getDynamicTemplates() {
 	      var _this8 = this;
 
-	      return this.cache.remember('dynamicTemplates', function () {
+	      var sourceId = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+	      return this.cache.remember("dynamicTemplates:".concat(sourceId), function () {
 	        return _this8.getTemplates({
 	          filter: {
-	            section: 'dynamic'
+	            section: "dynamic".concat(sourceId ? ":".concat(sourceId) : '')
 	          }
 	        });
 	      });
@@ -381,7 +385,8 @@ this.BX = this.BX || {};
 	          _options$code = options.code,
 	          code = _options$code === void 0 ? main_core.Text.getRandom(16) : _options$code,
 	          blockId = options.blockId,
-	          menuCode = options.menuCode;
+	          menuCode = options.menuCode,
+	          folderId = options.folderId;
 	      var fields = {
 	        TITLE: title,
 	        SITE_ID: siteId,
@@ -391,6 +396,10 @@ this.BX = this.BX || {};
 	      if (main_core.Type.isNumber(blockId) && main_core.Type.isString(menuCode)) {
 	        fields.BLOCK_ID = blockId;
 	        fields.MENU_CODE = menuCode;
+	      }
+
+	      if (main_core.Type.isNumber(folderId)) {
+	        fields.FOLDER_ID = folderId;
 	      }
 
 	      return this.action('Landing::add', {
@@ -439,5 +448,5 @@ this.BX = this.BX || {};
 
 	exports.Backend = Backend;
 
-}((this.BX.Landing = this.BX.Landing || {}),BX,BX.Landing));
+}(this.BX.Landing = this.BX.Landing || {}, BX, BX.Landing));
 //# sourceMappingURL=backend.bundle.js.map

@@ -2,6 +2,9 @@ import {Type, Text, Tag, Dom, Event} from 'main.core';
 import './css/style.css';
 import 'landing.utils';
 
+/**
+ * @memberOf BX.Landing.UI.Panel
+ */
 export class BasePanel extends Event.EventEmitter
 {
 	static makeId(): string

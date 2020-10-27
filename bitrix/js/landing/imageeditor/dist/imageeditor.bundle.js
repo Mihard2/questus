@@ -1,5 +1,5 @@
 this.BX = this.BX || {};
-(function (exports,main_imageeditor,main_core) {
+(function (exports, main_imageeditor, main_core) {
 	'use strict';
 
 	var assetPath = '/bitrix/js/main/imageeditor/external/photoeditorsdk/assets';
@@ -165,6 +165,10 @@ this.BX = this.BX || {};
 	  return path.split('\\').pop().split('/').pop();
 	}
 
+	/**
+	 * @memberOf BX.Landing
+	 */
+
 	var ImageEditor =
 	/*#__PURE__*/
 	function () {
@@ -188,5 +192,5 @@ this.BX = this.BX || {};
 
 	exports.ImageEditor = ImageEditor;
 
-}((this.BX.Landing = this.BX.Landing || {}),BX.Main,BX));
+}(this.BX.Landing = this.BX.Landing || {}, BX.Main, BX));
 //# sourceMappingURL=imageeditor.bundle.js.map

@@ -53,6 +53,7 @@ $MESS["TR_INDEX_CSV_DLG_TITLE"] = "Schritt #NUM# von #LEN#: Importierte Nachrich
 $MESS["TR_INDEX_CSV_PROGRESS"] = "Dateien verarbeitet";
 $MESS["TR_INDEX_DLG_CANCELED"] = "Indexierung wurde abgebrochen.";
 $MESS["TR_INDEX_DLG_COMPLETED"] = "Indexierung abgeschlossen.";
+$MESS["TR_INDEX_DLG_PARAM_LANGUAGES"] = "Wählen Sie die Sprachen für Indexierung aus";
 $MESS["TR_INDEX_DLG_SUMMARY"] = "Index der Lokalisierungsdateien wird neu aufgebaut. Dieser Vorgang wird einige Zeit in Anspruch nehmen.";
 $MESS["TR_INDEX_DLG_TITLE"] = "Nachrichtenindex aktualisieren";
 $MESS["TR_LIST_EXPORT_CSV"] = "Nach CSV exportieren";

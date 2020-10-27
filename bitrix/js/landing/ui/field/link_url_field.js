@@ -559,14 +559,21 @@
 					.then(function(landing) {
 						if (!landing)
 						{
-							this.onNewPageHandler();
+							if (BX.Text.toNumber(pageId) === 0)
+							{
+								this.onNewPageHandler();
 
-							return {
-								type: "landing",
-								id: 0,
-								name: BX.Landing.Loc.getMessage('LANDING_LINK_PLACEHOLDER_NEW_PAGE'),
-								siteId: BX.Landing.Main.getInstance().options.site_id
-							};
+								return {
+									type: "landing",
+									id: 0,
+									name: BX.Landing.Loc.getMessage('LANDING_LINK_PLACEHOLDER_NEW_PAGE'),
+									siteId: BX.Landing.Main.getInstance().options.site_id
+								};
+							}
+							else
+							{
+								return null;
+							}
 						}
 
 						return {
@@ -918,7 +925,7 @@
 		 */
 		setValue: function(value, preventEvent)
 		{
-			if (typeof value === "object")
+			if (typeof value === "object" && !BX.Type.isNil(value))
 			{
 				this.disableEdit();
 				this.setEditPrevented(true);
@@ -941,7 +948,7 @@
 					this.onInputHandler(this.input.innerText);
 				}
 			}
-			else
+			else if (!BX.Type.isNil(value))
 			{
 				this.setEditPrevented(false);
 				this.input.innerText = value.toString().trim();

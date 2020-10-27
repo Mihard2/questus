@@ -477,7 +477,7 @@ if (!$isAjax)
 							'name' => 'convertEncoding',
 							'type' => 'checkbox',
 							'title' => Loc::getMessage('TR_EXPORT_CSV_PARAM_CONVERT_UTF8'),
-							'value' => (Main\Localization\Translation::useTranslationRepository() ? 'Y' : 'N'),
+							'value' => ((Main\Localization\Translation::useTranslationRepository() || Translate\Config::isUtfMode()) ? 'Y' : 'N'),
 						],
 						'languages' => [
 							'name' => 'languages',

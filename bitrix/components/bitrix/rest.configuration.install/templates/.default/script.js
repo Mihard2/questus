@@ -294,25 +294,27 @@
 
 			this.setDescription('START');
 			BX.style(BX.findChildByClassName( BX(this.id),'start_btn_block'), 'display', 'none');
-			var self = this;
 			this.sendAjax(
 				'start',
 				{},
-				function (response)
-				{
-					if(response.data.section.length > 0)
+				BX.delegate(
+					function (response)
 					{
-						self.section = response.data.section;
-						if(!!response.data.next && response.data.next === 'save')
+						if(response.data.section.length > 0)
 						{
-							self.save(0, 0);
+							this.section = response.data.section;
+							if(!!response.data.next && response.data.next === 'save')
+							{
+								this.loadManifest(0, '', 'export');
+							}
+							else
+							{
+								this.loadManifest(0, '', 'import');
+							}
 						}
-						else
-						{
-							self.clear(0, 0, 0);
-						}
-					}
-				}
+					},
+					this
+				)
 			);
 		},
 
@@ -340,11 +342,51 @@
 
 							if(section >= this.section.length)
 							{
-								this.clear(0, 0, 0);
+								this.loadManifest(0, '', 'import');
 							}
 							else
 							{
 								this.save(section, step);
+							}
+						}
+						else
+						{
+							this.showFatalError();
+						}
+					},
+					this
+				)
+			);
+		},
+
+		loadManifest: function (step, next, type)
+		{
+			this.sendAjax(
+				'loadManifest',
+				{
+					step: step,
+					next: next
+				},
+				BX.delegate(
+					function (response)
+					{
+						if(!!response.data)
+						{
+							step++;
+							if(response.data.next === false)
+							{
+								if(type === 'export')
+								{
+									this.save(0, 0);
+								}
+								else
+								{
+									this.clear(0, 0, 0);
+								}
+							}
+							else
+							{
+								this.loadManifest(step, response.data.next, type);
 							}
 						}
 						else
@@ -450,7 +492,6 @@
 		sendAjax: function (action, data, callback)
 		{
 			data.clear = this.clearAll;
-			var self = this;
 			BX.ajax.runComponentAction(
 				'bitrix:rest.configuration.install',
 				action,
@@ -460,23 +501,26 @@
 					data: data
 				}
 			).then(
-				function(response)
-				{
-					callback(response);
-					if(!!response.data.errors)
+				BX.delegate(
+					function(response)
 					{
-						self.addErrors(response.data.errors);
-					}
-					if(!!response.data['errorsNotice'])
-					{
-						console.log({
-							errors: response.data['errorsNotice'],
-							action: action,
-							data: data,
-							response: response
-						});
-					}
-				}
+						callback(response);
+						if(!!response.data.errors)
+						{
+							this.addErrors(response.data.errors);
+						}
+						if(!!response.data['errorsNotice'])
+						{
+							console.log({
+								errors: response.data['errorsNotice'],
+								action: action,
+								data: data,
+								response: response
+							});
+						}
+					},
+					this
+				)
 			).catch(
 				function(response)
 				{

@@ -1,7 +1,11 @@
 this.BX = this.BX || {};
 this.BX.Landing = this.BX.Landing || {};
-(function (exports,main_core,landing_ui_form_menuitemform) {
+(function (exports, main_core, landing_ui_form_menuitemform) {
 	'use strict';
+
+	/**
+	 * @memberOf BX.Landing.Menu
+	 */
 
 	var MenuItem =
 	/*#__PURE__*/
@@ -43,5 +47,5 @@ this.BX.Landing = this.BX.Landing || {};
 
 	exports.MenuItem = MenuItem;
 
-}((this.BX.Landing.Menu = this.BX.Landing.Menu || {}),BX,BX.Landing.UI.Form));
+}(this.BX.Landing.Menu = this.BX.Landing.Menu || {}, BX, BX.Landing.UI.Form));
 //# sourceMappingURL=menuitem.bundle.js.map

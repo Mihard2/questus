@@ -1,13 +1,17 @@
 this.BX = this.BX || {};
 this.BX.Landing = this.BX.Landing || {};
 this.BX.Landing.UI = this.BX.Landing.UI || {};
-(function (exports,main_core,main_loader,landing_ui_panel_content,landing_loc,landing_pageobject) {
+(function (exports, main_core, main_loader, landing_ui_panel_content, landing_loc, landing_pageobject) {
 	'use strict';
 
 	var showPseudoContent = Symbol('showPseudoContent');
 	var hidePseudoContent = Symbol('hidePseudoContent');
 	var disableEditorPointerEvents = Symbol('disableEditorPointerEvents');
 	var enableEditorPointerEvents = Symbol('enableEditorPointerEvents');
+	/**
+	 * @memberOf BX.Landing.UI.Panel
+	 */
+
 	var StylePanel =
 	/*#__PURE__*/
 	function (_Content) {
@@ -172,5 +176,5 @@ this.BX.Landing.UI = this.BX.Landing.UI || {};
 
 	exports.StylePanel = StylePanel;
 
-}((this.BX.Landing.UI.Panel = this.BX.Landing.UI.Panel || {}),BX,BX,BX.Landing.UI.Panel,BX.Landing,BX.Landing));
+}(this.BX.Landing.UI.Panel = this.BX.Landing.UI.Panel || {}, BX, BX, BX.Landing.UI.Panel, BX.Landing, BX.Landing));
 //# sourceMappingURL=stylepanel.bundle.js.map

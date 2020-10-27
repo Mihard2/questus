@@ -32,6 +32,7 @@ $MESS["MARKETPLACE_APP_VERSION_MESS"] = "Версія";
 $MESS["MARKETPLACE_CONFIGURATION_INSTALL_SETTING_BTN"] = "Налаштувати";
 $MESS["MARKETPLACE_HIDDEN_BUY"] = "Містить вбудовані покупки";
 $MESS["MARKETPLACE_LICENSE_ERROR"] = "Для встановлення застосунку необхідно підтвердити свою згоду з ліцензійною угодою та політикою конфіденційності";
+$MESS["MARKETPLACE_LICENSE_TOS_ERROR"] = "Для установки застосунку необхідно підтвердити свою згоду з умовами використання Маркетплейс Бітрікс24";
 $MESS["MARKETPLACE_MORE_BUTTON"] = "Ще";
 $MESS["PAYMENT_MESSAGE_D_N_Y"] = "Функціональність програми обмежена. Зверніться до адміністратора, щоб встановити повну версію.";
 $MESS["PAYMENT_MESSAGE_D_N_Y_A"] = "Функціональність програми обмежена. Купуйте повну версію.";

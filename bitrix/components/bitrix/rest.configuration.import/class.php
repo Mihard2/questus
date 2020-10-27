@@ -12,6 +12,7 @@ use Bitrix\Main\Error;
 use Bitrix\Main\Web\HttpClient;
 use Bitrix\Main\Web\Json;
 use Bitrix\Rest\AppTable;
+use Bitrix\Rest\Configuration\Manifest;
 use Bitrix\Rest\Configuration\Helper;
 use Bitrix\Rest\Marketplace\Client;
 use Bitrix\Rest\AppLogTable;
@@ -49,6 +50,27 @@ class CRestConfigurationImportComponent extends CBitrixComponent
 
 	protected function prepareResult()
 	{
+		$result = [
+			'IMPORT_ACCESS' => false,
+			'IMPORT_FOLDER_FILES' => '',
+			'IMPORT_MANIFEST_FILE' => [],
+			'MANIFEST' => []
+		];
+
+		if(!empty($this->arParams['MANIFEST_CODE']))
+		{
+			$result['MANIFEST'] = Manifest::get($this->arParams['MANIFEST_CODE']);
+			if(is_null($result['MANIFEST']))
+			{
+				$this->errors->setError(new Error(Loc::getMessage('REST_CONFIGURATION_IMPORT_MANIFEST_NOT_FOUND')));
+				return false;
+			}
+			else
+			{
+				$result['MANIFEST_CODE'] = $result['MANIFEST']['CODE'];
+			}
+		}
+
 		if(isset($this->arParams['SET_TITLE']) && $this->arParams['SET_TITLE'] == 'Y')
 		{
 			global $APPLICATION;
@@ -58,15 +80,17 @@ class CRestConfigurationImportComponent extends CBitrixComponent
 			}
 			else
 			{
-				$APPLICATION->SetTitle(Loc::getMessage('REST_CONFIGURATION_IMPORT_TITLE'));
+				if(!empty($result['MANIFEST']['IMPORT_TITLE_PAGE']))
+				{
+					$title = $result['MANIFEST']['IMPORT_TITLE_PAGE'];
+				}
+				else
+				{
+					$title = Loc::getMessage('REST_CONFIGURATION_IMPORT_TITLE');
+				}
+				$APPLICATION->SetTitle($title);
 			}
 		}
-
-		$result = [
-			'IMPORT_ACCESS' => false,
-			'IMPORT_FOLDER_FILES' => '',
-			'IMPORT_MANIFEST_FILE' => []
-		];
 
 		if($this->arParams['MODE'] == 'ROLLBACK')
 		{
@@ -185,7 +209,7 @@ class CRestConfigurationImportComponent extends CBitrixComponent
 				}
 				else
 				{
-					$result['IMPORT_ROLLBACK_DISK_FOLDER_ID'] =$item['CODE'];
+					$result['IMPORT_ROLLBACK_DISK_FOLDER_ID'] = $item['CODE'];
 					$result['IMPORT_ROLLBACK_STORAGE_PARAMS'] = Helper::getInstance()->getStorageBackupParam();
 				}
 			}
@@ -291,10 +315,27 @@ class CRestConfigurationImportComponent extends CBitrixComponent
 				try
 				{
 					$result['IMPORT_MANIFEST_FILE'] = Json::decode($data);
+					if(!empty($result['MANIFEST']) && !empty($result['IMPORT_MANIFEST_FILE']))
+					{
+						if($result['IMPORT_MANIFEST_FILE']['CODE'] != $result['MANIFEST']['CODE'])
+						{
+							$this->errors->setError(new Error(Loc::getMessage('REST_CONFIGURATION_IMPORT_MANIFEST_NOT_CURRENT')));
+							return false;
+						}
+						else
+						{
+							$result['MANIFEST_CODE'] = htmlspecialcharsbx($result['IMPORT_MANIFEST_FILE']['CODE']);
+						}
+					}
 				}
 				catch(ArgumentException $e)
 				{
 				}
+			}
+			else
+			{
+				$this->errors->setError(new Error(Loc::getMessage('REST_CONFIGURATION_IMPORT_MANIFEST_NOT_CURRENT')));
+				return false;
 			}
 		}
 

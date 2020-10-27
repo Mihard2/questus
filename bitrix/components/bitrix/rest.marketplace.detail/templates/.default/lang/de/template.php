@@ -32,6 +32,7 @@ $MESS["MARKETPLACE_APP_VERSION_MESS"] = "Version";
 $MESS["MARKETPLACE_CONFIGURATION_INSTALL_SETTING_BTN"] = "Konfigurieren";
 $MESS["MARKETPLACE_HIDDEN_BUY"] = "Enthält In-App-Käufe";
 $MESS["MARKETPLACE_LICENSE_ERROR"] = "Sie müssen die Datenschutzerklärung lesen und akzeptieren, um die Anwendung installieren zu können";
+$MESS["MARKETPLACE_LICENSE_TOS_ERROR"] = "Sie müssen den Bitrix24 Terms of Service zustimmen, um die Anwendung zu installieren.";
 $MESS["MARKETPLACE_MORE_BUTTON"] = "Mehr...";
 $MESS["PAYMENT_MESSAGE_D_N_Y"] = "Einige Funktionen der Anwendung sind nicht verfügbar. Wenden Sie sich bitte an Ihren Administrator, um die volle Version zu installieren.";
 $MESS["PAYMENT_MESSAGE_D_N_Y_A"] = "Einige Funktionen der Anwendung sind nicht verfügbar. Kaufen Sie bitte die volle Version.";

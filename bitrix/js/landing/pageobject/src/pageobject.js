@@ -1,5 +1,8 @@
 import {Type, Cache} from 'main.core';
 
+/**
+ * @memberOf BX.Landing
+ */
 export class PageObject
 {
 	static cache = new Cache.MemoryCache();

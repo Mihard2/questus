@@ -18,6 +18,9 @@ const LANG_UA = 'ua';
 
 BX.Landing.getMode = () => 'edit';
 
+/**
+ * @memberOf BX.Landing
+ */
 export class Main extends Event.EventEmitter
 {
 	static TYPE_PAGE = 'PAGE';
@@ -740,9 +743,11 @@ export class Main extends Event.EventEmitter
 				// Init block entity
 				void new BX.Landing.Block(block, {
 					id: blockId,
-					active: true,
 					requiredUserAction: res.requiredUserAction,
 					manifest: res.manifest,
+					access: res.access,
+					active: Text.toBoolean(res.active),
+					anchor: res.anchor,
 					dynamicParams: res.dynamicParams,
 				});
 

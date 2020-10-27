@@ -357,6 +357,16 @@ class CRestMarketplaceCategoryComponent extends \CBitrixComponent  implements \B
 		{
 			$this->getItemsByTag($this->arParams["TAG"]);
 		}
+		elseif ($this->request->get("tag"))
+		{
+			$tag = $this->request->get("tag");
+			if(!is_array($tag))
+			{
+				$tag = [ $tag ];
+			}
+			$this->arParams["TAG"] = $tag;
+			$this->getItemsByTag($this->arParams["TAG"]);
+		}
 		else
 		{
 			unset($this->arParams["TAG"]);

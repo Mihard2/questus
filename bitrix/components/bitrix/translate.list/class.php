@@ -633,13 +633,17 @@ class TranslateListComponent extends Translate\ComponentBase
 	/**
 	 * @return array
 	 */
-	private function getOrder($defaultSort = array('TITLE' => 'asc'))
+	private function getOrder($defaultSort = array('TITLE' => 'asc'), $aliases = array())
 	{
 		if ($this->gridOptions instanceof Main\Grid\Options)
 		{
 			$sorting = $this->gridOptions->getSorting(array('sort' => $defaultSort));
 
 			$by = key($sorting['sort']);
+			if (isset($aliases[$by]))
+			{
+				$by = $aliases[$by];
+			}
 			$order = strtolower(current($sorting['sort'])) === 'asc' ? 'asc' : 'desc';
 
 			$list = array();
@@ -650,7 +654,14 @@ class TranslateListComponent extends Translate\ComponentBase
 					continue;
 				}
 
-				$list[] = $column['sort'];
+				if (isset($aliases[$column['sort']]))
+				{
+					$list[] = $aliases[$column['sort']];
+				}
+				else
+				{
+					$list[] = $column['sort'];
+				}
 			}
 
 			if (in_array($by, $list))
@@ -1120,7 +1131,7 @@ class TranslateListComponent extends Translate\ComponentBase
 			$cursor = Index\PhraseIndexSearch::getList([
 				'select' => $select,
 				'filter' => $this->getFilter(),
-				'order' => $this->getOrder(),
+				'order' => $this->getOrder(['TITLE' => 'asc'], ['PATH' => 'FILE_PATH']),
 				'offset' => $this->pageNavigation->getOffset(),
 				'limit' => $this->pageNavigation->getLimit(),
 				'count_total' => true,
@@ -1246,10 +1257,11 @@ class TranslateListComponent extends Translate\ComponentBase
 		{
 			$viewMode = $this->request->get('viewMode');
 		}
-		elseif (!empty($_SESSION['TRANSLATE_VIEW_MODE']))
+		else
 		{
-			$viewMode = $_SESSION['TRANSLATE_VIEW_MODE'];
+			$viewMode = \CUserOptions::getOption('translate', 'list_mode', '');
 		}
+
 		if (!empty($viewMode))
 		{
 			$viewMode = explode(',', $viewMode);
@@ -1262,7 +1274,7 @@ class TranslateListComponent extends Translate\ComponentBase
 				self::VIEW_MODE_SHOW_DIFF_LINKS,
 			));
 
-			$_SESSION['TRANSLATE_VIEW_MODE'] = implode(',', $this->viewMode);
+			\CUserOptions::setOption('translate', 'list_mode', implode(',', $this->viewMode));
 		}
 		if (empty($this->viewMode))
 		{

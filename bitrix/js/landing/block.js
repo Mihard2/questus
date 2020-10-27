@@ -181,6 +181,14 @@
 		return !!selector && selector.includes("@");
 	}
 
+	var onBlockInitDebounced = BX.debounce(function() {
+		BX.Landing.PageObject.getBlocks().forEach(function(block) {
+			block.adjustSortButtonsState();
+		});
+	}, 400);
+
+	onCustomEvent("BX.Landing.Block:init", onBlockInitDebounced);
+
 	/**
 	 * Implements interface for works with landing block
 	 *
@@ -237,7 +245,6 @@
 		this.onMouseMove = this.onMouseMove.bind(this);
 		this.onStorage = this.onStorage.bind(this);
 		this.onBlockRemove = this.onBlockRemove.bind(this);
-		this.onBlockInit = this.onBlockInit.bind(this);
 
 		// Make manifest read only
 		deepFreeze(this.manifest);
@@ -272,7 +279,6 @@
 		onCustomEvent("BX.Landing.Editor:enable", this.onEditorEnabled);
 		onCustomEvent("BX.Landing.Editor:disable", this.onEditorDisabled);
 		onCustomEvent("BX.Landing.Block:afterRemove", this.onBlockRemove);
-		onCustomEvent("BX.Landing.Block:init", this.onBlockInit);
 
 		bind(this.node, "mousemove", this.onMouseMove);
 		bind(this.node, "keydown", this.adjustPanelsPosition);
@@ -706,7 +712,7 @@
 						(function() {
 							if (isPlainObject(this.manifest.nodes) || isPlainObject(this.manifest.attrs))
 							{
-								return new BX.PopupMenuItem({
+								return new BX.Main.MenuItem({
 									id: "content",
 									text: BX.Landing.Loc.getMessage("ACTION_BUTTON_CONTENT"),
 									onclick: function() {
@@ -719,7 +725,7 @@
 						(function() {
 							if (isPlainObject(this.manifest.style))
 							{
-								return new BX.PopupMenuItem({
+								return new BX.Main.MenuItem({
 									id: "style",
 									text: BX.Landing.Loc.getMessage("ACTION_BUTTON_STYLE"),
 									onclick: function() {
@@ -730,7 +736,7 @@
 								});
 							}
 						}.bind(this))(),
-						new BX.PopupMenuItem({
+						new BX.Main.MenuItem({
 							delimiter: true,
 						}),
 						(function() {
@@ -782,11 +788,11 @@
 										}
 									}
 
-									return new BX.PopupMenuItem({
+									return new BX.Main.MenuItem({
 										id: "actions",
 										text: BX.Landing.Loc.getMessage("ACTION_BUTTON_CONTENT_MORE"),
 										items: placementsList.map(function(placement) {
-											return new BX.PopupMenuItem({
+											return new BX.Main.MenuItem({
 												id: "placement_" + placement.id + "_" + random(),
 												text: encodeDataValue(placement.title),
 												onclick: this.onPlacementClick.bind(this, placement)
@@ -800,7 +806,7 @@
 							}
 						}.bind(this))(),
 
-						new BX.PopupMenuItem({
+						new BX.Main.MenuItem({
 							id: "down",
 							text: BX.Landing.Loc.getMessage("LANDING_TITLE_OF_BLOCK_ACTION_SORT_DOWN"),
 							onclick: function() {
@@ -808,7 +814,7 @@
 								this.sidebarActionsMenu.close();
 							}.bind(this)
 						}),
-						new BX.PopupMenuItem({
+						new BX.Main.MenuItem({
 							id: "up",
 							text: BX.Landing.Loc.getMessage("LANDING_TITLE_OF_BLOCK_ACTION_SORT_UP"),
 							onclick: function() {
@@ -816,10 +822,10 @@
 								this.sidebarActionsMenu.close();
 							}.bind(this)
 						}),
-						new BX.PopupMenuItem({
+						new BX.Main.MenuItem({
 							delimiter: true,
 						}),
-						new BX.PopupMenuItem({
+						new BX.Main.MenuItem({
 							id: "show_hide",
 							text: BX.Landing.Loc.getMessage(this.isEnabled() ? "ACTION_BUTTON_HIDE" : "ACTION_BUTTON_SHOW"),
 							className: this.access < ACCESS_W ? "landing-ui-disabled" : "",
@@ -828,10 +834,10 @@
 								this.sidebarActionsMenu.close();
 							}.bind(this)
 						}),
-						new BX.PopupMenuItem({
+						new BX.Main.MenuItem({
 							delimiter: true,
 						}),
-						new BX.PopupMenuItem({
+						new BX.Main.MenuItem({
 							text: BX.Landing.Loc.getMessage("ACTION_BUTTON_ACTIONS_CUT"),
 							className: this.access < ACCESS_X ? "landing-ui-disabled" : "",
 							onclick: function() {
@@ -839,14 +845,14 @@
 								this.sidebarActionsMenu.close();
 							}.bind(this)
 						}),
-						new BX.PopupMenuItem({
+						new BX.Main.MenuItem({
 							text: BX.Landing.Loc.getMessage("ACTION_BUTTON_ACTIONS_COPY"),
 							onclick: function() {
 								BX.Landing.Main.getInstance().onCopyBlock.bind(BX.Landing.Main.getInstance(), this)();
 								this.sidebarActionsMenu.close();
 							}.bind(this)
 						}),
-						new BX.PopupMenuItem({
+						new BX.Main.MenuItem({
 							id: "block_paste",
 							text: BX.Landing.Loc.getMessage("ACTION_BUTTON_ACTIONS_PASTE"),
 							title: window.localStorage.landingBlockName,
@@ -856,10 +862,10 @@
 								this.sidebarActionsMenu.close();
 							}.bind(this)
 						}),
-						new BX.PopupMenuItem({
+						new BX.Main.MenuItem({
 							delimiter: true,
 						}),
-						new BX.PopupMenuItem({
+						new BX.Main.MenuItem({
 							text: BX.Landing.Loc.getMessage("LANDING_BLOCKS_ACTIONS_FEEDBACK_BUTTON"),
 							onclick: function() {
 								BX.Landing.Main.getInstance().showSliderFeedbackForm({
@@ -872,10 +878,10 @@
 								this.sidebarActionsMenu.close();
 							}.bind(this)
 						}),
-						new BX.PopupMenuItem({
+						new BX.Main.MenuItem({
 							delimiter: true,
 						}),
-						new BX.PopupMenuItem({
+						new BX.Main.MenuItem({
 							id: "remove",
 							text: BX.Landing.Loc.getMessage("LANDING_TITLE_OF_BLOCK_ACTION_REMOVE"),
 							onclick: function() {
@@ -1159,7 +1165,7 @@
 				var blockActionMenuId = join("block_", this.id, "content_placement_actions_", random());
 
 				var menuItems = placements.map(function(placement) {
-					return new BX.PopupMenuItem({
+					return new BX.Main.MenuItem({
 						id: "placement_" + placement.id + "_" + random(),
 						text: encodeDataValue(placement.title),
 						onclick: this.onPlacementClick.bind(this, placement)
@@ -1366,7 +1372,7 @@
 						}.bind(this)
 					},
 					items: [
-						new BX.PopupMenuItem({
+						new BX.Main.MenuItem({
 							id: "show_hide",
 							text: BX.Landing.Loc.getMessage(this.isEnabled() ? "ACTION_BUTTON_HIDE" : "ACTION_BUTTON_SHOW"),
 							className: this.access < ACCESS_W ? "landing-ui-disabled" : "",
@@ -1375,7 +1381,7 @@
 								this.blockActionsMenu.close();
 							}.bind(this)
 						}),
-						new BX.PopupMenuItem({
+						new BX.Main.MenuItem({
 							text: BX.Landing.Loc.getMessage("ACTION_BUTTON_ACTIONS_CUT"),
 							className: this.access < ACCESS_X ? "landing-ui-disabled" : "",
 							onclick: function() {
@@ -1383,14 +1389,14 @@
 								this.blockActionsMenu.close();
 							}.bind(this)
 						}),
-						new BX.PopupMenuItem({
+						new BX.Main.MenuItem({
 							text: BX.Landing.Loc.getMessage("ACTION_BUTTON_ACTIONS_COPY"),
 							onclick: function() {
 								landing.onCopyBlock.bind(landing, this)();
 								this.blockActionsMenu.close();
 							}.bind(this)
 						}),
-						new BX.PopupMenuItem({
+						new BX.Main.MenuItem({
 							id: "block_paste",
 							text: BX.Landing.Loc.getMessage("ACTION_BUTTON_ACTIONS_PASTE"),
 							title: window.localStorage.landingBlockName,
@@ -1400,7 +1406,7 @@
 								this.blockActionsMenu.close();
 							}.bind(this)
 						}),
-						new BX.PopupMenuItem({
+						new BX.Main.MenuItem({
 							text: BX.Landing.Loc.getMessage("LANDING_BLOCKS_ACTIONS_FEEDBACK_BUTTON"),
 							onclick: function() {
 								BX.Landing.Main.getInstance().showSliderFeedbackForm({
@@ -2892,7 +2898,7 @@
 			{
 				var value = data(element, fieldOptions.attribute);
 
-				if (!isString(value))
+				if (BX.Type.isNil(value))
 				{
 					value = attr(element, fieldOptions.attribute);
 				}
@@ -3077,12 +3083,12 @@
 
 			if (this.blockActionsMenu)
 			{
-				BX.PopupMenu.destroy(this.blockActionsMenu.id);
+				BX.Main.MenuManager.destroy(this.blockActionsMenu.id);
 			}
 
 			if (this.sidebarActionsMenu)
 			{
-				BX.PopupMenu.destroy(this.sidebarActionsMenu.id);
+				BX.Main.MenuManager.destroy(this.sidebarActionsMenu.id);
 			}
 
 			window.localStorage.removeItem("landingBlockId");
@@ -4317,68 +4323,67 @@
 			}
 
 			var forms = new FormCollection();
-			var editAllowed = !(this.access < ACCESS_W || (
-				isEmpty(this.manifest.nodes)
-				&& isEmpty(this.manifest.attrs)
-				&& isEmpty(this.manifest.menu)
-			));
 
-			if (editAllowed)
+			if (this.access >= ACCESS_W)
 			{
-				// Block form
-				var blockEditForm = this.getBlockEditForm(preparedOptions);
+				var isEditable = !(
+					isEmpty(this.manifest.nodes)
+					&& isEmpty(this.manifest.attrs)
+					&& isEmpty(this.manifest.menu)
+				);
 
-				if (blockEditForm.fields.length > 0)
+				if (isEditable)
 				{
-					forms.add(blockEditForm);
-				}
-
-				var menuEditForms = this.getMenuEditForms(preparedOptions);
-
-				if (menuEditForms.length > 0)
-				{
-					menuEditForms.forEach(function(menuForm) {
-						forms.add(menuForm);
-					});
-				}
-
-				if (!preparedOptions.nodesOnly)
-				{
-					// Attrs forms
-					var attrsEditForm = this.getAttrsEditForm();
-
-					if (attrsEditForm.fields.length > 0)
+					// Block form
+					var blockEditForm = this.getBlockEditForm(preparedOptions);
+					if (blockEditForm.fields.length > 0)
 					{
-						forms.add(attrsEditForm);
+						forms.add(blockEditForm);
 					}
 
-					// Attrs additional forms
-					var attrsAdditionalEditForms = this.getAttrsAdditionalEditForms();
-
-					if (attrsAdditionalEditForms.length > 0)
+					var menuEditForms = this.getMenuEditForms(preparedOptions);
+					if (menuEditForms.length > 0)
 					{
-						attrsAdditionalEditForms.forEach(function(form) {
-							forms.add(form);
+						menuEditForms.forEach(function(menuForm) {
+							forms.add(menuForm);
 						});
 					}
 
-					// Cards forms
-					var cardsEditForms = this.getCardsEditForms(preparedOptions.skipCardsState);
-
-					if (cardsEditForms.length > 0)
+					if (!preparedOptions.nodesOnly)
 					{
-						cardsEditForms.forEach(function(form) {
-							forms.add(form);
-						});
-					}
+						// Attrs forms
+						var attrsEditForm = this.getAttrsEditForm();
 
-					// Block settings
-					var blockSettingsForm = this.getBlockSettingsForm();
+						if (attrsEditForm.fields.length > 0)
+						{
+							forms.add(attrsEditForm);
+						}
 
-					if (blockSettingsForm.fields.length > 0)
-					{
-						forms.push(blockSettingsForm);
+						// Attrs additional forms
+						var attrsAdditionalEditForms = this.getAttrsAdditionalEditForms();
+						if (attrsAdditionalEditForms.length > 0)
+						{
+							attrsAdditionalEditForms.forEach(function(form) {
+								forms.add(form);
+							});
+						}
+
+						// Cards forms
+						var cardsEditForms = this.getCardsEditForms(preparedOptions.skipCardsState);
+						if (cardsEditForms.length > 0)
+						{
+							cardsEditForms.forEach(function(form) {
+								forms.add(form);
+							});
+						}
 					}
+				}
+
+				// Block settings
+				var blockSettingsForm = this.getBlockSettingsForm();
+				if (blockSettingsForm.fields.length > 0)
+				{
+					forms.push(blockSettingsForm);
 				}
 			}
 
@@ -4398,15 +4403,6 @@
 		 * Handles block remove event
 		 */
 		onBlockRemove: function()
-		{
-			this.adjustSortButtonsState();
-		},
-
-
-		/**
-		 * Handles block init event
-		 */
-		onBlockInit: function()
 		{
 			this.adjustSortButtonsState();
 		},
@@ -4587,6 +4583,19 @@
 						id: "references",
 						items: dynamicFields
 					});
+
+					var detailPageField = dynamicForm.detailPageGroup.fields[0];
+					if (!BX.Type.isStringFilled(detailPageField.getValue().href))
+					{
+						var content = {text: '', href: ''};
+						if (source && source.default && source.default.detail)
+						{
+							content.href = source.default.detail;
+						}
+
+						detailPageField.setValue(content);
+						detailPageField.hrefInput.makeDisplayedHrefValue();
+					}
 
 					var oldCard = dynamicForm.cards.get('references');
 					dynamicForm.replaceCard(oldCard, dynamicGroup);

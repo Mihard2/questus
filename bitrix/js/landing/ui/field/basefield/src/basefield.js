@@ -1,6 +1,9 @@
 import {Type, Event, Tag, Text, Dom, Runtime} from 'main.core';
 import './css/style.css';
 
+/**
+ * @memberOf BX.Landing.UI.Field
+ */
 export class BaseField extends Event.EventEmitter
 {
 	static createLayout(): HTMLDivElement

@@ -422,14 +422,14 @@ class TranslateEditComponent extends Translate\ComponentBase
 		{
 			$viewMode = $this->request->get('viewMode');
 		}
-		elseif (!empty($_SESSION['TRANSLATE_EDIT_MODE']))
+		else
 		{
-			$viewMode = $_SESSION['TRANSLATE_EDIT_MODE'];
+			$viewMode = \CUserOptions::getOption('translate', 'edit_mode', '');
 		}
 		if (!empty($viewMode) && in_array($viewMode, array(self::VIEW_MODE_UNTRANSLATED, self::VIEW_MODE_SHOW_ALL)))
 		{
 			$this->viewMode = $viewMode;
-			$_SESSION['TRANSLATE_EDIT_MODE'] = $this->viewMode;
+			\CUserOptions::setOption('translate', 'edit_mode', $this->viewMode);
 		}
 		if (empty($this->viewMode))
 		{

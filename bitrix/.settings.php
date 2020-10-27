@@ -33,8 +33,13 @@ return array (
       'ignore_silence' => false,
       'assertion_throws_exception' => true,
       'assertion_error_type' => 256,
-      'log' => NULL,
-    ),
+      'log' =>  array (
+  	 'settings' => array (
+   	   'file' => 'bitrix/modules/error.log',
+   	   'log_size' => 1000000,
+   	),
+    	),
+),
     'readonly' => false,
   ),
   'connections' => 

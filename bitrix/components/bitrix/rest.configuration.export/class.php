@@ -13,6 +13,7 @@ use Bitrix\Main\Engine\ActionFilter;
 use Bitrix\Main\Localization\Loc;
 use Bitrix\Main\Web\Json;
 use Bitrix\Rest\Configuration\Controller;
+use Bitrix\Rest\Configuration\Helper;
 use Bitrix\Rest\Configuration\Manifest;
 
 class CRestConfigurationExportComponent extends CBitrixComponent implements Controllerable
@@ -219,6 +220,7 @@ class CRestConfigurationExportComponent extends CBitrixComponent implements Cont
 				];
 				$this->saveContent(false, 'manifest', $manifest);
 				$result['result'] = true;
+				Helper::getInstance()->deleteSetting();
 			}
 		}
 
@@ -233,8 +235,8 @@ class CRestConfigurationExportComponent extends CBitrixComponent implements Cont
 		{
 			$request = Application::getInstance()->getContext()->getRequest();
 			$code = preg_replace('/[^a-zA-Z0-9_]/', '', $request->getPost("code"));
-			$step = htmlspecialcharsbx($request->getPost("step"));
-			$next = intVal($request->getPost("next"));
+			$step = intVal($request->getPost("step"));
+			$next = htmlspecialcharsbx($request->getPost("next"));
 			if($code)
 			{
 				$items = Controller::callEventExport(
@@ -246,7 +248,7 @@ class CRestConfigurationExportComponent extends CBitrixComponent implements Cont
 				);
 				foreach ($items as $item)
 				{
-					if($item['FILE_NAME'] != '')
+					if(!is_array($item['FILE_NAME']) && strlen($item['FILE_NAME']) > 0)
 					{
 						$this->saveContent($code, $item['FILE_NAME'], $item['CONTENT']);
 					}
@@ -269,6 +271,43 @@ class CRestConfigurationExportComponent extends CBitrixComponent implements Cont
 			$result['next'] = false;
 		}
 
+		return $result;
+	}
+
+	public function loadManifestAction()
+	{
+		$result = [
+			'next' => false
+		];
+
+		if($this->checkRequiredParams())
+		{
+			$request = Application::getInstance()->getContext()->getRequest();
+			$step = intVal($request->getPost("step"));
+			$next = htmlspecialcharsbx($request->getPost("next"));
+			$items = Manifest::callEventInit(
+				$this->arParams['MANIFEST_CODE'],
+				[
+					'TYPE' => 'EXPORT',
+					'STEP' => $step,
+					'NEXT' => $next,
+					'ITEM_CODE' => $this->arParams['ITEM_CODE']
+				]
+			);
+			foreach ($items as $item)
+			{
+				if ($item['ERROR_MESSAGES'])
+				{
+					$result['errors'][] = $item['ERROR_MESSAGES'];
+				}
+				if ($item['ERROR_ACTION'])
+				{
+					$result['errorsNotice'][] = $item['ERROR_ACTION'];
+				}
+
+				$result['next'] = $item['NEXT'];
+			}
+		}
 		return $result;
 	}
 
@@ -309,6 +348,15 @@ class CRestConfigurationExportComponent extends CBitrixComponent implements Cont
 				],
 				'postfilters' => [
 
+				]
+			],
+			'loadManifest' => [
+				'prefilters' => [
+					new ActionFilter\Authentication(),
+					new ActionFilter\HttpMethod(
+						[ActionFilter\HttpMethod::METHOD_POST]
+					),
+					new ActionFilter\Csrf()
 				]
 			]
 		];

@@ -1,6 +1,10 @@
 this.BX = this.BX || {};
-(function (exports,main_core) {
+(function (exports, main_core) {
 	'use strict';
+
+	/**
+	 * @memberOf BX.Landing
+	 */
 
 	var PageObject =
 	/*#__PURE__*/
@@ -169,5 +173,5 @@ this.BX = this.BX || {};
 
 	exports.PageObject = PageObject;
 
-}((this.BX.Landing = this.BX.Landing || {}),BX));
+}(this.BX.Landing = this.BX.Landing || {}, BX));
 //# sourceMappingURL=pageobject.bundle.js.map

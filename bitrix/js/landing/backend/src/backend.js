@@ -2,6 +2,9 @@ import {Uri, Cache, Loc, Reflection, Type, Http, ajax, Text} from 'main.core';
 import {Env} from 'landing.env';
 import type {Block, Landing, Site, Template, CreatePageOptions} from './types';
 
+/**
+ * @memberOf BX.Landing
+ */
 export class Backend
 {
 	static getInstance()
@@ -373,10 +376,10 @@ export class Backend
 		});
 	}
 
-	getDynamicTemplates(): Promise<Array<Template>>
+	getDynamicTemplates(sourceId: string = ''): Promise<Array<Template>>
 	{
-		return this.cache.remember('dynamicTemplates', () => {
-			return this.getTemplates({filter: {section: 'dynamic'}});
+		return this.cache.remember(`dynamicTemplates:${sourceId}`, () => {
+			return this.getTemplates({filter: {section: `dynamic${sourceId ? `:${sourceId}` : ''}`}});
 		});
 	}
 
@@ -388,6 +391,7 @@ export class Backend
 			code = Text.getRandom(16),
 			blockId,
 			menuCode,
+			folderId,
 		} = options;
 
 		const fields = {
@@ -400,6 +404,11 @@ export class Backend
 		{
 			fields.BLOCK_ID = blockId;
 			fields.MENU_CODE = menuCode;
+		}
+
+		if (Type.isNumber(folderId))
+		{
+			fields.FOLDER_ID = folderId;
 		}
 
 		return this.action('Landing::add', {fields});

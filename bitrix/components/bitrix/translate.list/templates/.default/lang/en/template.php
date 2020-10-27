@@ -53,6 +53,7 @@ $MESS["TR_INDEX_CSV_DLG_TITLE"] = "Step #NUM# out of #LEN#: Index imported messa
 $MESS["TR_INDEX_CSV_PROGRESS"] = "Files processed";
 $MESS["TR_INDEX_DLG_CANCELED"] = "Index building has been canceled.";
 $MESS["TR_INDEX_DLG_COMPLETED"] = "Index has been created.";
+$MESS["TR_INDEX_DLG_PARAM_LANGUAGES"] = "Select languages for indexing";
 $MESS["TR_INDEX_DLG_SUMMARY"] = "This will rebuild localization message index. This operation may take a while.";
 $MESS["TR_INDEX_DLG_TITLE"] = "Update message index";
 $MESS["TR_LIST_EXPORT_CSV"] = "Export to CSV";

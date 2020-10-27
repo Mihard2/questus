@@ -8,6 +8,9 @@ import {Draggable} from 'ui.draganddrop.draggable';
 
 import './css/style.css';
 
+/**
+ * @memberOf BX.Landing.UI.Form
+ */
 export class MenuForm extends BaseForm
 {
 	constructor(options = {})

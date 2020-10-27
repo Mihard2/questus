@@ -8,8 +8,8 @@ return [
 	'css' => 'dist/content.bundle.css',
 	'js' => 'dist/content.bundle.js',
 	'rel' => [
-		'landing.ui.panel.base',
 		'main.core',
+		'landing.ui.panel.base',
 		'landing.utils',
 	],
 	'skip_core' => false,

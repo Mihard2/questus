@@ -1,7 +1,7 @@
 this.BX = this.BX || {};
 this.BX.Landing = this.BX.Landing || {};
 this.BX.Landing.UI = this.BX.Landing.UI || {};
-(function (exports,main_core,landing_loc,landing_ui_panel_base) {
+(function (exports, main_core, landing_loc, landing_ui_panel_base) {
 	'use strict';
 
 	function _templateObject4() {
@@ -49,6 +49,7 @@ this.BX.Landing.UI = this.BX.Landing.UI || {};
 	 *
 	 * Implements singleton design pattern. Don't use it as constructor
 	 * use BX.Landing.UI.Panel.Alert.getInstance() for get instance of module
+	 * @memberOf BX.Landing.UI.Panel
 	 */
 
 	var Alert =
@@ -161,8 +162,6 @@ this.BX.Landing.UI = this.BX.Landing.UI || {};
 	          case 'es':
 	            url = 'https://helpdesk.bitrix24.es/ticket.php';
 	            break;
-
-	          default:
 	        }
 
 	        _this5.supportLink = BX.create('a', {
@@ -191,5 +190,5 @@ this.BX.Landing.UI = this.BX.Landing.UI || {};
 
 	exports.Alert = Alert;
 
-}((this.BX.Landing.UI.Panel = this.BX.Landing.UI.Panel || {}),BX,BX.Landing,BX.Landing.UI.Panel));
+}(this.BX.Landing.UI.Panel = this.BX.Landing.UI.Panel || {}, BX, BX.Landing, BX.Landing.UI.Panel));
 //# sourceMappingURL=alert.bundle.js.map

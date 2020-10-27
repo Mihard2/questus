@@ -7,6 +7,9 @@ import {Env} from 'landing.env';
 import 'translit';
 import './css/style.css';
 
+/**
+ * @memberOf BX.Landing.UI.Panel
+ */
 export class CreatePage extends Content
 {
 	static getInstance(): CreatePage
@@ -160,13 +163,14 @@ export class CreatePage extends Content
 				replace_other: '',
 			},
 		);
+		const {folder_id: folderId} = Env.getInstance().getOptions();
 		const loader = new Loader();
 
 		this.clear();
 		loader.show(this.body);
 
 		void backend
-			.createPage({title, code})
+			.createPage({title, code, folderId})
 			.then((result) => {
 				return new Promise((resolve) => {
 					setTimeout(() => resolve(result), 500);

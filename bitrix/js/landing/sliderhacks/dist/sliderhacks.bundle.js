@@ -1,5 +1,5 @@
 this.BX = this.BX || {};
-(function (exports,main_core,main_loader) {
+(function (exports, main_core, main_loader) {
 	'use strict';
 
 	function _templateObject() {
@@ -11,6 +11,10 @@ this.BX = this.BX || {};
 
 	  return data;
 	}
+	/**
+	 * @memberOf BX.Landing
+	 */
+
 	var SliderHacks =
 	/*#__PURE__*/
 	function () {
@@ -99,5 +103,5 @@ this.BX = this.BX || {};
 
 	exports.SliderHacks = SliderHacks;
 
-}((this.BX.Landing = this.BX.Landing || {}),BX,BX));
+}(this.BX.Landing = this.BX.Landing || {}, BX, BX));
 //# sourceMappingURL=sliderhacks.bundle.js.map

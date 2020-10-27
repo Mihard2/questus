@@ -68,7 +68,40 @@
 						if(response.data.length > 0)
 						{
 							this.section = response.data;
-							this.load(0,0);
+							this.loadManifest(0, '');
+						}
+						else
+						{
+							this.showFatalError();
+						}
+					},
+					this
+				)
+			);
+		},
+
+		loadManifest: function (step, next)
+		{
+			this.sendAjax(
+				'loadManifest',
+				{
+					step: step,
+					next: next
+				},
+				BX.delegate(
+					function (response)
+					{
+						if(!!response.data)
+						{
+							step++;
+							if(response.data.next === false)
+							{
+								this.load(0, 0);
+							}
+							else
+							{
+								this.loadManifest(step, response.data.next);
+							}
 						}
 						else
 						{

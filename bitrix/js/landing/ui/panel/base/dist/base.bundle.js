@@ -1,7 +1,7 @@
 this.BX = this.BX || {};
 this.BX.Landing = this.BX.Landing || {};
 this.BX.Landing.UI = this.BX.Landing.UI || {};
-(function (exports,main_core) {
+(function (exports, main_core) {
 	'use strict';
 
 	function _templateObject() {
@@ -13,6 +13,10 @@ this.BX.Landing.UI = this.BX.Landing.UI || {};
 
 	  return data;
 	}
+	/**
+	 * @memberOf BX.Landing.UI.Panel
+	 */
+
 	var BasePanel =
 	/*#__PURE__*/
 	function (_Event$EventEmitter) {
@@ -125,5 +129,5 @@ this.BX.Landing.UI = this.BX.Landing.UI || {};
 
 	exports.BasePanel = BasePanel;
 
-}((this.BX.Landing.UI.Panel = this.BX.Landing.UI.Panel || {}),BX));
+}(this.BX.Landing.UI.Panel = this.BX.Landing.UI.Panel || {}, BX));
 //# sourceMappingURL=base.bundle.js.map

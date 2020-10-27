@@ -4,6 +4,9 @@ import typeof {BaseField} from 'landing.ui.field.basefield';
 import type BaseFormOptions from './internal/type';
 import './css/style.css';
 
+/**
+ * @memberOf BX.Landing.UI.Form
+ */
 export class BaseForm extends Event.EventEmitter
 {
 	constructor(data: BaseFormOptions = {})

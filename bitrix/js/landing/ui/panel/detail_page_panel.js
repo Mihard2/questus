@@ -86,7 +86,7 @@
 			}));
 
 			BX.Landing.Backend.getInstance()
-				.getDynamicTemplates()
+				.getDynamicTemplates(source.id)
 				.then(function(templates) {
 					templates.forEach(function(template) {
 						this.appendCard(this.createTemplatePreview(template));
@@ -137,6 +137,25 @@
 							.then(function(response) {
 								this.loader.hide();
 								this.onChange({type: 'landing', id: response, name: template.TITLE});
+
+								var activeButton = this.sidebarButtons.getActive();
+								if (activeButton)
+								{
+									var sourceId = activeButton.id;
+									var env = BX.Landing.Env.getInstance();
+									var envOptions = env.getOptions();
+
+									var source = envOptions.sources.find(function(currentSource) {
+										return currentSource.id === sourceId;
+									});
+
+									if (source)
+									{
+										source.default.detail = '#landing' + response;
+									}
+
+									env.setOptions(envOptions);
+								}
 							}.bind(this));
 					}
 				}.bind(this));
@@ -151,13 +170,16 @@
 			);
 
 			this.getSources().forEach(function(source) {
-				this.appendSidebarButton(
-					new BX.Landing.UI.Button.SidebarButton(source.id, {
-						text: source.name,
-						child: true,
-						onClick: this.onSourceClick.bind(this, source)
-					})
-				);
+				if (source.settings.detailPage)
+				{
+					this.appendSidebarButton(
+						new BX.Landing.UI.Button.SidebarButton(source.id, {
+							text: source.name,
+							child: true,
+							onClick: this.onSourceClick.bind(this, source)
+						})
+					);
+				}
 			}, this);
 		},
 

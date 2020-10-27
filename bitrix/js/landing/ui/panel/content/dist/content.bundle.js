@@ -1,7 +1,7 @@
 this.BX = this.BX || {};
 this.BX.Landing = this.BX.Landing || {};
 this.BX.Landing.UI = this.BX.Landing.UI || {};
-(function (exports,landing_ui_panel_base,main_core) {
+(function (exports, main_core, landing_ui_panel_base) {
 	'use strict';
 
 	function getDeltaFromEvent(event) {
@@ -163,6 +163,10 @@ this.BX.Landing.UI = this.BX.Landing.UI || {};
 
 	  return data;
 	}
+	/**
+	 * @memberOf BX.Landing.UI.Panel
+	 */
+
 	var Content =
 	/*#__PURE__*/
 	function (_BasePanel) {
@@ -210,12 +214,12 @@ this.BX.Landing.UI = this.BX.Landing.UI || {};
 	    }
 	  }, {
 	    key: "scrollTo",
-	    value: function scrollTo$$1(container, element) {
+	    value: function scrollTo$1(container, element) {
 	      return scrollTo(container, element);
 	    }
 	  }, {
 	    key: "getDeltaFromEvent",
-	    value: function getDeltaFromEvent$$1(event) {
+	    value: function getDeltaFromEvent$1(event) {
 	      return getDeltaFromEvent(event);
 	    }
 	  }]);
@@ -373,7 +377,7 @@ this.BX.Landing.UI = this.BX.Landing.UI || {};
 	    }
 	  }, {
 	    key: "scrollTo",
-	    value: function scrollTo$$1(element) {
+	    value: function scrollTo(element) {
 	      void Content.scrollTo(this.content, element);
 	    }
 	  }, {
@@ -466,5 +470,5 @@ this.BX.Landing.UI = this.BX.Landing.UI || {};
 
 	exports.Content = Content;
 
-}((this.BX.Landing.UI.Panel = this.BX.Landing.UI.Panel || {}),BX.Landing.UI.Panel,BX));
+}(this.BX.Landing.UI.Panel = this.BX.Landing.UI.Panel || {}, BX, BX.Landing.UI.Panel));
 //# sourceMappingURL=content.bundle.js.map

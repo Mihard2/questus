@@ -3,6 +3,9 @@ import {Loader} from 'main.loader';
 
 import './css/style.css';
 
+/**
+ * @memberOf BX.Landing
+ */
 export class SliderHacks
 {
 	static cache = new Cache.MemoryCache();

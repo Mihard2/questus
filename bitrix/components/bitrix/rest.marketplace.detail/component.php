@@ -14,7 +14,7 @@ if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true)
  * @global CUser $USER
  */
 use \Bitrix\Main\Localization\Loc;
-
+use \Bitrix\Main\Loader;
 if(!CModule::IncludeModule("rest"))
 {
 	return;
@@ -79,7 +79,7 @@ if($arApp)
 		}
 	}
 
-	if ($arApp["ACTIVE"] == "Y")
+	if ($arApp["ACTIVE"] == "Y" && $arApp['TYPE'] !== \Bitrix\Rest\AppTable::TYPE_CONFIGURATION)
 	{
 		$arApp["UPDATES"] = \Bitrix\Rest\Marketplace\Client::getAvailableUpdate($arApp["CODE"]);
 	}
@@ -146,7 +146,11 @@ if($request->isPost() && $request['install'] && check_bitrix_sessid())
 				}
 			}
 		}
-
+		if(Loader::IncludeModule('bitrix24')
+			&& !in_array(\CBitrix24::getLicensePrefix(), array('ru', 'ua', 'kz', 'by')))
+		{
+			$arResult['TERMS_OF_SERVICE_LINK'] = Loc::getMessage('REST_MARKETPLACE_TERMS_OF_SERVICE_LINK');
+		}
 		$arResult['IS_HTTPS'] = \Bitrix\Main\Context::getCurrent()->getRequest()->isHttps();
 
 		$this->includeComponentTemplate('install');

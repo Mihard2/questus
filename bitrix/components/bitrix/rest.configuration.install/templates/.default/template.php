@@ -20,10 +20,18 @@ use Bitrix\Main\UI\Extension;
 
 Loc::loadMessages(__FILE__);
 $containerId = 'rest-configuration-import-install';
-$description = (!empty($arParams['APP']))?'REST_CONFIGURATION_IMPORT_INSTALL_APP_DESCRIPTION':'REST_CONFIGURATION_IMPORT_INSTALL_DESCRIPTION';
-if($arParams['MODE'])
+if(!empty($arResult['MANIFEST']['IMPORT_DESCRIPTION_START']))
 {
-	$description .= '_'.$arParams['MODE'];
+	$description = $arResult['MANIFEST']['IMPORT_DESCRIPTION_START'];
+}
+else
+{
+	$description = (!empty($arParams['APP']))?'REST_CONFIGURATION_IMPORT_INSTALL_APP_DESCRIPTION':'REST_CONFIGURATION_IMPORT_INSTALL_DESCRIPTION';
+	if($arParams['MODE'])
+	{
+		$description .= '_'.$arParams['MODE'];
+	}
+	$description = Loc::getMessage($description);
 }
 ?>
 <? if(is_array($arResult['NOTIFY'])):?>
@@ -43,7 +51,7 @@ if($arParams['MODE'])
 
 		<span class="ui-btn ui-btn-lg ui-btn-primary start_btn"><?=Loc::getMessage('REST_CONFIGURATION_IMPORT_INSTALL_START_BTN')?></span>
 	</div>
-	<div class="rest-configuration-info"><?=Loc::getMessage($description)?></div>
+	<div class="rest-configuration-info"><?=htmlspecialcharsbx($description)?></div>
 	<div class="rest-configuration-errors"></div>
 	<script type="text/javascript">
 		BX.ready(function () {

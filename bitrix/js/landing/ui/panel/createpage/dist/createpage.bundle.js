@@ -1,7 +1,7 @@
 this.BX = this.BX || {};
 this.BX.Landing = this.BX.Landing || {};
 this.BX.Landing.UI = this.BX.Landing.UI || {};
-(function (exports,main_core,main_loader,landing_ui_panel_content,landing_loc,landing_backend,landing_env) {
+(function (exports, main_core, main_loader, landing_ui_panel_content, landing_loc, landing_backend, landing_env) {
 	'use strict';
 
 	function _templateObject2() {
@@ -23,6 +23,10 @@ this.BX.Landing.UI = this.BX.Landing.UI || {};
 
 	  return data;
 	}
+	/**
+	 * @memberOf BX.Landing.UI.Panel
+	 */
+
 	var CreatePage =
 	/*#__PURE__*/
 	function (_Content) {
@@ -159,12 +163,17 @@ this.BX.Landing.UI = this.BX.Landing.UI || {};
 	        replace_space: '-',
 	        replace_other: ''
 	      });
+
+	      var _Env$getInstance$getO = landing_env.Env.getInstance().getOptions(),
+	          folderId = _Env$getInstance$getO.folder_id;
+
 	      var loader = new main_loader.Loader();
 	      this.clear();
 	      loader.show(this.body);
 	      void backend.createPage({
 	        title: title,
-	        code: code
+	        code: code,
+	        folderId: folderId
 	      }).then(function (result) {
 	        return new Promise(function (resolve) {
 	          setTimeout(function () {
@@ -214,5 +223,5 @@ this.BX.Landing.UI = this.BX.Landing.UI || {};
 
 	exports.CreatePage = CreatePage;
 
-}((this.BX.Landing.UI.Panel = this.BX.Landing.UI.Panel || {}),BX,BX,BX.Landing.UI.Panel,BX.Landing,BX.Landing,BX.Landing));
+}(this.BX.Landing.UI.Panel = this.BX.Landing.UI.Panel || {}, BX, BX, BX.Landing.UI.Panel, BX.Landing, BX.Landing, BX.Landing));
 //# sourceMappingURL=createpage.bundle.js.map

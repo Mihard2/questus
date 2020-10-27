@@ -179,9 +179,42 @@
 			}
 		},
 
+		clipTitle: function()
+		{
+			if(!this.layout.title)
+			{
+				return;
+			}
+			BX.cleanNode(this.layout.title);
+			var wrapper = BX.create("span", {
+				text: this.title
+			});
+
+			this.layout.title.appendChild(wrapper);
+
+			var nodeHeight = this.layout.title.offsetHeight;
+			var text = this.title;
+
+			var a = 0;
+			while (nodeHeight <= wrapper.offsetHeight && text.length > a)
+			{
+				a = a + 2;
+				wrapper.innerText = text.slice(0, -a) + '...';
+			}
+		},
+
 		afterRender: function()
 		{
-			this.clipDescription()
+			if(this.description)
+			{
+				this.clipDescription()
+			}
+
+			if(this.title)
+			{
+				this.clipTitle();
+
+			}
 		}
 	};
 })();

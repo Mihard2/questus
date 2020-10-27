@@ -10,6 +10,7 @@ import './css/style.css';
  *
  * Implements singleton design pattern. Don't use it as constructor
  * use BX.Landing.UI.Panel.Alert.getInstance() for get instance of module
+ * @memberOf BX.Landing.UI.Panel
  */
 export class Alert extends BasePanel
 {

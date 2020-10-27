@@ -240,11 +240,15 @@
 			onClick: proxy(editor.adjustButtonsState, editor)
 		}));
 
-		editor.addButton(new BX.Landing.UI.Button.CreatePage("createPage", {
-			html: "<span class=\"landing-ui-icon-editor-new-page\"></span>",
-			attrs: {title: BX.Landing.Loc.getMessage("LANDING_TITLE_OF_EDITOR_ACTION_CREATE_PAGE")},
-			onClick: proxy(editor.adjustButtonsState, editor)
-		}));
+		var rights = BX.Landing.Env.getInstance().getOptions().rights;
+		if (rights.includes('edit'))
+		{
+			editor.addButton(new BX.Landing.UI.Button.CreatePage("createPage", {
+				html: "<span class=\"landing-ui-icon-editor-new-page\"></span>",
+				attrs: {title: BX.Landing.Loc.getMessage("LANDING_TITLE_OF_EDITOR_ACTION_CREATE_PAGE")},
+				onClick: proxy(editor.adjustButtonsState, editor)
+			}));
+		}
 
 		editor.addButton(new BX.Landing.UI.Button.EditorAction("unlink", {
 			html: "<span class=\"landing-ui-icon-editor-unlink\"></span>",
